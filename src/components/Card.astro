@@ -4,7 +4,7 @@ import { ICONS } from '../constants';
 const { title, description, url, tags, target, image } = Astro.props;
 ---
 
-<a class="project" target={target} href={url}>
+<a class="card" target={target} href={url}>
     <div class="image-content">
         <img src={image} alt={title} />
     </div>
@@ -32,7 +32,7 @@ const { title, description, url, tags, target, image } = Astro.props;
 </a>
 
 <style>
-    .project {
+    .card {
         position: relative;
         width: 100%;
         display: flex;
@@ -114,7 +114,44 @@ const { title, description, url, tags, target, image } = Astro.props;
         }
     }
 
-    .project:hover .external-icon {
+    .card:hover .external-icon {
         opacity: 1;
+    }
+
+    @media (max-width: 750px) {
+        .image-content {
+            width: 30%;
+
+            img {
+                width: 100%;
+                max-width: 60px;
+            }
+        }
+
+        .text-content {
+            width: 70%;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .card {
+            flex-direction: column;
+            gap: 10px;
+
+            .image-content {
+                width: 100%;
+                padding: 10px;
+
+                img {
+                    width: 100%;
+                    max-width: 100px;
+                }
+            }
+
+            .text-content {
+                width: 100%;
+                align-items: flex-start;
+            }
+        }
     }
 </style>
