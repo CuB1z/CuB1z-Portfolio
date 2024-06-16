@@ -1,21 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import About from '../components/About.astro'
+import Layout from "../layouts/Layout.astro";
+import About from "../components/About.astro";
+import Projects from "../components/Projects.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 ---
 
 <Layout title="Diego Sánchez">
-	<main>
-		<About />
-	</main>
+	<About />
+	<Projects>
+		<ProjectCard/>
+		<ProjectCard/>
+		<ProjectCard/>
+	</Projects>
 </Layout>
-
-<style>
-	main {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		padding: 0 1rem;
-	}	
-</style>

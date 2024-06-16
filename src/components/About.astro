@@ -15,7 +15,7 @@ import {
             <img src={AVATAR_URL} alt="Profile Picture" />
         </div>
         <div class="info-container">
-            <span class="name">{NAME},</span>
+            <h1 class="name">{NAME},</h1>
             <span class="age">{AGE}</span>
         </div>
     </div>
@@ -30,14 +30,16 @@ import {
             University in Madrid.
         </p>
         <p>
-            I consider myself a responsible and committed person in my work.
-            In addition to my degree, I enjoy self-learning and experimenting with new technologies to expand my knowledge.
+            I consider myself a responsible and committed person in my work. In
+            addition to my degree, I enjoy self-learning and experimenting with
+            new technologies to expand my knowledge.
         </p>
     </div>
 </section>
 
 <style>
     section {
+        padding-top: calc(var(--header-height) + 100px);
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -99,7 +101,7 @@ import {
     .about-content {
         width: 100%;
         letter-spacing: 1px;
-        line-height: 1.6;   
+        line-height: 1.6;
     }
 
     p {
