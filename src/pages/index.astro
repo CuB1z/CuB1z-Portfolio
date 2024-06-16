@@ -1,13 +1,21 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro'
+import About from '../components/About.astro'
 ---
 
 <Layout title="Diego Sánchez">
 	<main>
-
+		<About />
 	</main>
 </Layout>
 
 <style>
-	
+	main {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 0 1rem;
+	}	
 </style>
