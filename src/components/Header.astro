@@ -1,0 +1,60 @@
+<header>
+    <nav>
+        <div class="logo">
+            <a href="/#">LOGO</a>
+        </div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="toggle-theme">
+            <input type="checkbox" id="toggle" name="theme" />
+            <label for="toggle">TOGGLE</label>
+        </div>
+    </nav>
+</header>
+
+<style>
+    header {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: var(--bg-color);
+    }
+    
+    nav {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 60% 1fr;
+        align-items: center;
+        padding: 1rem 0;
+    }
+
+    .logo {
+        padding-left: 2rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 1.5rem;
+    }
+
+    ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5rem;
+    }
+
+    .toggle-theme {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 2rem;
+
+        & input {
+            display: none;
+        }
+    }
+    
+</style>

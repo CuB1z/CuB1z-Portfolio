@@ -1,0 +1,50 @@
+<footer>
+    <div class="content">
+        <div class="inner-content left-content">
+            <span>CuB1</span>
+        </div>
+        <div class="inner-content right-content">
+            <span>GitHub</span>
+            <span>LinkedIn</span>
+        </div>
+    </div>
+</footer>
+
+<style>
+    footer {
+        width: 50%;
+        height: var(--footer-height);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .content {
+        padding: 1rem;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--footer-bg);
+        border-radius: 5px;
+    }
+
+    .inner-content {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .left-content {
+        justify-content: flex-start;
+    }
+
+    .right-content {
+        justify-content: flex-end;
+    }
+</style>
