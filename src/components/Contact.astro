@@ -1,14 +1,22 @@
 ---
-import { GITHUB_URL, LINKEDIN_URL, EMAIL } from "../constants";
+import { SOCIAL_MEDIA } from "../constants";
+import SocialCard from "./SocialCard.astro";
+import ProjectCard from "./ProjectCard.astro";
 ---
 
 <section id="contact">
     <h1>Contact</h1>
-    <p>Feel free to reach out to me on any of the following platforms:</p>
     <div class="contact-links">
-        <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href=`mailto:${EMAIL}`>{EMAIL}</a>
+        { SOCIAL_MEDIA.map((elem) => 
+            <ProjectCard 
+                title={elem.title}
+                description={elem.description}
+                link={elem.link}
+                icon={elem.icon}
+                tags={elem.tags}
+                image={elem.image}
+            />
+        )}
     </div>
 </section>
 
@@ -22,14 +30,9 @@ import { GITHUB_URL, LINKEDIN_URL, EMAIL } from "../constants";
     }
 
     .contact-links {
+        width: 100%;
         display: flex;
-        gap: 1rem;
-    }
-
-    a {
-        padding: 0px 10px;
-        border-radius: 5px;
-        color: black;
-        background-color: #eee;
+        flex-direction: column;
+        gap: 2rem;
     }
 </style>
