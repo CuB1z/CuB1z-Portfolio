@@ -6,6 +6,7 @@ import {
     NICK,
     LOCATION,
     OCCUPATION,
+    LINKEDIN_URL,
 } from "../constants";
 ---
 
@@ -39,6 +40,18 @@ import {
             addition to my degree, I enjoy self-learning and experimenting with
             new technologies to expand my knowledge.
         </p>
+    </div>
+    <div class="work-status">
+        <div class="status-badge">
+            <span class="status-color"></span>
+            <span>Available</span>
+        </div>
+        <a
+            class="connect-link"
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener noreferrer">Let's Connect</a
+        >
     </div>
 </section>
 
@@ -124,5 +137,44 @@ import {
 
     p {
         margin-bottom: 0.5rem;
+    }
+
+    .work-status {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+        margin-top: 1rem;
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            padding: 0 15px;
+            border-radius: 25px;
+            background-color: #111;
+            box-shadow: 0 0 5px rgb(0, 128, 0);
+
+            .status-color {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: rgb(0, 128, 0);
+            }
+        }
+
+        .connect-link {
+            padding: 0 15px;
+            color: white;
+            border-radius: 25px;
+            border: 1px solid var(--accent-color);
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: var(--accent-color);
+            }
+        }
     }
 </style>
