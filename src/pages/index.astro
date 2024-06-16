@@ -1,12 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import About from "../components/About.astro";
-import Projects from "../components/Projects.astro";
-import Contact from "../components/Contact.astro";
+import CardSection from "../components/CardSection.astro";
+
+import { PROJECTS, SOCIAL_MEDIA } from "../constants";
 ---
 
 <Layout title="Diego Sánchez">
 	<About />
-	<Projects />
-	<Contact />
+	<CardSection title="Projects" data={PROJECTS}/>
+	<CardSection title="Contact" data={SOCIAL_MEDIA}/>
 </Layout>
