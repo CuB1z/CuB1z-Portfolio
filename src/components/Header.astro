@@ -1,7 +1,11 @@
+---
+import { NICK } from "../constants";
+---
+
 <header>
     <nav>
         <div class="logo">
-            <a href="/#">LOGO</a>
+            <a href="/#">{NICK}</a>
         </div>
         <ul>
             <li><a href="#about">About</a></li>
@@ -22,7 +26,8 @@
         position: fixed;
         top: 0;
         right: 0;
-        background-color: var(--bg-color);
+        background-color: var(--header-bg);
+        backdrop-filter: blur(10px);
     }
     
     nav {
@@ -58,4 +63,12 @@
         }
     }
     
+    @keyframes feGaussianBlur {
+        0% {
+            backdrop-filter: blur(10px);
+        }
+        100% {
+            backdrop-filter: blur(0px);
+        }
+    }
 </style>

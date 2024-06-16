@@ -15,8 +15,13 @@ import {
             <img src={AVATAR_URL} alt="Profile Picture" />
         </div>
         <div class="info-container">
-            <h1 class="name">{NAME},</h1>
-            <span class="age">{AGE}</span>
+            <div class="primary-info">
+                <h2 class="name">{NAME}</h2>
+            </div>
+            <div class="secondary-info">
+                <span class="nick">@{NICK}</span>
+                <span class="age">{AGE}</span>
+            </div>
         </div>
     </div>
     <div class="tags">
@@ -73,13 +78,25 @@ import {
     .info-container {
         width: 100%;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
+
+        .secondary-info {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.5rem;
+        }
     }
 
     .name {
         font-weight: bold;
+    }
+
+    .nick {
+        color: var(--accent-color);
     }
 
     .age {
@@ -99,6 +116,7 @@ import {
     }
 
     .about-content {
+        margin-top: 1rem;
         width: 100%;
         letter-spacing: 1px;
         line-height: 1.6;
