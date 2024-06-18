@@ -66,7 +66,7 @@ export const PROJECTS = [
     {
         title: "The 8 Ball Brand",
         description: "Auction site developed for a University project where users can bid on items and sell their own.",
-        url: "https://github.com/PortiESP/The8BallBrand",
+        url: "https://the-8-ball-brand.vercel.app/",
         tags: ["Express", "HTML", "JavaScript"],
         target: "_blank",
         image: "/assets/the-8-ball-brand.png"
