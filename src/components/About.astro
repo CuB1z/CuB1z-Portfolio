@@ -7,6 +7,7 @@ import {
     LOCATION,
     OCCUPATION,
     LINKEDIN_URL,
+    GITHUB_URL,
 } from "../constants";
 ---
 
@@ -33,6 +34,24 @@ import {
         <div class="tag">
             <img class="tag-image" src="/assets/code.svg" alt="Dev Icon" />
             <span>{OCCUPATION}</span>
+        </div>
+        <div class="tag">
+            <a
+                class="tag-image"
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <i class="devicon-github-original"></i>
+            </a>
+            <a
+                class="tag-image"
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <i class="devicon-linkedin-plain"></i>
+            </a>
         </div>
     </div>
     <div class="about-content">
@@ -141,6 +160,16 @@ import {
         .tag-image {
             width: 30px;
             height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 23px;
+            transition: all 0.3s;
+        }
+
+        a.tag-image:hover {
+            filter: drop-shadow(0 0 7px var(--accent-color-hover));
         }
     }
 
