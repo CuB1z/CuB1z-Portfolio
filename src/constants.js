@@ -17,6 +17,7 @@ export const AGE = Math.floor((new Date() - BIRTH_DATE.getTime()) / MS_PER_YEAR)
 export const GITHUB_URL = "https://github.com/CuB1z"
 export const LINKEDIN_URL = "https://www.linkedin.com/in/cub1z/"
 export const EMAIL = "cub1zdev@gmail.com"
+export const CV_URL = "/Diego_Sanchez_EN.pdf"
 
 export const SOCIAL_MEDIA = [
     {

@@ -8,6 +8,7 @@ import {
     OCCUPATION,
     LINKEDIN_URL,
     GITHUB_URL,
+    CV_URL,
 } from "../constants";
 ---
 
@@ -51,6 +52,14 @@ import {
                 rel="noopener noreferrer"
             >
                 <i class="devicon-linkedin-plain"></i>
+            </a>
+            <a
+                class="tag-image"
+                href={CV_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/assets/cv.svg" alt="CV Icon" />
             </a>
         </div>
     </div>
@@ -166,6 +175,12 @@ import {
             text-align: center;
             font-size: 23px;
             transition: all 0.3s;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         }
 
         a.tag-image:hover {
