@@ -6,17 +6,20 @@ const onMenuClick = () => {
     const nav = document.querySelector("ul");
     nav.classList.toggle("open");
 };
+
+import { NAVIGATION } from "../constants";
+const lang = Astro.url.pathname.split("/")[1] || "en";
 ---
 
 <header>
     <nav>
         <div class="logo">
-            <a href="/#">{NICK}</a>
+            <a href="#">{NICK}</a>
         </div>
         <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">{NAVIGATION.about[lang]}</a></li>
+            <li><a href="#projects">{NAVIGATION.projects[lang]}</a></li>
+            <li><a href="#contact">{NAVIGATION.contact[lang]}</a></li>
         </ul>
         <div class="toggle-theme">
             <input type="checkbox" id="toggle" name="theme" />

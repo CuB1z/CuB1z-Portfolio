@@ -1,13 +1,5 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import About from "../components/About.astro";
-import CardSection from "../components/CardSection.astro";
-
-import { PROJECTS, SOCIAL_MEDIA } from "../constants";
+import App from "../components/App.astro"
 ---
 
-<Layout title="Diego Sánchez | Portfolio">
-	<About />
-	<CardSection title="Projects" data={PROJECTS}/>
-	<CardSection title="Contact" data={SOCIAL_MEDIA}/>
-</Layout>
+<App />

@@ -6,10 +6,14 @@ import {
     NICK,
     LOCATION,
     OCCUPATION,
+    LINKEDIN_STATUS,
     LINKEDIN_URL,
     GITHUB_URL,
     CV_URL,
+    ABOUT,
 } from "../constants";
+
+const lang = Astro.url.pathname.split("/")[1] || "en";
 ---
 
 <section id="about">
@@ -30,11 +34,11 @@ import {
     <div class="tags">
         <div class="tag">
             <img class="tag-image" src="/assets/gps.svg" alt="GPS Icon" />
-            <span>{LOCATION}</span>
+            <span>{LOCATION[lang]}</span>
         </div>
         <div class="tag">
             <img class="tag-image" src="/assets/code.svg" alt="Dev Icon" />
-            <span>{OCCUPATION}</span>
+            <span>{OCCUPATION[lang]}</span>
         </div>
         <div class="tag">
             <a
@@ -53,39 +57,25 @@ import {
             >
                 <i class="devicon-linkedin-plain"></i>
             </a>
-            <a
-                class="tag-image"
-                href={CV_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <img src="/assets/cv.svg" alt="CV Icon" />
-            </a>
         </div>
     </div>
     <div class="about-content">
-        <p>Hi! I'm Diego,</p>
-        <p>
-            I am currently studying Software Engineering at Rey Juan Carlos
-            University in Madrid.
-        </p>
-        <p>
-            I consider myself a responsible and committed person in my work. In
-            addition to my degree, I enjoy self-learning and experimenting with
-            new technologies to expand my knowledge.
-        </p>
+        <p>{ABOUT.p1[lang]}</p>
+        <p>{ABOUT.p2[lang]}</p>
+        <p>{ABOUT.p3[lang]}</p>
     </div>
     <div class="work-status">
         <div class="status-badge">
             <span class="status-color"></span>
-            <span>Available</span>
+            <span>{LINKEDIN_STATUS.status[lang]}</span>
         </div>
         <a
             class="connect-link"
             href={LINKEDIN_URL}
             target="_blank"
-            rel="noopener noreferrer">Let's Connect</a
-        >
+            rel="noopener noreferrer"
+            >{LINKEDIN_STATUS.button[lang]}
+        </a>
     </div>
 </section>
 

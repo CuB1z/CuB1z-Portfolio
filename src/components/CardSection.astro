@@ -2,17 +2,18 @@
 import Card from "./Card.astro";
 
 const { title, data } = Astro.props;
+const lang = Astro.url.pathname.split("/")[1] || "en";
 ---
 
-<section id={title.toLowerCase()}>
-    <h1>{title}</h1>
+<section id={title["en"].toLowerCase()}>
+    <h1>{title[lang]}</h1>
     <div class="projects">
         {
             data.map((item, index) => (
                 <Card
                     key={index}
                     title={item.title}
-                    description={item.description}
+                    description={item.description[lang]}
                     tags={item.tags}
                     url={item.url}
                     target={item.target}

@@ -3,8 +3,56 @@
 export const AVATAR_URL = "https://avatars.githubusercontent.com/u/121297520?v=4"
 export const NAME = "Diego Sánchez"
 export const NICK = "CuB1z"
-export const LOCATION = "Madrid, Spain"
-export const OCCUPATION = "Software Engineering Student"
+export const LOCATION = {
+    en: "Madrid, Spain",
+    es: "Madrid, España"
+}
+
+export const OCCUPATION = {
+    en: "Software Engineering Student",
+    es: "Estudiante de Ingeniería Software"
+}
+
+export const LINKEDIN_STATUS = {
+    status: {
+        en: "Available",
+        es: "Disponible"
+    },
+    button: {
+        en: "Let's connect!",
+        es: "Conectemos!"
+    }
+}
+
+export const NAVIGATION = {
+    about: {
+        en: "About",
+        es: "Sobre mí"
+    },
+    projects: {
+        en: "Projects",
+        es: "Proyectos"
+    },
+    contact: {
+        en: "Contact",
+        es: "Contacto"
+    }
+}
+
+export const ABOUT = {
+    p1: {
+        en: "Hi! I'm Diego,",
+        es: "¡Hola! Soy Diego,"
+    },
+    p2: {
+        en: "I am currently studying Software Engineering at Rey Juan Carlos University in Madrid.",
+        es: "Actualmente estoy estudiando Ingeniería Software en la Universidad Rey Juan Carlos de Madrid."
+    },
+    p3: {
+        en: "I consider myself a responsible and committed person in my work. In addition to my degree, I enjoy self-learning and experimenting with new technologies to expand my knowledge.",
+        es: "Me considero una persona responsable y comprometida en mi trabajo. Además de mi carrera, disfruto aprendiendo de forma autodidacta y experimentando con nuevas tecnologías para ampliar mis conocimientos."
+    }
+}
 
 // Calculated constants =======================================
 
@@ -22,7 +70,10 @@ export const CV_URL = "/Diego_Sanchez_EN.pdf"
 export const SOCIAL_MEDIA = [
     {
         title: "GitHub",
-        description: "Check out my projects!",
+        description: {
+            en: "Check out my projects!",
+            es: "¡Echa un vistazo a mis proyectos!"
+        },
         url: GITHUB_URL,
         tags: [],
         target: "_blank",
@@ -30,7 +81,10 @@ export const SOCIAL_MEDIA = [
     },
     { 
         title: "LinkedIn",
-        description: "Let's connect!",
+        description: {
+            en: "Let's connect!",
+            es: "¡Conectemos!"
+        },
         url: "https://www.linkedin.com/in/cub1z/", 
         tags: [],
         target: "_blank",
@@ -38,7 +92,10 @@ export const SOCIAL_MEDIA = [
     },
     { 
         title: "Email",
-        description: `Send me an email to ${EMAIL}`,
+        description: {
+            en: `Send me an email to ${EMAIL}`,
+            es: `Envíame un email a ${EMAIL}`
+        },
         url: `mailto:${EMAIL}`,
         tags: [],
         target: "",
@@ -50,7 +107,10 @@ export const SOCIAL_MEDIA = [
 export const PROJECTS = [
     {
         title: "Notion Lovers",
-        description: "A student-led platform for sharing and accessing university notes. Join us in revolutionizing study habits!",
+        description: {
+            en: "A student-led platform for sharing and accessing university notes. Join us in revolutionizing study habits!",
+            es: "Una plataforma para compartir y acceder a apuntes universitarios. ¡Únete a la revolución de los hábitos de estudio!"
+        },
         url: "https://notionlovers.vercel.app/",
         tags: ["React", "Next.js", "Notion"],
         target: "_blank",
@@ -58,7 +118,10 @@ export const PROJECTS = [
     },
     {
         title: "Bits Of Battle",
-        description: "Bits Of Battle (BOB) is a 1vs1 game to play in local with a friend using the same keyboard.",
+        description: {
+            en: "Bits Of Battle (BOB) is a 1vs1 game to play in local with a friend using the same keyboard.",
+            es: "Bits Of Battle (BOB) es un juego 1vs1 para jugar en local con un amigo utilizando el mismo teclado."
+        },
         url: "https://bits-of-battle.vercel.app/",
         tags: ["React", "Canvas", "JavaScript"],
         target: "_blank",
@@ -66,7 +129,10 @@ export const PROJECTS = [
     },
     {
         title: "The 8 Ball Brand",
-        description: "Auction site developed for a University project where users can bid on items and sell their own.",
+        description: {
+            en: "Auction site developed for a University project where users can bid on items and sell their own.",
+            es: "Sitio de subastas desarrollado para un proyecto universitario donde los usuarios pueden pujar por artículos y vender los suyos."
+        },
         url: "https://the-8-ball-brand.vercel.app/",
         tags: ["Express", "HTML", "JavaScript"],
         target: "_blank",
