@@ -12,7 +12,6 @@ const { onMenuClick } = Astro.props;
 <script is:inline>
     function handleClick() {
         const hamburger = document.querySelector(".hamburger")
-        const spans = document.querySelectorAll(".hamburger span")
         const onMenuClick = hamburger.dataset.onMenuClick
 
         if (hamburger.classList.contains("is-active")) {

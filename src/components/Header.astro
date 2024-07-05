@@ -8,7 +8,10 @@ const onMenuClick = () => {
 };
 
 import { NAVIGATION } from "../constants";
+
 const lang = Astro.url.pathname.split("/")[1] || "en";
+const navToLang = lang === "en" ? "es" : "";
+const langText = lang === "en" ? "EN" : "ES";
 ---
 
 <header>
@@ -20,9 +23,12 @@ const lang = Astro.url.pathname.split("/")[1] || "en";
             <li><a href="#about">{NAVIGATION.about[lang]}</a></li>
             <li><a href="#projects">{NAVIGATION.projects[lang]}</a></li>
             <li><a href="#contact">{NAVIGATION.contact[lang]}</a></li>
+            <li><a class="responsive-lang" href={`/${navToLang}`}>{langText}</a></li>
         </ul>
-        <div class="toggle-theme">
-            <input type="checkbox" id="toggle" name="theme" />
+        <div class="lang">
+            <a href={`/${navToLang}`}>{langText}</a>
+        </div>
+        <div class="responsive-nav">
             <HamburgerButton onMenuClick={onMenuClick} />
         </div>
     </nav>
@@ -43,8 +49,8 @@ const lang = Astro.url.pathname.split("/")[1] || "en";
     nav {
         position: relative;
         width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 60% 1fr;
+        display: flex;
+        justify-content: space-between;
         align-items: center;
         padding: 1rem 0;
     }
@@ -55,6 +61,15 @@ const lang = Astro.url.pathname.split("/")[1] || "en";
         justify-content: flex-start;
         align-items: center;
         font-size: 1.5rem;
+    }
+
+    .lang {
+        padding-right: 2rem;
+        font-size: 1rem;
+    }
+
+    .responsive-lang {
+        display: none;
     }
 
     ul {
@@ -72,7 +87,7 @@ const lang = Astro.url.pathname.split("/")[1] || "en";
         transform: translateY(-3px);
     }
 
-    .toggle-theme {
+    .responsive-nav {
         display: none;
         justify-content: flex-end;
         padding-right: 2rem;
@@ -105,9 +120,17 @@ const lang = Astro.url.pathname.split("/")[1] || "en";
             transform: translateX(0);
         }
 
-        .toggle-theme {
+        .responsive-nav {
             display: flex;
             justify-content: flex-end;
+        }
+
+        .responsive-lang {
+            display: block;
+        }
+
+        .lang {
+            display: none;
         }
     }
 </style>
