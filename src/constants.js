@@ -8,6 +8,11 @@ export const LOCATION = {
     es: "Madrid, España"
 }
 
+export const DESCRIPTION = {
+    en: "Software Engineering Student at Rey Juan Carlos University in Madrid.",
+    es: "Estudiante de Ingeniería Software en la Universidad Rey Juan Carlos de Madrid."
+}
+
 export const OCCUPATION = {
     en: "Software Engineering Student",
     es: "Estudiante de Ingeniería Software"

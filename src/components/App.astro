@@ -3,10 +3,14 @@ import Layout from "../layouts/Layout.astro";
 import About from "../components/About.astro";
 import CardSection from "../components/CardSection.astro";
 
-import { PROJECTS, SOCIAL_MEDIA, NAVIGATION } from "../constants";
+import { PROJECTS, SOCIAL_MEDIA, NAVIGATION, DESCRIPTION } from "../constants";
+const lang = Astro.url.pathname.split("/")[1] || "en";
 ---
 
-<Layout title="Diego Sánchez | Portfolio">
+<Layout
+    title="Diego Sánchez | Portfolio"
+    description={DESCRIPTION[lang]}
+>
     <About />
     <CardSection title={NAVIGATION.projects} data={PROJECTS} />
     <CardSection title={NAVIGATION.contact} data={SOCIAL_MEDIA} />
