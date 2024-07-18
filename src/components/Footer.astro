@@ -7,7 +7,9 @@ const year = new Date().getFullYear();
 <footer>
     <div class="content">
         <div class="inner-content left-content">
-            <span>{NICK}</span>
+            <a href="#">
+                <span>{NICK}</span>
+            </a>
         </div>
         <div class="inner-content right-content">
             <span>&copy; {year}</span>
@@ -42,6 +44,14 @@ const year = new Date().getFullYear();
         justify-content: center;
         align-items: center;
         gap: 25px;
+    }
+
+    a {
+        transition: all 0.3s ease;
+    }
+
+    a:hover {
+        transform: translateY(-3px);
     }
 
     .left-content {
