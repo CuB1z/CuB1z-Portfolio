@@ -54,8 +54,12 @@ export const ABOUT = {
         es: "Actualmente estoy estudiando Ingeniería Software en la Universidad Rey Juan Carlos de Madrid."
     },
     p3: {
-        en: "I consider myself a responsible and committed person in my work. In addition to my degree, I enjoy self-learning and experimenting with new technologies such as Astro, React, and Next.js.",
-        es: "Me considero una persona responsable y comprometida en mi trabajo. Además de mi carrera, disfruto aprendiendo de forma autodidacta y experimentando con nuevas tecnologías como Astro, React y Next.js."
+        en: "Through my studies, I have gained a strong foundation in web development, algorithms, and system design.",
+        es: "A través de mis estudios, he adquirido una sólida base en desarrollo web, algoritmos y diseño de sistemas."
+    },
+    p4: {
+        en: "In addition to my degree, I enjoy self-learning and experimenting with new technologies such as Astro, React, and Next.js.",
+        es: "Además de mi carrera, disfruto aprendiendo de forma autodidacta y experimentando con nuevas tecnologías como Astro, React y Next.js."
     }
 }
 

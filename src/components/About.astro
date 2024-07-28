@@ -63,6 +63,7 @@ const lang = Astro.url.pathname.split("/")[1] || "en";
         <p>{ABOUT.p1[lang]}</p>
         <p>{ABOUT.p2[lang]}</p>
         <p>{ABOUT.p3[lang]}</p>
+        <p>{ABOUT.p4[lang]}</p>
     </div>
     <div class="work-status">
         <div class="status-badge">
@@ -189,7 +190,8 @@ const lang = Astro.url.pathname.split("/")[1] || "en";
     }
 
     p {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.75rem;
+        word-spacing: 2px;
     }
 
     .work-status {
