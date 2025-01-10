@@ -17,6 +17,11 @@ const year = new Date().getFullYear();
     </div>
 </footer>
 
+<script>
+    const $year = document.querySelector("footer .content .right-content span");
+    $year.textContent = `${new Date().getFullYear()}`;
+</script>
+
 <style>
     footer {
         width: 100%;
