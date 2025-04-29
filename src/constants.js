@@ -50,8 +50,8 @@ export const ABOUT = {
         es: "¡Hola! Soy Diego,"
     },
     p2: {
-        en: "I am currently studying Software Engineering at Rey Juan Carlos University in Madrid.",
-        es: "Actualmente estoy estudiando Ingeniería Software en la Universidad Rey Juan Carlos de Madrid."
+        en: "I am currently finishing my third year in Software Engineering at Rey Juan Carlos University in Madrid.",
+        es: "Actualmente estoy finalizando mi tercer año de Ingeniería Software en la Universidad Rey Juan Carlos de Madrid."
     },
     p3: {
         en: "Through my studies, I have gained a strong foundation in web development, algorithms, and system design.",
@@ -114,6 +114,17 @@ export const SOCIAL_MEDIA = [
 
 // Projects ===================================================
 export const PROJECTS = [
+    {
+        title: "NoteHub",
+        description: {
+            en: "A simple and intuitive platform that lets you easily view your Markdown notes stored in GitHub repositories.",
+            es: "Una plataforma simple e intuitiva que te permite ver fácilmente tus notas en Markdown almacenadas en repositorios de GitHub."
+        },
+        url: "https://n0tehub.vercel.app/",
+        tags: ["React", "Next.js", "Markdown"],
+        target: "_blank",
+        image: "/assets/notehub.png"
+    },
     {
         title: "Notion Lovers",
         description: {
@@ -179,5 +190,9 @@ export const ICONS = {
     express: {
         dark: "devicon-express-original",
         light: "devicon-express-original colored"
+    },
+    markdown: {
+        dark: "devicon-markdown-original",
+        light: "devicon-markdown-original colored"
     }
 }
