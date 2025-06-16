@@ -9,7 +9,6 @@ import {
     LINKEDIN_STATUS,
     LINKEDIN_URL,
     GITHUB_URL,
-    CV_URL,
     ABOUT,
 } from "../constants";
 
@@ -168,7 +167,7 @@ const lang = Astro.url.pathname.split("/")[1] || "en";
             justify-content: center;
             text-align: center;
             font-size: 23px;
-            transition: all 0.3s;
+            transition: all 0.3s ease-in-out;
 
             img {
                 width: 100%;
@@ -203,6 +202,7 @@ const lang = Astro.url.pathname.split("/")[1] || "en";
         margin-top: 1rem;
 
         .status-badge {
+            --color: #56c475;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -210,13 +210,13 @@ const lang = Astro.url.pathname.split("/")[1] || "en";
             padding: 0 15px;
             border-radius: 25px;
             background-color: #111;
-            box-shadow: 0 0 5px rgb(0, 128, 0);
+            box-shadow: 0 0 5px var(--color);
 
             .status-color {
                 width: 10px;
                 height: 10px;
                 border-radius: 50%;
-                background-color: rgb(0, 128, 0);
+                background-color: var(--color);
             }
         }
 
@@ -225,6 +225,7 @@ const lang = Astro.url.pathname.split("/")[1] || "en";
             color: white;
             border-radius: 25px;
             border: 1px solid var(--accent-color);
+            background-color: var(--accent-color-alpha);
             transition: background-color 0.3s;
 
             &:hover {

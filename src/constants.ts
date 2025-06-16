@@ -1,7 +1,7 @@
 
 // Constants ==================================================
 export const AVATAR_URL = "https://avatars.githubusercontent.com/u/121297520?v=4"
-export const NAME = "Diego Sánchez"
+export const NAME = "Diego Sánchez Rincón"
 export const NICK = "CuB1z"
 export const LOCATION = {
     en: "Madrid, Spain",
@@ -50,8 +50,8 @@ export const ABOUT = {
         es: "¡Hola! Soy Diego,"
     },
     p2: {
-        en: "I am currently finishing my third year in Software Engineering at Rey Juan Carlos University in Madrid.",
-        es: "Actualmente estoy finalizando mi tercer año de Ingeniería Software en la Universidad Rey Juan Carlos de Madrid."
+        en: "I'm a last-year Software Engineering student at Rey Juan Carlos University in Madrid, with a solid background in web development, algorithms, and system design.",
+        es: "Soy estudiante de último año del grado en Ingeniería del Software en la Universidad Rey Juan Carlos de Madrid, con una sólida formación en desarrollo web, algoritmos y diseño de sistemas."
     },
     p3: {
         en: "Through my studies, I have gained a strong foundation in web development, algorithms, and system design.",
@@ -68,7 +68,7 @@ export const ABOUT = {
 // Age in years
 const MS_PER_YEAR = 1000 * 60 * 60 * 24 * 365.25
 const BIRTH_DATE = new Date("2004-06-05")
-export const AGE = Math.floor((new Date() - BIRTH_DATE.getTime()) / MS_PER_YEAR)
+export const AGE = Math.floor((new Date().getTime() - BIRTH_DATE.getTime()) / MS_PER_YEAR)
 
 // Social media links =========================================
 export const GITHUB_URL = "https://github.com/CuB1z"
@@ -88,18 +88,18 @@ export const SOCIAL_MEDIA = [
         target: "_blank",
         image: "/assets/github.svg"
     },
-    { 
+    {
         title: "LinkedIn",
         description: {
             en: "Let's connect!",
             es: "¡Conectemos!"
         },
-        url: "https://www.linkedin.com/in/cub1z/", 
+        url: "https://www.linkedin.com/in/cub1z/",
         tags: [],
         target: "_blank",
         image: "/assets/linkedin.svg"
     },
-    { 
+    {
         title: "Email",
         description: {
             en: `Send me an email to ${EMAIL}`,
