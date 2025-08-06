@@ -11,6 +11,50 @@ const locale = getLocale();
         <meta name="description" content={t("description")} />
     </head>
     <body>
-        <slot />
+        <div class="wrapper">
+            <slot />
+        </div>
     </body>
 </html>
+
+<style is:global>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+    }
+
+    :root {
+        --bg-primary: #16191d;
+        --bg-secondary: #1a1d21;
+
+        --border-color: #252c37;
+
+        --text-primary: #f1faff;
+        --text-secondary: #b1b6be;
+        --text-muted: #4a5565;
+
+        --accent: #73b3d8;
+        --accent-light: #a2b9c7;
+        --accent-alpha: #73b3d834;
+
+        --max-width: 640px;
+    }
+
+    body {
+        background-color: var(--bg-primary);
+        color: var(--text-secondary);
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .wrapper {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding-block: 48px;
+        padding-inline: 16px;
+    }
+</style>

@@ -9,7 +9,8 @@
         "astro": "astro"
     },
     "dependencies": {
-        "astro": "^5.12.8",
-        "@astrolicious/i18n": "^0.6.1"
+        "@astrolicious/i18n": "^0.6.1",
+        "@lucide/astro": "^0.536.0",
+        "astro": "^5.12.8"
     }
 }

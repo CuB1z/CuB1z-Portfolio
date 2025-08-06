@@ -1,0 +1,43 @@
+---
+interface Props {
+    href: string;
+    title: string;
+}
+
+const { href, title } = Astro.props as Props;
+---
+
+<a
+    href={href}
+    class="social-link"
+    target="_blank"
+    rel="noopener noreferrer"
+    title={title}
+    aria-label={title}
+>
+    <slot />
+</a>
+
+<style>
+    .social-link {
+        --size: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--size);
+        height: var(--size);
+        border-radius: 9999px;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-secondary);
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px var(--accent-alpha);
+        }
+    }
+</style>

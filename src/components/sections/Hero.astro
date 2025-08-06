@@ -1,0 +1,113 @@
+---
+import { t } from "i18n:astro";
+import { GithubIcon, LinkedinIcon, MailIcon, MapPinIcon } from "@lucide/astro";
+
+import { socialData } from "@/constants/socialData";
+
+import SocialLink from "@components/shared/SocialLink.astro";
+---
+
+<section>
+    <div class="image-wrapper">
+        <img
+            src="https://avatars.githubusercontent.com/u/121297520?v=4"
+            alt="CuB1's Avatar"
+        />
+    </div>
+    <h1>{t("hero:name")}</h1>
+    <h2>{t("hero:position")}</h2>
+    <div class="place-container">
+        <MapPinIcon size={20} />
+        <p>{t("hero:place")}</p>
+    </div>
+    <p class="description">{t("hero:description")}</p>
+    <div class="social-links">
+        <SocialLink href={socialData.github} title="GitHub Profile">
+            <GithubIcon size={20} />
+        </SocialLink>
+        <SocialLink href={socialData.linkedin} title="LinkedIn Profile">
+            <LinkedinIcon size={20} />
+        </SocialLink>
+        <SocialLink href={socialData.email} title="Email Me">
+            <MailIcon size={20} />
+        </SocialLink>
+    </div>
+</section>
+
+<style>
+    section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        .image-wrapper {
+            width: 120px;
+            height: 120px;
+            border-radius: 9999px;
+            overflow: hidden;
+            border: 2px solid var(--accent);
+            margin-bottom: 24px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: scale 0.3s ease-in-out;
+            }
+
+            &:hover {
+                img {
+                    scale: 1.05;
+                }
+            }
+        }
+
+        h1 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 1.5;
+            color: var(--accent-light);
+        }
+
+        .place-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-block: 16px;
+            color: var(--accent);
+
+            p {
+                color: inherit;
+            }
+        }
+
+        .description {
+            max-width: 384px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .social-links {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+    }
+</style>
