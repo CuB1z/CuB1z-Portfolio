@@ -1,11 +1,8 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { t, getLocale } from "i18n:astro";
-
-const locale = getLocale();
+import { t } from "i18n:astro";
 ---
 
 <Layout>
-    <span>locale {locale}</span>
     <h1>{t("common:title")}</h1>
 </Layout>

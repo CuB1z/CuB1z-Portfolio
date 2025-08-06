@@ -6,7 +6,11 @@ export default defineConfig({
         i18n({
             defaultLocale: "en",
             locales: ["en", "es"],
-            strategy: "prefixWithoutDefault",
+            strategy: "prefixExceptDefault",
         }),
     ],
+    redirects: {
+        "/en": "/",
+        "/en/[...path]": "/[...path]",
+    },
 });
