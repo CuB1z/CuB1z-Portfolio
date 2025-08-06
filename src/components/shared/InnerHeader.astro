@@ -1,5 +1,6 @@
 ---
 import { t, getLocale, getDefaultLocale } from "i18n:astro";
+import { buildUrl } from "@utils/urlUtils";
 
 import { ArrowLeftIcon } from "@lucide/astro";
 
@@ -11,7 +12,7 @@ interface Props {
 const { title, backUrl } = Astro.props;
 
 const locale = getLocale();
-const backLink = backUrl || `/${locale === getDefaultLocale() ? "" : locale}`;
+const backLink = backUrl || buildUrl("/");
 ---
 
 <header>

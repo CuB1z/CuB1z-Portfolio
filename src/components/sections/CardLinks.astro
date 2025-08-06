@@ -1,9 +1,7 @@
 ---
+import { t } from "i18n:astro";
+import { buildUrl } from "@utils/urlUtils";
 import { PresentationIcon, RssIcon, UserIcon } from "@lucide/astro";
-
-import { t, getLocale } from "i18n:astro";
-
-const locale = getLocale();
 
 const links = [
     {
@@ -30,7 +28,7 @@ const links = [
 <section>
     {
         links.map((link) => (
-            <a href={`/${locale}/${link.slug}`} class="card-link">
+            <a href={buildUrl(`/${link.slug}`)} class="card-link">
                 <div class="text">
                     <h3>{link.title}</h3>
                     <p>{link.description}</p>

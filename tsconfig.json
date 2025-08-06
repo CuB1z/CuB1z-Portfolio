@@ -10,7 +10,7 @@
             "@layouts/*": ["src/layouts/*"],
             "@messages/*": ["src/locales/*"],
             "@pages/*": ["src/pages/*"],
-            "@types/*": ["src/types/*"]
+            "@utils/*": ["src/utils/*"]
         }
     }
 }
