@@ -1,5 +1,5 @@
 ---
-import { t, getLocale } from "i18n:astro";
+import { t, getLocale, getDefaultLocale } from "i18n:astro";
 
 import { ArrowLeftIcon } from "@lucide/astro";
 
@@ -11,7 +11,7 @@ interface Props {
 const { title, backUrl } = Astro.props;
 
 const locale = getLocale();
-const backLink = backUrl || `/${locale}`;
+const backLink = backUrl || `/${locale === getDefaultLocale() ? "" : locale}`;
 ---
 
 <header>
