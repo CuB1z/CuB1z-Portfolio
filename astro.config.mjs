@@ -9,8 +9,4 @@ export default defineConfig({
             strategy: "prefixExceptDefault",
         }),
     ],
-    redirects: {
-        "/en": "/",
-        "/en/[...path]": "/[...path]",
-    },
 });
