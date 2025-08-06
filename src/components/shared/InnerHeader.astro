@@ -1,0 +1,53 @@
+---
+import { t, getLocale } from "i18n:astro";
+
+import { ArrowLeftIcon } from "@lucide/astro";
+
+interface Props {
+    title: string;
+    backUrl?: string;
+}
+
+const { title, backUrl } = Astro.props;
+
+const locale = getLocale();
+const backLink = backUrl || `/${locale}`;
+---
+
+<header>
+    <a href={backLink} title={t("common:back")}>
+        <ArrowLeftIcon size={16} class="icon" />
+        <span>{t("common:back")}</span>
+    </a>
+    <h1>{title}</h1>
+</header>
+
+<style>
+    header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+
+        a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            transition: all 0.2s ease-in-out;
+
+            .icon {
+                transition: transform 0.2s ease-in-out;
+            }
+
+            &:hover {
+                color: var(--accent);
+
+                .icon {
+                    transform: translateX(-2px);
+                }
+            }
+        }
+    }
+</style>
