@@ -1,0 +1,15 @@
+{
+    "name": "cub1z-portfolio",
+    "type": "module",
+    "version": "2.0.0",
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "dependencies": {
+        "astro": "^5.12.8",
+        "@astrolicious/i18n": "^0.6.1"
+    }
+}
