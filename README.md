@@ -1,4 +1,4 @@
-# 🚀 **CuB1z Portfolio**
+# 🚀 **CuB1z Portfolio V1**
 
 #### Welcome to my _personal portfolio project_! It's a showcase of my skills, experience, and projects. I'm excited to share what I've learned and created.
 
