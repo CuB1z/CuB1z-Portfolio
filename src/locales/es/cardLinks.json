@@ -1,0 +1,14 @@
+{
+    "projects": {
+        "title": "Proyectos Destacados",
+        "description": "Muestra de mi trabajo y habilidades."
+    },
+    "blog": {
+        "title": "Blog",
+        "description": "Desarrollo de software y tecnología."
+    },
+    "about": {
+        "title": "Sobre Mí",
+        "description": "Mi experiencia y trayectoria."
+    }
+}

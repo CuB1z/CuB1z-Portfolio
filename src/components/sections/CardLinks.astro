@@ -1,0 +1,110 @@
+---
+import { PresentationIcon, RssIcon, UserIcon } from "@lucide/astro";
+
+import { t, getLocale } from "i18n:astro";
+
+const locale = getLocale();
+
+const links = [
+    {
+        slug: "projects",
+        title: t("cardLinks:projects.title"),
+        description: t("cardLinks:projects.description"),
+        icon: PresentationIcon,
+    },
+    {
+        slug: "blog",
+        title: t("cardLinks:blog.title"),
+        description: t("cardLinks:blog.description"),
+        icon: RssIcon,
+    },
+    {
+        slug: "about",
+        title: t("cardLinks:about.title"),
+        description: t("cardLinks:about.description"),
+        icon: UserIcon,
+    },
+];
+---
+
+<section>
+    {
+        links.map((link) => (
+            <a href={`/${locale}/${link.slug}`} class="card-link">
+                <div class="text">
+                    <h3>{link.title}</h3>
+                    <p>{link.description}</p>
+                </div>
+                <div class="icon-wrapper">
+                    {link.icon && <link.icon size={22} />}
+                </div>
+            </a>
+        ))
+    }
+</section>
+
+<style>
+    section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+
+        .card-link {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-inline: 24px;
+            padding-block: 48px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.2s ease-in-out;
+
+            .text {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+
+                h3 {
+                    font-size: 20px;
+                    font-weight: 500;
+                }
+
+                p {
+                    font-size: 16px;
+                    max-width: 440px;
+                    color: var(--text-secondary);
+                }
+            }
+
+            .icon-wrapper {
+                --size: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: var(--size);
+                height: var(--size);
+                background-color: var(--accent-alpha);
+                border-radius: 9999px;
+                color: var(--accent);
+                transition: all 0.2s ease-in-out;
+            }
+
+            &:hover {
+                border-color: var(--accent);
+                transform: translateY(-2px);
+                box-shadow: 0 2px 8px var(--accent-alpha);
+
+                .icon-wrapper {
+                    background-color: var(--accent);
+                    color: var(--text-primary);
+                }
+            }
+        }
+    }
+</style>
