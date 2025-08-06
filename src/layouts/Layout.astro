@@ -1,6 +1,8 @@
 ---
 import { t, getLocale } from "i18n:astro";
 
+import Footer from "@components/shared/Footer.astro";
+
 const locale = getLocale();
 ---
 
@@ -13,6 +15,7 @@ const locale = getLocale();
     <body>
         <div class="wrapper">
             <slot />
+            <Footer />
         </div>
     </body>
 </html>
@@ -25,6 +28,9 @@ const locale = getLocale();
         padding: 0;
         box-sizing: border-box;
         font-family: "Inter", sans-serif;
+        scroll-behavior: smooth;
+        scrollbar-width: thin;
+        scrollbar-color: var(--accent-alpha) transparent;
     }
 
     :root {
@@ -49,6 +55,14 @@ const locale = getLocale();
         color: var(--text-secondary);
         font-size: 16px;
         line-height: 1.5;
+    }
+
+    a,
+    a:visited,
+    a:hover,
+    a:focus {
+        color: var(--accent);
+        text-decoration: none;
     }
 
     .wrapper {

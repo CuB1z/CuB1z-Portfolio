@@ -1,0 +1,65 @@
+---
+import { ArrowUpFromDotIcon } from "@lucide/astro";
+---
+
+<footer>
+    <a class="left" href="#">
+        <ArrowUpFromDotIcon size={18} class="icon" />
+        <span>CuB1z</span>
+    </a>
+    <div class="right">
+        <span>© 2025</span>
+    </div>
+</footer>
+
+<style>
+    footer {
+        width: 100%;
+        margin-top: 64px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--text-secondary);
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .left {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--text-secondary);
+        transition: all 0.2s ease-in-out;
+
+        .icon {
+            animation: bounce 1.5s infinite linear;
+        }
+
+        span {
+            transition: scale 0.2s ease-in-out;
+        }
+
+        &:hover {
+            color: var(--accent);
+
+            .icon {
+                animation-play-state: paused;
+            }
+
+            span {
+                scale: 1.1;
+            }
+        }
+    }
+
+    @keyframes bounce {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-2px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+</style>
