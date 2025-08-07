@@ -50,6 +50,7 @@ const locale = getLocale();
         --accent-light: #a2b9c7;
         --accent-alpha: #73b3d834;
 
+        --green-active: #3bb27c;
         --max-width: 768px;
     }
 
@@ -81,5 +82,21 @@ const locale = getLocale();
         padding-top: 32px;
         padding-bottom: 48px;
         padding-inline: 16px;
+    }
+
+    @media (max-width: 768px) {
+        .wrapper {
+            padding-inline: 8px;
+            padding-top: 16px;
+            padding-bottom: 32px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .wrapper {
+            padding-inline: 8px;
+            padding-top: 8px;
+            padding-bottom: 24px;
+        }
     }
 </style>

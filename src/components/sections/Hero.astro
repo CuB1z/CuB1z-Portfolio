@@ -1,19 +1,29 @@
 ---
 import { t } from "i18n:astro";
-import { GithubIcon, LinkedinIcon, MailIcon, MapPinIcon } from "@lucide/astro";
+import {
+    GithubIcon,
+    LinkedinIcon,
+    MailIcon,
+    MapPinIcon,
+    SparklesIcon,
+} from "@lucide/astro";
 
 import { socialData } from "@/constants/socialData";
 
 import SocialLink from "@components/shared/SocialLink.astro";
-import LangToggleButton from "../shared/LangToggleButton.astro";
 ---
 
 <section>
-    <div class="image-wrapper">
-        <img
-            src="https://avatars.githubusercontent.com/u/121297520?v=4"
-            alt="CuB1's Avatar"
-        />
+    <div class="avatar-wrapper">
+        <div class="image-wrapper">
+            <img
+                src="https://avatars.githubusercontent.com/u/121297520?v=4"
+                alt="CuB1's Avatar"
+            />
+        </div>
+        <div class="active-status">
+            <SparklesIcon size={14} />
+        </div>
     </div>
     <h1>{t("hero:name")}</h1>
     <h2>{t("hero:position")}</h2>
@@ -44,26 +54,47 @@ import LangToggleButton from "../shared/LangToggleButton.astro";
         align-items: center;
         text-align: center;
 
-        .image-wrapper {
-            width: 120px;
-            height: 120px;
-            border-radius: 9999px;
-            overflow: hidden;
-            border: 2px solid var(--accent);
+        .avatar-wrapper {
+            position: relative;
             margin-bottom: 32px;
-            box-shadow: 0 0px 24px var(--accent-alpha);
 
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: scale 0.3s ease-in-out;
+            .image-wrapper {
+                position: relative;
+                overflow: hidden;
+                width: 120px;
+                height: 120px;
+                border-radius: 9999px;
+                border: 2px solid var(--accent);
+                box-shadow: 0 0px 24px var(--accent-alpha);
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: scale 0.3s ease-in-out;
+                }
+
+                &:hover {
+                    img {
+                        scale: 1.05;
+                    }
+                }
             }
 
-            &:hover {
-                img {
-                    scale: 1.05;
-                }
+            .active-status {
+                position: absolute;
+                bottom: 0;
+                right: -24px;
+                padding: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 999px;
+                border: 4px solid var(--bg-primary);
+                background-color: var(--green-active);
+                color: var(--bg-primary);
+                box-shadow: 0 8px 12px -8px var(--green-active);
+                animation: pulse 2s infinite;
             }
         }
 
@@ -111,6 +142,18 @@ import LangToggleButton from "../shared/LangToggleButton.astro";
             flex-wrap: wrap;
             justify-content: center;
             gap: 16px;
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+        100% {
+            opacity: 1;
         }
     }
 </style>
