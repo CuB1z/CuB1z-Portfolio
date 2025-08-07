@@ -41,7 +41,12 @@ const locale = getLocale();
         -khtml-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
-        user-select: none;
+        user-select: text;
+
+        &::selection {
+            background: var(--accent-alpha);
+            color: var(--text-primary);
+        }
     }
 
     :root {
@@ -87,7 +92,6 @@ const locale = getLocale();
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-top: 32px;
         padding-bottom: 48px;
         padding-inline: 16px;
     }
@@ -95,7 +99,6 @@ const locale = getLocale();
     @media (max-width: 768px) {
         .wrapper {
             padding-inline: 16px;
-            padding-top: 16px;
             padding-bottom: 32px;
         }
     }
