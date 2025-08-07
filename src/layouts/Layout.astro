@@ -34,6 +34,14 @@ const locale = getLocale();
         scroll-behavior: smooth;
         scrollbar-width: thin;
         scrollbar-color: var(--accent-alpha) transparent;
+
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
 
     :root {
@@ -86,17 +94,9 @@ const locale = getLocale();
 
     @media (max-width: 768px) {
         .wrapper {
-            padding-inline: 8px;
+            padding-inline: 16px;
             padding-top: 16px;
             padding-bottom: 32px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .wrapper {
-            padding-inline: 8px;
-            padding-top: 8px;
-            padding-bottom: 24px;
         }
     }
 </style>
