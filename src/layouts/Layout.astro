@@ -72,6 +72,29 @@ const locale = getLocale();
         flex-direction: column;
         align-items: center;
         background-color: var(--bg-primary);
+        background-image: radial-gradient(
+                circle at 10% 10%,
+                #73b3d81a 5px,
+                transparent 4px
+            ),
+            radial-gradient(circle at 85% 15%, #73b3d81a 5px, transparent 6px),
+            radial-gradient(circle at 75% 85%, #73b3d81a 5px, transparent 3px),
+            radial-gradient(circle at 25% 75%, #73b3d81a 5px, transparent 5px),
+            radial-gradient(circle at 60% 40%, #73b3d81a 5px, transparent 2px),
+            radial-gradient(circle at 60% 10%, #73b3d81a 5px, transparent 3px),
+            radial-gradient(
+                circle at 15% 30%,
+                #29353e08 264px,
+                transparent 20px
+            ),
+            radial-gradient(
+                circle at 90% 80%,
+                #29353e08 264px,
+                transparent 20px
+            );
+        background-size: 100vw 100%;
+        background-repeat: no-repeat;
+        animation: float-dots 25s ease-in-out infinite;
         color: var(--text-secondary);
         font-size: 16px;
         line-height: 1.5;
@@ -100,6 +123,26 @@ const locale = getLocale();
         .wrapper {
             padding-inline: 16px;
             padding-bottom: 32px;
+        }
+    }
+
+    @keyframes float-dots {
+        0%,
+        100% {
+            background-position:
+                15% 20%,
+                85% 15%,
+                75% 85%,
+                25% 75%,
+                60% 40%;
+        }
+        50% {
+            background-position:
+                18% 25%,
+                82% 18%,
+                78% 82%,
+                22% 72%,
+                63% 43%;
         }
     }
 </style>
