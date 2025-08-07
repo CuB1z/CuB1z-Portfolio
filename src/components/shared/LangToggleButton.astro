@@ -1,0 +1,21 @@
+---
+import { getLocale } from "i18n:astro";
+
+import Button from "@components/shared/Button.astro";
+import { GlobeIcon } from "@lucide/astro";
+
+const locale = getLocale();
+const currentPath = Astro.url.pathname;
+
+const targetPath =
+    locale === "en"
+        ? `/es${currentPath}`
+        : currentPath.replace(/^\/es/, "") || "/";
+
+const buttonText = locale === "en" ? "EN" : "ES";
+---
+
+<Button variant="primary" href={targetPath}>
+    <GlobeIcon size={16} />
+    {buttonText}
+</Button>
