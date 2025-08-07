@@ -4,6 +4,12 @@ import { t, getLocale } from "i18n:astro";
 import Footer from "@components/shared/Footer.astro";
 import Header from "@components/shared/Header.astro";
 
+interface Props {
+    extended?: boolean;
+}
+
+const { extended } = Astro.props as Props;
+
 const locale = getLocale();
 ---
 
@@ -16,7 +22,7 @@ const locale = getLocale();
     </head>
     <body>
         <Header />
-        <div class="wrapper">
+        <div class={"wrapper" + (extended ? " extended" : "")}>
             <slot />
             <Footer />
         </div>
@@ -65,6 +71,7 @@ const locale = getLocale();
 
         --green-active: #3bb27c;
         --max-width: 768px;
+        --max-width-extended: 1200px;
     }
 
     body {
@@ -117,6 +124,10 @@ const locale = getLocale();
         align-items: center;
         padding-bottom: 48px;
         padding-inline: 16px;
+
+        &.extended {
+            max-width: var(--max-width-extended);
+        }
     }
 
     @media (max-width: 768px) {

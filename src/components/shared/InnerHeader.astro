@@ -6,12 +6,11 @@ import { ArrowLeftIcon } from "@lucide/astro";
 
 interface Props {
     title: string;
+    description?: string;
     backUrl?: string;
 }
 
-const { title, backUrl } = Astro.props;
-
-const locale = getLocale();
+const { title, description, backUrl } = Astro.props;
 const backLink = backUrl || buildUrl("/");
 ---
 
@@ -35,15 +34,15 @@ const backLink = backUrl || buildUrl("/");
             display: flex;
             align-items: center;
             gap: 8px;
-            color: var(--text-secondary);
+            color: var(--accent);
             transition: all 0.2s ease-in-out;
 
             .icon {
-                transition: transform 0.2s ease-in-out;
+                transition: all 0.2s ease-in-out;
             }
 
             &:hover {
-                color: var(--accent);
+                color: var(--accent-light);
 
                 .icon {
                     transform: translateX(-2px);
