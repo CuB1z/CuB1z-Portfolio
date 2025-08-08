@@ -1,0 +1,63 @@
+---
+import { t } from "i18n:astro";
+---
+
+<section>
+    <header>
+        <h2>{t("resume:skills_summary.title")}</h2>
+    </header>
+    <ul class="skills-list">
+        {
+            t("resume:skills_summary.skills", {
+                returnObjects: true,
+            }).map((skill) => <li class="skill">{skill}</li>)
+        }
+    </ul>
+</section>
+
+<style>
+    section {
+        width: 100%;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 48px;
+        border-radius: 8px;
+        background-color: var(--bg-secondary);
+        background-image: radial-gradient(
+            circle at 15% 90%,
+            var(--aureola-big) 100px,
+            transparent 4px
+        );
+        border: 1px solid var(--border-color);
+
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .skills-list {
+            width: 100%;
+            list-style: none;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+
+            .skill {
+                width: max-content;
+                padding: 4px 16px;
+                border-radius: 9999px;
+                background-color: var(--accent-alpha);
+                color: var(--text-secondary);
+                font-size: 14px;
+                font-weight: 500;
+                letter-spacing: 1px;
+            }
+        }
+    }
+</style>

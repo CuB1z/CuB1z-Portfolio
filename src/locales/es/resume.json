@@ -41,5 +41,29 @@
                 "description": "ID: B6462280"
             }
         ]
+    },
+    "skills_summary": {
+        "title": "Habilidades",
+        "skills": [
+            "React",
+            "Next.js",
+            "Astro",
+            "Node.js",
+            "Express",
+            "JavaScript",
+            "TypeScript",
+            "Angular",
+            "Restful APIs",
+            "Java",
+            "Spring Boot",
+            "SQL",
+            "Python",
+            "Algoritmos",
+            "Git",
+            "Docker",
+            "CI/CD",
+            "Metodologías Ágiles",
+            "Resolución de Problemas"
+        ]
     }
 }
