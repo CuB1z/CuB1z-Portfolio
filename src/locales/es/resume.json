@@ -24,5 +24,22 @@
                 ]
             }
         ]
+    },
+    "education_summary": {
+        "title": "Educación",
+        "education_details": [
+            {
+                "institution": "Universidad Rey Juan Carlos - Madrid",
+                "degree": "Grado en Ingeniería Software",
+                "duration": "2022 - Actualidad",
+                "description": "Estudiante de último año, con menciones honoríficas en desarrollo web, sistemas operativos y estructuras de datos."
+            },
+            {
+                "institution": "Universidad de Cambridge",
+                "degree": "Certificado B2 First en Inglés",
+                "duration": "Septiembre 2021",
+                "description": "ID: B6462280"
+            }
+        ]
     }
 }

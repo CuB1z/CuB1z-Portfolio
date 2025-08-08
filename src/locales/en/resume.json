@@ -24,5 +24,22 @@
                 ]
             }
         ]
+    },
+    "education_summary": {
+        "title": "Education",
+        "education_details": [
+            {
+                "institution": "Rey Juan Carlos University - Madrid",
+                "degree": "Bachelor's Degree in Software Engineering",
+                "duration": "2022 - Present",
+                "description": "Last-year student, with honoring grades in web development, operative systems, and data structures."
+            },
+            {
+                "institution": "University of Cambridge",
+                "degree": "B2 First Certificate in English",
+                "duration": "September 2021",
+                "description": "ID: B6462280"
+            }
+        ]
     }
 }

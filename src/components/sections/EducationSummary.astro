@@ -5,28 +5,23 @@ import { t } from "i18n:astro";
 
 <section>
     <header>
-        <h2>{t("resume:experience_summary.title")}</h2>
+        <h2>{t("resume:education_summary.title")}</h2>
     </header>
-    <ul class="experience-list">
+    <ul class="education-list">
         {
-            t("resume:experience_summary.work_experience", {
+            t("resume:education_summary.education_details", {
                 returnObjects: true,
-            }).map((job) => (
-                <li class="job">
+            }).map((edu) => (
+                <li class="edu">
                     <div class="header">
-                        <h3>{job.position}</h3>
+                        <h3>{edu.degree}</h3>
                         <p>
                             <CalendarIcon size={16} class="icon" />
-                            {job.duration}
+                            {edu.duration}
                         </p>
                     </div>
-                    <p class="company">{job.company}</p>
-                    <p class="description">{job.description}</p>
-                    <ul>
-                        {job.achievements.map((achievement) => (
-                            <li>{achievement}</li>
-                        ))}
-                    </ul>
+                    <p class="institution">{edu.institution}</p>
+                    <p class="description">{edu.description}</p>
                 </li>
             ))
         }
@@ -59,20 +54,20 @@ import { t } from "i18n:astro";
             color: var(--text-primary);
         }
 
-        .experience-list {
+        .education-list {
             width: 100%;
             list-style: none;
             display: flex;
             flex-direction: column;
             gap: 24px;
 
-            .job {
+            .edu {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
                 gap: 8px;
                 padding-left: 16px;
-                border-left: 2px solid var(--accent);
+                border-left: 2px solid var(--green-color);
 
                 .header {
                     width: 100%;
@@ -96,8 +91,8 @@ import { t } from "i18n:astro";
                     }
                 }
             }
-            .company {
-                color: var(--accent);
+            .institution {
+                color: var(--green-color);
                 font-weight: 500;
                 font-size: 16px;
                 margin-bottom: 8px;
@@ -107,17 +102,6 @@ import { t } from "i18n:astro";
                 color: var(--text-secondary);
                 font-size: 14px;
                 margin-bottom: 8px;
-            }
-
-            ul {
-                list-style: circle;
-                padding-left: 24px;
-                color: var(--text-secondary);
-                font-size: 14px;
-
-                li {
-                    margin-bottom: 4px;
-                }
             }
         }
     }
