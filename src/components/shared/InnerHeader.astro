@@ -1,16 +1,15 @@
 ---
-import { t, getLocale, getDefaultLocale } from "i18n:astro";
+import { t } from "i18n:astro";
 import { buildUrl } from "@utils/urlUtils";
 
 import { ArrowLeftIcon } from "@lucide/astro";
 
 interface Props {
     title: string;
-    description?: string;
     backUrl?: string;
 }
 
-const { title, description, backUrl } = Astro.props;
+const { title, backUrl } = Astro.props;
 const backLink = backUrl || buildUrl("/");
 ---
 
@@ -29,6 +28,8 @@ const backLink = backUrl || buildUrl("/");
         justify-content: space-between;
         align-items: center;
         gap: 12px;
+        margin-bottom: 48px;
+        flex-wrap: wrap;
 
         a {
             display: flex;

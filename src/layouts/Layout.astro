@@ -70,6 +70,9 @@ const locale = getLocale();
         --accent-light: #a2b9c7;
         --accent-alpha: #73b3d834;
 
+        --aureola-big: #29353e11;
+        --aureola-small: #73b3d81a;
+
         --green-active: #3bb27c;
         --max-width: 768px;
         --max-width-extended: 1200px;
@@ -82,22 +85,42 @@ const locale = getLocale();
         background-color: var(--bg-primary);
         background-image: radial-gradient(
                 circle at 10% 10%,
-                #73b3d81a 5px,
+                var(--aureola-small) 5px,
                 transparent 4px
             ),
-            radial-gradient(circle at 85% 15%, #73b3d81a 5px, transparent 6px),
-            radial-gradient(circle at 75% 85%, #73b3d81a 5px, transparent 3px),
-            radial-gradient(circle at 25% 75%, #73b3d81a 5px, transparent 5px),
-            radial-gradient(circle at 70% 30%, #73b3d81a 5px, transparent 2px),
-            radial-gradient(circle at 40% 10%, #73b3d81a 5px, transparent 3px),
+            radial-gradient(
+                circle at 85% 15%,
+                var(--aureola-small) 5px,
+                transparent 6px
+            ),
+            radial-gradient(
+                circle at 75% 85%,
+                var(--aureola-small) 5px,
+                transparent 3px
+            ),
+            radial-gradient(
+                circle at 25% 75%,
+                var(--aureola-small) 5px,
+                transparent 5px
+            ),
+            radial-gradient(
+                circle at 70% 30%,
+                var(--aureola-small) 5px,
+                transparent 2px
+            ),
+            radial-gradient(
+                circle at 40% 10%,
+                var(--aureola-small) 5px,
+                transparent 3px
+            ),
             radial-gradient(
                 circle at 15% 30%,
-                #29353e08 264px,
+                var(--aureola-big) 264px,
                 transparent 20px
             ),
             radial-gradient(
                 circle at 90% 80%,
-                #29353e08 264px,
+                var(--aureola-big) 264px,
                 transparent 20px
             );
         background-size: 100vw 100%;

@@ -1,0 +1,43 @@
+---
+import { GithubIcon, LinkedinIcon, MailIcon } from "@lucide/astro";
+
+import { socialData } from "@/constants/socialData";
+
+import SocialLink from "@components/shared/SocialLink.astro";
+
+interface Props {
+    align?: "left" | "center" | "right";
+}
+
+const { align = "center" } = Astro.props as Props;
+---
+
+<div class={`social-links ${align}`}>
+    <SocialLink href={socialData.github} title="GitHub Profile">
+        <GithubIcon size={20} />
+    </SocialLink>
+    <SocialLink href={socialData.linkedin} title="LinkedIn Profile">
+        <LinkedinIcon size={20} />
+    </SocialLink>
+    <SocialLink href={socialData.email} title="Email Me">
+        <MailIcon size={20} />
+    </SocialLink>
+</div>
+
+<style>
+    .social-links {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+    }
+    .social-links.left {
+        justify-content: flex-start;
+    }
+
+    .social-links.right {
+        justify-content: flex-end;
+    }
+</style>
