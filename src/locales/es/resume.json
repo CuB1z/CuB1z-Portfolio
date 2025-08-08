@@ -9,5 +9,21 @@
         "summary_2": "Actualmente, estoy en mi último año del Grado en Ingeniería de Software en la Universidad Rey Juan Carlos de Madrid. A través de mis estudios, he adquirido una base sólida en desarrollo web, algoritmia y diseño de sistemas.",
         "summary_3": "Me considero una persona responsable y comprometida, interesada en el aprendizaje autodidacta y la experimentación con nuevas tecnologías para mantenerme actualizado en la industria tecnológica. Además de mis estudios, he desarrollado proyectos personales en los que he podido aplicar conocimientos teóricos a situaciones prácticas, fortaleciendo mis habilidades de resolución de problemas y trabajo en equipo.",
         "summary_4": "Para mí, la responsabilidad, el compromiso y la ambición son fundamentales en todos los aspectos de la vida. Siempre busco nuevas oportunidades para aprender y crecer."
+    },
+    "experience_summary": {
+        "title": "Experiencia",
+        "work_experience": [
+            {
+                "company": "Telefónica Innovación Digital",
+                "position": "Desarrollador Full Stack - Becario",
+                "duration": "Julio 2025 - Actualidad",
+                "description": "Involucrado en el equipo de desarrollo web de marketing, centrado en la creación y mantenimiento de aplicaciones web.",
+                "achievements": [
+                    "Desarrollar una herramienta de aplicación web de accesibilidad a11y para verificar automáticamente el cumplimiento de las normas de accesibilidad en las páginas web.",
+                    "Participar en el desarrollo de aplicaciones web utilizando Next.js y React.",
+                    "Colaborar en tareas relacionadas con la actualización y reemplazo de bibliotecas y marcos obsoletos."
+                ]
+            }
+        ]
     }
 }

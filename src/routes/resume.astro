@@ -4,9 +4,11 @@ import { t } from "i18n:astro";
 import Layout from "@layouts/Layout.astro";
 import InnerHeader from "@components/shared/InnerHeader.astro";
 import ProfessionalSummary from "@/components/sections/ProfessionalSummary.astro";
+import ExperienceSummary from "@/components/sections/ExperienceSummary.astro";
 ---
 
 <Layout extended>
     <InnerHeader title={t("resume:title")} />
     <ProfessionalSummary />
+    <ExperienceSummary />
 </Layout>

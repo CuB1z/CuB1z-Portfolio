@@ -9,5 +9,21 @@
         "summary_2": "I am currently on my last year of pursuing a degree in Software Engineering at Rey Juan Carlos University in Madrid. Throughout my studies, I have built a solid foundation in web development, algorithms, and system design.",
         "summary_3": "I consider myself a responsible and dedicated individual, interested in self-learning and experimenting with new technologies to stay up-to-date in the tech industry. Besides my studies, I have developed personal projects where I have applied theoretical knowledge to practical situations, strengthening my problem-solving and teamwork skills.",
         "summary_4": "For me, responsibility, commitment, and ambition are essential in all aspects of life. I am always seeking new opportunities to learn and grow."
+    },
+    "experience_summary": {
+        "title": "Experience",
+        "work_experience": [
+            {
+                "company": "Telefónica Innovación Digital",
+                "position": "Full Stack Developer - Intern",
+                "duration": "July 2025 - Present",
+                "description": "Involved in the marketing web development team, focusing on creating and maintaining web applications.",
+                "achievements": [
+                    "Develop an accessibility a11y web application tool to automatically check web pages for compliance with accessibility standards.",
+                    "Participate in the development of web applications using Next.js and React.",
+                    "Collaborate in tasks related to upgrading and replacing outdated libraries and frameworks."
+                ]
+            }
+        ]
     }
 }
