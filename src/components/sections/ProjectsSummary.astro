@@ -61,9 +61,9 @@ import SocialLink from "@components/shared/SocialLink.astro";
     .project {
         width: 100%;
         padding: 24px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        display: grid;
+        grid-template-rows: auto 1fr auto auto;
+        -ms-grid-row-align: center;
         gap: 16px;
         background: var(--bg-secondary);
         border: 1px solid var(--border-color);
@@ -147,5 +147,16 @@ import SocialLink from "@components/shared/SocialLink.astro";
         display: flex;
         justify-content: flex-end;
         gap: 16px;
+    }
+
+    @media (max-width: 1000px) {
+        section {
+            grid-template-columns: 1fr;
+        }
+
+        .project {
+            grid-template-rows: auto auto auto auto;
+            padding: 16px;
+        }
     }
 </style>
