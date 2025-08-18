@@ -1,0 +1,151 @@
+---
+import { ExternalLinkIcon, GithubIcon } from "@lucide/astro";
+import { t } from "i18n:astro";
+import SocialLink from "@components/shared/SocialLink.astro";
+---
+
+<section>
+    {
+        t("projects:projects", { returnObjects: true }).map((project) => (
+            <div class="project">
+                <div class="project-header">
+                    <img
+                        class="project-icon"
+                        src={`/images/${project.id}.svg`}
+                        alt={`Icon for ${project.title}`}
+                    />
+                    {project.links.live ? (
+                        <a
+                            class="project-title"
+                            href={project.links.live}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            title={`View ${project.title} live`}
+                        >
+                            {project.title}
+                            <ExternalLinkIcon class="inline-icon" />
+                        </a>
+                    ) : (
+                        <h3 class="project-title">{project.title}</h3>
+                    )}
+                </div>
+
+                <p class="project-description">{project.description}</p>
+                <ul class="project-tech-stack">
+                    {project.techStack.map((tech) => (
+                        <li>{tech}</li>
+                    ))}
+                </ul>
+                <div class="project-links">
+                    <SocialLink
+                        smaller
+                        href={project.links.github}
+                        title={`View ${project.title} on GitHub`}
+                    >
+                        <GithubIcon size={20} />
+                    </SocialLink>
+                </div>
+            </div>
+        ))
+    }
+</section>
+
+<style>
+    section {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .project {
+        width: 100%;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 16px;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+    }
+
+    .project-header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .project-icon {
+        --size: 32px;
+        width: var(--size);
+        height: var(--size);
+    }
+
+    .project-title {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--text-primary);
+        font-size: 20px;
+        font-weight: bold;
+        cursor: auto;
+    }
+
+    .inline-icon {
+        --size: 16px;
+        width: var(--size);
+        height: var(--size);
+        vertical-align: middle;
+        color: var(--text-secondary);
+        transition: all 0.1s ease-in-out;
+    }
+
+    .project-title:hover .inline-icon {
+        color: var(--accent);
+        transform: scale(1.2);
+    }
+
+    a.project-title {
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    a.project-title:hover {
+        text-decoration-line: underline;
+        text-underline-offset: 5px;
+        text-decoration-style: dotted;
+        text-decoration-color: var(--accent);
+    }
+
+    .project-description {
+        font-size: 16px;
+    }
+
+    .project-tech-stack {
+        width: 100%;
+        list-style: none;
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+
+        li {
+            width: max-content;
+            padding: 4px 16px;
+            border-radius: 4px;
+            background-color: var(--accent-alpha);
+            color: var(--text-primary);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+    }
+
+    .project-links {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        gap: 16px;
+    }
+</style>

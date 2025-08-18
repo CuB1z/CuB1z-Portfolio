@@ -1,3 +1,71 @@
 {
-    "title": "Projects"
+    "title": "Projects",
+    "projects": [
+        {
+            "id": "notehub",
+            "title": "NoteHub",
+            "description": "Lightweight platform that lets you view Markdown notes directly from GitHub repositories, with a clean interface adaptable to any device.",
+            "techStack": ["NextJs", "TypeScript", "GitHub API"],
+            "links": {
+                "github": "https://github.com/CuB1z/NoteHub",
+                "live": "https://n0tehub.vercel.app/"
+            }
+        },
+        {
+            "id": "savex",
+            "title": "SaveX",
+            "description": "A platform that allows users to compare the prices of products between different supermarkets.",
+            "techStack": [
+                "SpringBoot",
+                "Angular",
+                "TypeScript",
+                "MySQL",
+                "Docker"
+            ],
+            "links": {
+                "github": "https://github.com/CuB1z/SaveX",
+                "live": "https://savex-95hv.onrender.com/"
+            }
+        },
+        {
+            "id": "bits-of-battle",
+            "title": "Bits of Battle",
+            "description": "A 1vs1 game to play in local with a friend using the same keyboard. Project made for La Hackathon del Dev.",
+            "techStack": ["React", "HTML", "Javascript"],
+            "links": {
+                "github": "https://github.com/PortiESP/bits-of-battle",
+                "live": "https://bits-of-battle.vercel.app/"
+            }
+        },
+        {
+            "id": "notion-lovers",
+            "title": "Notion Lovers",
+            "description": "A student-led platform for sharing and accessing university notes. Join us in revolutionizing study habits!",
+            "techStack": ["NextJs", "TypeScript", "Notion API"],
+            "links": {
+                "github": "https://github.com/CuB1z/Notion-Lovers",
+                "live": "https://notionlovers.vercel.app/"
+            }
+        },
+        {
+            "id": "minishell",
+            "title": "MiniShell",
+            "description": "Simplified Unix/Linux shell built in C that emulates the behavior of a native terminal.",
+            "techStack": ["C"],
+            "links": {
+                "github": "https://github.com/CuB1z/MiniShell",
+                "live": null
+            }
+        },
+        {
+            "id": "wallapop-scrapper",
+            "title": "Wallapop Scrapper",
+            "description": "A simple wallapop scraping integration with a telegram bot.",
+            "techStack": ["Python", "TeleBot", "MySQL"],
+            "links": {
+                "github": "https://github.com/CuB1z/Wallapop-Scrapper",
+                "live": null
+            }
+        }
+    ]
 }

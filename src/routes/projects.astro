@@ -3,8 +3,10 @@ import { t } from "i18n:astro";
 
 import Layout from "@layouts/Layout.astro";
 import InnerHeader from "@components/shared/InnerHeader.astro";
+import ProjectsSummary from "@/components/sections/ProjectsSummary.astro";
 ---
 
-<Layout>
+<Layout extended>
     <InnerHeader title={t("projects:title")} />
+    <ProjectsSummary />
 </Layout>
