@@ -24,7 +24,9 @@ const locale = getLocale();
     <body>
         <Header />
         <div class={"wrapper" + (extended ? " extended" : "")}>
-            <slot />
+            <div class="content">
+                <slot />
+            </div>
             <Footer />
         </div>
     </body>
@@ -146,12 +148,21 @@ const locale = getLocale();
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-between;
         padding-bottom: 48px;
         padding-inline: 16px;
 
         &.extended {
             max-width: var(--max-width-extended);
         }
+    }
+
+    .content {
+        width: 100%;
+        min-height: 90dvh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     @media (max-width: 768px) {
