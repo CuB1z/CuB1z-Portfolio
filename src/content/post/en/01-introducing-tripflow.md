@@ -6,6 +6,7 @@ tags: ["TripFlow", "Travel", "React", "Spring Boot", "TFG"]
 image: "/images/posts/tripflow-showcase.png"
 locale: "en"
 slug: "introducing-tripflow"
+altSlug: "presentando-tripflow"
 ---
 
 Hi! I’m **Diego Sánchez Rincón**, a Software Engineering Student from Rey Juan Carlos University.

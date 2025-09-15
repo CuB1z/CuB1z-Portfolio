@@ -6,9 +6,10 @@ import Header from "@components/shared/Header.astro";
 
 interface Props {
     extended?: boolean;
+    altLangUrl?: string;
 }
 
-const { extended } = Astro.props as Props;
+const { extended, altLangUrl } = Astro.props as Props;
 
 const locale = getLocale();
 ---
@@ -22,7 +23,7 @@ const locale = getLocale();
         <link rel="icon" href="/favicon.svg" />
     </head>
     <body>
-        <Header />
+        <Header altLangUrl={altLangUrl} />
         <div class={"wrapper" + (extended ? " extended" : "")}>
             <div class="content">
                 <slot />

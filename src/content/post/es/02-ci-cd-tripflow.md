@@ -5,7 +5,8 @@ pubDate: 2025-09-11
 tags: ["TripFlow", "Travel", "React", "Spring Boot", "TFG"]
 image: "/images/posts/tripflow-showcase.png"
 locale: "es"
-slug: "es/ci-cd-testing-tripflow"
+slug: "ci-cd-pruebas-tripflow"
+altSlug: "ci-cd-testing-tripflow"
 ---
 
 Después de un tiempo de trabajo, logré completar la **Fase 2 del proyecto**, configurando los proyectos individuales de backend y frontend e implementando **pipelines de CI para pruebas unitarias e integración**.

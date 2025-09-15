@@ -1,0 +1,339 @@
+---
+import { getCollection } from "astro:content";
+import { getLocale, t } from "i18n:astro";
+import Layout from "@layouts/Layout.astro";
+import InnerHeader from "@components/shared/InnerHeader.astro";
+import Button from "@/components/shared/Button.astro";
+import { buildAltLangUrl } from "@/utils/urlUtils";
+import { ArrowLeftIcon } from "@lucide/astro";
+
+export async function getStaticPaths() {
+    const posts = await getCollection("post");
+
+    return posts.map((post) => {
+        const slug = post.data.slug || post.slug;
+
+        return {
+            params: {
+                slug: slug,
+            },
+            props: post,
+        };
+    });
+}
+
+const post = Astro.props;
+const { Content } = await post.render();
+const currentLocale = getLocale();
+
+if (post.data.locale && post.data.locale !== currentLocale) {
+    return Astro.redirect("/404");
+}
+---
+
+<Layout
+    extended
+    altLangUrl={buildAltLangUrl(`/blog/${post.data.altSlug}`, currentLocale)}
+>
+    <InnerHeader title={post.data.title} backUrl="/blog" />
+
+    <main class="post-container">
+        <article class="post-article">
+            {
+                post.data.image && (
+                    <img
+                        src={post.data.image}
+                        alt={post.data.title}
+                        class="post-hero-image"
+                    />
+                )
+            }
+
+            <header class="post-header">
+                <h1 class="post-title-main">
+                    {post.data.title}
+                </h1>
+
+                <div class="post-meta">
+                    <time class="post-date-main">
+                        {
+                            new Date(post.data.pubDate).toLocaleDateString(
+                                currentLocale === "es" ? "es-ES" : "en-US"
+                            )
+                        }
+                    </time>
+
+                    {
+                        post.data.tags && (
+                            <div class="post-tags-main">
+                                {post.data.tags.map((tag) => (
+                                    <span class="tag-main">{tag}</span>
+                                ))}
+                            </div>
+                        )
+                    }
+                </div>
+            </header>
+
+            <div class="post-content">
+                <Content />
+            </div>
+        </article>
+
+        <div class="post-actions">
+            <Button variant="primary" href="/blog" title={t("blog:goBack")}
+                ><ArrowLeftIcon size={16} />{t("blog:goBack")}
+            </Button>
+        </div>
+
+        <style>
+            .post-container {
+                width: 100%;
+                max-width: 800px;
+                padding: 48px 16px;
+                margin: 0 auto;
+            }
+
+            .post-article {
+                margin-bottom: 48px;
+            }
+
+            .post-hero-image {
+                width: 100%;
+                max-width: 100%;
+                height: 300px;
+                object-fit: cover;
+                border-radius: 12px;
+                margin-bottom: 32px;
+                border: 1px solid var(--border-color);
+                display: block;
+            }
+
+            .post-header {
+                margin-bottom: 48px;
+                padding-bottom: 24px;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .post-title-main {
+                font-size: 32px;
+                font-weight: 600;
+                line-height: 1.2;
+                color: var(--text-primary);
+                margin: 0 0 24px 0;
+            }
+
+            .post-meta {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .post-date-main {
+                color: var(--text-muted);
+                font-size: 14px;
+                font-weight: 400;
+                letter-spacing: 1px;
+            }
+
+            .post-tags-main {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .tag-main {
+                padding: 6px 12px;
+                background-color: var(--accent-alpha);
+                color: var(--accent);
+                font-size: 12px;
+                font-weight: 400;
+                border-radius: 16px;
+                border: 1px solid var(--accent);
+            }
+
+            .post-content {
+                color: var(--text-secondary);
+                line-height: 1.7;
+                font-size: 16px;
+                max-width: 100%;
+                overflow-wrap: break-word;
+            }
+
+            /* Markdown styles */
+            .post-content :global(h1),
+            .post-content :global(h2),
+            .post-content :global(h3),
+            .post-content :global(h4),
+            .post-content :global(h5),
+            .post-content :global(h6) {
+                color: var(--text-primary);
+                margin: 32px 0 16px 0;
+                font-weight: 600;
+                line-height: 1.3;
+            }
+
+            .post-content :global(h1) {
+                font-size: 28px;
+            }
+            .post-content :global(h2) {
+                font-size: 24px;
+            }
+            .post-content :global(h3) {
+                font-size: 20px;
+            }
+            .post-content :global(h4) {
+                font-size: 18px;
+            }
+
+            .post-content :global(p) {
+                margin: 16px 0;
+            }
+
+            .post-content :global(a) {
+                color: var(--accent);
+                transition: color 0.3s ease;
+            }
+
+            .post-content :global(a:hover) {
+                color: var(--accent-light);
+            }
+
+            .post-content :global(ul),
+            .post-content :global(ol) {
+                margin: 16px 0;
+                padding-left: 24px;
+            }
+
+            .post-content :global(li) {
+                margin: 8px 0;
+            }
+
+            .post-content :global(blockquote) {
+                margin: 24px 0;
+                padding: 16px 24px;
+                border-left: 4px solid var(--accent);
+                background-color: var(--accent-alpha);
+                border-radius: 0 8px 8px 0;
+            }
+
+            .post-content :global(code) {
+                background-color: var(--bg-secondary);
+                padding: 2px 6px;
+                border-radius: 4px;
+                font-family: "Courier New", monospace;
+                font-size: 14px;
+                border: 1px solid var(--border-color);
+            }
+
+            .post-content :global(pre) {
+                background-color: var(--bg-secondary);
+                padding: 20px;
+                border-radius: 8px;
+                overflow-x: auto;
+                margin: 24px 0;
+                border: 1px solid var(--border-color);
+                max-width: 100%;
+            }
+
+            .post-content :global(pre code) {
+                background: none;
+                padding: 0;
+                border: none;
+            }
+
+            .post-content :global(img) {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+                margin: 24px 0;
+                border: 1px solid var(--border-color);
+                display: block;
+            }
+
+            .post-content :global(hr) {
+                border: none;
+                height: 1px;
+                background-color: var(--border-color);
+                margin: 32px 0;
+            }
+
+            .post-actions {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-top: 32px;
+                border-top: 1px solid var(--border-color);
+            }
+
+            .back-to-blog {
+                display: inline-flex;
+                align-items: center;
+                color: var(--accent);
+                font-size: 14px;
+                font-weight: 500;
+                padding: 12px 20px;
+                border: 1px solid var(--accent-alpha);
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                text-decoration: none;
+            }
+
+            .back-to-blog:hover {
+                background-color: var(--accent);
+                color: var(--text-primary);
+                border-color: var(--accent);
+                transform: translateX(-4px);
+            }
+
+            @media (max-width: 768px) {
+                .post-container {
+                    padding: 32px 16px;
+                }
+
+                .post-hero-image {
+                    height: 200px;
+                    margin-bottom: 24px;
+                }
+
+                .post-title-main {
+                    font-size: 24px;
+                    margin-bottom: 16px;
+                }
+
+                .post-header {
+                    margin-bottom: 32px;
+                    padding-bottom: 16px;
+                }
+
+                .post-meta {
+                    flex-direction: column;
+                    gap: 12px;
+                }
+
+                .post-content {
+                    font-size: 15px;
+                }
+
+                .post-content :global(h1) {
+                    font-size: 22px;
+                }
+                .post-content :global(h2) {
+                    font-size: 20px;
+                }
+                .post-content :global(h3) {
+                    font-size: 18px;
+                }
+                .post-content :global(h4) {
+                    font-size: 16px;
+                }
+
+                .post-content :global(pre) {
+                    padding: 16px;
+                    font-size: 13px;
+                }
+            }
+        </style>
+    </main>
+</Layout>

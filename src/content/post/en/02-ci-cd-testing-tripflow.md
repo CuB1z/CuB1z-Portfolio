@@ -6,6 +6,7 @@ tags: ["TripFlow", "Travel", "React", "Spring Boot", "TFG"]
 image: "/images/posts/tripflow-showcase.png"
 locale: "en"
 slug: "ci-cd-testing-tripflow"
+altSlug: "ci-cd-pruebas-tripflow"
 ---
 
 After some work, I managed to complete Phase 2 of the project, setting up backend and frontend individual projects and implementing CI pipelines for unit and integration tests.

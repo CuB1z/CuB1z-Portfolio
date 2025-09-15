@@ -5,7 +5,8 @@ pubDate: 2025-09-09
 tags: ["TripFlow", "Viajes", "React", "Spring Boot", "TFG"]
 image: "/images/posts/tripflow-showcase.png"
 locale: "es"
-slug: "es/presentando-tripflow"
+slug: "presentando-tripflow"
+altSlug: "introducing-tripflow"
 ---
 
 ¡Hola! Soy **Diego Sánchez Rincón**, estudiante de Ingeniería de Software en la Universidad Rey Juan Carlos.

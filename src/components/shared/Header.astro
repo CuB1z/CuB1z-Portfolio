@@ -1,9 +1,15 @@
 ---
 import LangToggleButton from "@/components/shared/LangToggleButton.astro";
+
+interface Props {
+    altLangUrl?: string;
+}
+
+const { altLangUrl } = Astro.props as Props;
 ---
 
 <header>
-    <LangToggleButton />
+    <LangToggleButton altLangUrl={altLangUrl} />
 </header>
 
 <style>
