@@ -90,7 +90,6 @@ if (post.data.locale && post.data.locale !== currentLocale) {
             .post-container {
                 width: 100%;
                 max-width: 800px;
-                padding: 48px 16px;
                 margin: 0 auto;
             }
 
@@ -267,31 +266,7 @@ if (post.data.locale && post.data.locale !== currentLocale) {
                 border-top: 1px solid var(--border-color);
             }
 
-            .back-to-blog {
-                display: inline-flex;
-                align-items: center;
-                color: var(--accent);
-                font-size: 14px;
-                font-weight: 500;
-                padding: 12px 20px;
-                border: 1px solid var(--accent-alpha);
-                border-radius: 8px;
-                transition: all 0.3s ease;
-                text-decoration: none;
-            }
-
-            .back-to-blog:hover {
-                background-color: var(--accent);
-                color: var(--text-primary);
-                border-color: var(--accent);
-                transform: translateX(-4px);
-            }
-
             @media (max-width: 768px) {
-                .post-container {
-                    padding: 32px 16px;
-                }
-
                 .post-hero-image {
                     height: 200px;
                     margin-bottom: 24px;
