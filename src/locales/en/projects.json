@@ -51,7 +51,7 @@
             "id": "minishell",
             "title": "MiniShell",
             "description": "Simplified Unix/Linux shell built in C that emulates the behavior of a native terminal.",
-            "techStack": ["C"],
+            "techStack": ["C", "Linux", "Terminal"],
             "links": {
                 "github": "https://github.com/CuB1z/MiniShell",
                 "live": null
