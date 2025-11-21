@@ -220,12 +220,19 @@ Este pipeline de despliegue continuo (CD) automatiza la construcción y publicac
 
 ```yaml
 name: CD - Build and Publish OCI Artifacts
+
 on:
   workflow_call:
     inputs:
-      tag: { required: true, type: string }
-      compose_file: { required: true, type: string }
-      services: { required: true, type: string }
+      tag:
+        required: true
+        type: string
+      compose_file:
+        required: true
+        type: string
+      services:
+        required: true
+        type: string
 
 jobs:
   build-and-push:
@@ -233,19 +240,37 @@ jobs:
     strategy:
       matrix:
         service: ${{ fromJSON(inputs.services) }}
+
     steps:
       - uses: actions/checkout@v4
-      - uses: docker/login-action@v3
+
+      - name: Log in to DockerHub
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build & push ${{ matrix.service }}
+      
+      - name: Compute image name suffix
+        run: |
+          # basename: backend/**-service -> **-service
+          IMAGE_SUFFIX=$(basename "${{ matrix.service }}")
+          # sanitize: to lowercase, replace underscores/slashes with hyphens
+          IMAGE_SUFFIX=$(echo "$IMAGE_SUFFIX" | tr '[:upper:]' '[:lower:]' | tr '_/' '-')
+          echo "IMAGE_SUFFIX=$IMAGE_SUFFIX" >> $GITHUB_ENV
+
+      - name: Build and push ${{ matrix.service }}
         uses: docker/build-push-action@v6
         with:
-          context: ./${{ matrix.service }}
+          context: ${{ startsWith(matrix.service, 'frontend') && './frontend' || './backend' }}
           file: ./${{ matrix.service }}/Dockerfile
           push: true
-          tags: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/tripflow-${{ matrix.service }}:${{ inputs.tag }}
+          tags: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/tripflow-${{ env.IMAGE_SUFFIX }}:${{ inputs.tag }}
+
+      - name: Publish docker-compose as OCI artifact
+        if: ${{ matrix.service == fromJSON(inputs.services)[0] }}
+        run: |
+          cp ${{ inputs.compose_file }} docker-compose.yml
+          docker compose publish -y ${{ secrets.DOCKERHUB_USERNAME }}/tripflow-compose:${{ inputs.tag }}
 ```
 
 ---
