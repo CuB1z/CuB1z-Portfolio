@@ -1,0 +1,21 @@
+# Diego Sánchez (CuB1z) Portfolio
+
+Diego Sánchez is a Software Engineer and Full Stack Developer based in Madrid, Spain.
+
+## Navigation
+
+- / (Home): Introduction and featured content.
+- /projects: Showcase of technical projects.
+- /resume: Professional experience and CV.
+- /blog: Tech articles and thoughts.
+
+## Technical Skills
+
+- Languages: TypeScript, Java, Python, C++
+- Web: React, Astro, Next.js, TailwindCSS
+- Backend: Spring Boot, NodeJS
+- Tools: Git, Docker, GitHub Actions
+
+## Contact
+
+Find me on GitHub and LinkedIn as CuB1z.

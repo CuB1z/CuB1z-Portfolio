@@ -12,6 +12,17 @@ interface Props {
 const { extended, altLangUrl } = Astro.props as Props;
 
 const locale = getLocale();
+
+const currentPath = Astro.url.pathname;
+const isEs = currentPath.startsWith("/es");
+const cleanPath = isEs ? currentPath.replace(/^\/es/, "") : currentPath;
+
+// Hreflang URLs
+const enUrl = new URL(cleanPath, Astro.site);
+const esUrl = new URL(`/es${cleanPath === "/" ? "" : cleanPath}`, Astro.site);
+
+// Canonical URL (self-referencing)
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <html lang={locale}>
@@ -20,14 +31,35 @@ const locale = getLocale();
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{t("title")}</title>
         <meta name="description" content={t("description")} />
+        
+        <!-- Canonical & Hreflang -->
+        <link rel="canonical" href={canonicalUrl} />
+        <link rel="alternate" hreflang="en" href={enUrl} />
+        <link rel="alternate" hreflang="es" href={esUrl} />
+        <link rel="alternate" hreflang="x-default" href={enUrl} />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content={t("title")} />
+        <meta property="og:description" content={t("description")} />
+        <meta property="og:image" content={new URL("/og-image.png", Astro.site)} />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={Astro.url} />
+        <meta property="twitter:title" content={t("title")} />
+        <meta property="twitter:description" content={t("description")} />
+        <meta property="twitter:image" content={new URL("/og-image.png", Astro.site)} />
+
         <link rel="icon" href="/favicon.svg" />
     </head>
     <body>
         <Header altLangUrl={altLangUrl} />
         <div class={"wrapper" + (extended ? " extended" : "")}>
-            <div class="content">
+            <main class="content">
                 <slot />
-            </div>
+            </main>
             <Footer />
         </div>
     </body>
