@@ -27,3 +27,11 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/portfolio:latest
           platforms: linux/amd64
+      
+      - name: Dokploy Deployment
+        uses: benbristow/dokploy-deploy-action@0.2.2
+        with:
+          api_token: ${{ secrets.DOKPLOY_AUTH_TOKEN }}
+          application_id: ${{ secrets.DOKPLOY_APPLICATION_ID }}
+          dokploy_url: ${{ secrets.DOKPLOY_URL }}
+          service_type: application
