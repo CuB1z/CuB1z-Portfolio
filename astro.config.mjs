@@ -10,4 +10,9 @@ export default defineConfig({
             strategy: "prefixExceptDefault",
         }),
     ],
+    vite: {
+        preview: {
+            allowedHosts: true,
+        },
+    },
 });
