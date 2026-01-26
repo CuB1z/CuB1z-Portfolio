@@ -7,11 +7,12 @@ import { ClientRouter } from "astro:transitions";
 
 interface Props {
     extended?: boolean;
+    single?: boolean;
     altLangUrl?: string;
     showHeader?: boolean;
 }
 
-const { extended, altLangUrl, showHeader = false } = Astro.props as Props;
+const { extended, single, altLangUrl, showHeader = false } = Astro.props as Props;
 
 const locale = getLocale();
 
@@ -55,21 +56,26 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         <meta property="twitter:image" content={new URL("/og-image.png", Astro.site)} />
 
         <link rel="icon" href="/favicon.svg" />
+        
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        
         <ClientRouter />
     </head>
     <body>
-        {showHeader && <Header altLangUrl={altLangUrl} />}
+        {showHeader && !single && <Header altLangUrl={altLangUrl} />}
         <div class={"wrapper" + (extended ? " extended" : "")}>
             <main class="content">
                 <slot />
             </main>
-            <Footer />
+            {!single && <Footer />}
         </div>
     </body>
 </html>
 
 <style is:global>
-    @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
     * {
         margin: 0;
