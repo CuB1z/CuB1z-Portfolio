@@ -20,8 +20,7 @@ import SocialLink from "@components/shared/SocialLink.astro";
                             href={project.links.live}
                             rel="noopener noreferrer"
                             target="_blank"
-                            title={`View ${project.title} live`}
-                        >
+                            title={`View ${project.title} live`}>
                             {project.title}
                             <ExternalLinkIcon class="inline-icon" />
                         </a>
@@ -37,13 +36,14 @@ import SocialLink from "@components/shared/SocialLink.astro";
                     ))}
                 </ul>
                 <div class="project-links">
-                    <SocialLink
-                        smaller
-                        href={project.links.github}
-                        title={`View ${project.title} on GitHub`}
-                    >
-                        <GithubIcon size={20} />
-                    </SocialLink>
+                    {project.links.github && (
+                        <SocialLink
+                            smaller
+                            href={project.links.github}
+                            title={`View ${project.title} on GitHub`}>
+                            <GithubIcon size={20} />
+                        </SocialLink>
+                    )}
                 </div>
             </div>
         ))
@@ -99,6 +99,7 @@ import SocialLink from "@components/shared/SocialLink.astro";
         height: var(--size);
         vertical-align: middle;
         color: var(--text-secondary);
+        margin-bottom: 4px;
         transition: all 0.2s ease;
     }
 

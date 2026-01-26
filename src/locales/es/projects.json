@@ -2,10 +2,30 @@
     "title": "Proyectos",
     "projects": [
         {
+            "id": "tripflow",
+            "title": "TripFlow - En Desarrollo",
+            "description": "Planificador de viajes con IA y backend de microservicios que crea itinerarios personalizados y optimizados en una app web moderna.",
+            "techStack": [
+                "SpringBoot",
+                "React",
+                "TypeScript",
+                "PostgreSQL",
+                "Docker"
+            ],
+            "links": {
+                "github": "https://github.com/codeurjc-students/2025-TripFlow",
+                "live": null
+            }
+        },
+        {
             "id": "notehub",
             "title": "NoteHub",
             "description": "Plataforma ligera que permite visualizar notas en Markdown directamente desde repositorios de GitHub, con una interfaz limpia y adaptable a cualquier dispositivo.",
-            "techStack": ["NextJs", "TypeScript", "GitHub API"],
+            "techStack": [
+                "NextJs",
+                "TypeScript",
+                "GitHub API"
+            ],
             "links": {
                 "github": "https://github.com/CuB1z/NoteHub",
                 "live": "https://n0tehub.vercel.app/"
@@ -31,17 +51,39 @@
             "id": "bits-of-battle",
             "title": "Bits of Battle",
             "description": "Un juego 1vs1 para jugar en local con un amigo usando el mismo teclado. Proyecto creado para La Hackathon del Dev.",
-            "techStack": ["React", "HTML", "Javascript"],
+            "techStack": [
+                "React",
+                "HTML",
+                "Javascript"
+            ],
             "links": {
                 "github": "https://github.com/PortiESP/bits-of-battle",
                 "live": "https://bits-of-battle.vercel.app/"
             }
         },
         {
+            "id": "djsanz",
+            "title": "DJ Sanz",
+            "description": "Web de portafolio para DJ Sanz, con un diseño limpio y moderno que se adapta a cualquier dispositivo.",
+            "techStack": [
+                "NextJs",
+                "React",
+                "TypeScript"
+            ],
+            "links": {
+                "github": null,
+                "live": "https://djsanz.es/"
+            }
+        },
+        {
             "id": "notion-lovers",
             "title": "Notion Lovers",
             "description": "Plataforma creada por estudiantes para compartir y acceder a apuntes universitarios. ¡Únete a revolucionar los hábitos de estudio!",
-            "techStack": ["NextJs", "TypeScript", "Notion API"],
+            "techStack": [
+                "NextJs",
+                "TypeScript",
+                "Notion API"
+            ],
             "links": {
                 "github": "https://github.com/CuB1z/Notion-Lovers",
                 "live": "https://notionlovers.vercel.app/"
@@ -51,7 +93,11 @@
             "id": "minishell",
             "title": "MiniShell",
             "description": "Shell simplificada de Unix/Linux construida en C que emula el comportamiento de una terminal nativa.",
-            "techStack": ["C", "Linux", "Terminal"],
+            "techStack": [
+                "C",
+                "Linux",
+                "Terminal"
+            ],
             "links": {
                 "github": "https://github.com/CuB1z/MiniShell",
                 "live": null
@@ -61,7 +107,11 @@
             "id": "wallapop-scrapper",
             "title": "Wallapop Scrapper",
             "description": "Una integración sencilla de scraping de Wallapop con un bot de Telegram.",
-            "techStack": ["Python", "TeleBot", "MySQL"],
+            "techStack": [
+                "Python",
+                "TeleBot",
+                "MySQL"
+            ],
             "links": {
                 "github": "https://github.com/CuB1z/Wallapop-Scrapper",
                 "live": null

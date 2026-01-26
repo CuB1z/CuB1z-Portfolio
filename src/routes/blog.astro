@@ -1,5 +1,5 @@
 ---
-import { getLocale, t } from "i18n:astro";
+import { getLocale } from "i18n:astro";
 import { getCollection } from "astro:content";
 
 import { buildUrl } from "@/utils/urlUtils";
@@ -21,7 +21,7 @@ const sortedPosts = posts.sort(
 ---
 
 <Layout extended>
-    <InnerHeader title={t("blog:title")} />
+    <InnerHeader />
 
     {
         sortedPosts.map((post) => (

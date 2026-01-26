@@ -3,13 +3,15 @@ import { t, getLocale } from "i18n:astro";
 
 import Footer from "@components/shared/Footer.astro";
 import Header from "@components/shared/Header.astro";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
     extended?: boolean;
     altLangUrl?: string;
+    showHeader?: boolean;
 }
 
-const { extended, altLangUrl } = Astro.props as Props;
+const { extended, altLangUrl, showHeader = false } = Astro.props as Props;
 
 const locale = getLocale();
 
@@ -53,9 +55,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         <meta property="twitter:image" content={new URL("/og-image.png", Astro.site)} />
 
         <link rel="icon" href="/favicon.svg" />
+        <ClientRouter />
     </head>
     <body>
-        <Header altLangUrl={altLangUrl} />
+        {showHeader && <Header altLangUrl={altLangUrl} />}
         <div class={"wrapper" + (extended ? " extended" : "")}>
             <main class="content">
                 <slot />
@@ -103,7 +106,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
         --accent: #73b3d8;
         --accent-light: #a2b9c7;
-        --accent-alpha: #73b3d834;
+        --accent-alpha: #73b3d85f;
 
         --aureola-big: #29353e11;
         --aureola-small: #73b3d81a;
