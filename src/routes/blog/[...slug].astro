@@ -26,16 +26,13 @@ const post = Astro.props;
 const { Content } = await post.render();
 const currentLocale = getLocale();
 
-if (post.data.locale && post.data.locale !== currentLocale) {
-    return Astro.redirect("/404");
-}
 ---
 
 <Layout
     extended
     altLangUrl={buildAltLangUrl(`/blog/${post.data.altSlug}`, currentLocale)}
 >
-    <InnerHeader title={post.data.title} backUrl="/blog" />
+    <InnerHeader backUrl="/blog" />
 
     <main class="post-container">
         <article class="post-article">
