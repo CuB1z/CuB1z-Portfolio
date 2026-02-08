@@ -1,11 +1,14 @@
 ---
 import { getCollection } from "astro:content";
 import { getLocale, t } from "i18n:astro";
+
+import { buildAltLangUrl } from "@/utils/urlUtils";
+import { formatDate } from "@/utils/formatUtils";
+
+import { ArrowLeftIcon } from "@lucide/astro";
 import Layout from "@layouts/Layout.astro";
 import InnerHeader from "@components/shared/InnerHeader.astro";
 import Button from "@/components/shared/Button.astro";
-import { buildAltLangUrl } from "@/utils/urlUtils";
-import { ArrowLeftIcon } from "@lucide/astro";
 
 export async function getStaticPaths() {
     const posts = await getCollection("post");
@@ -59,11 +62,7 @@ const currentLocale = getLocale();
 
                 <div class="post-meta">
                     <time class="post-date-main">
-                        {
-                            new Date(post.data.pubDate).toLocaleDateString(
-                                currentLocale === "es" ? "es-ES" : "en-US"
-                            )
-                        }
+                        {formatDate(post.data.pubDate, currentLocale)}
                     </time>
 
                     {

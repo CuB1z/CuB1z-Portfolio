@@ -3,6 +3,7 @@ import { getLocale } from "i18n:astro";
 import { getCollection } from "astro:content";
 
 import { buildUrl } from "@/utils/urlUtils";
+import { formatDate } from "@/utils/formatUtils";
 
 import Layout from "@layouts/Layout.astro";
 import InnerHeader from "@components/shared/InnerHeader.astro";
@@ -39,9 +40,7 @@ const sortedPosts = posts.sort(
 
                     <div class="post-footer">
                         <time class="post-date">
-                            {new Date(post.data.pubDate).toLocaleDateString(
-                                currentLocale === "es" ? "es-ES" : "en-US"
-                            )}
+                            {formatDate(post.data.pubDate, currentLocale)}
                         </time>
                     </div>
                 </div>

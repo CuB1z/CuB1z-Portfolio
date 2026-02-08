@@ -2,7 +2,7 @@
 title: "TripFlow v0.2.0: AI & Microservices"
 description: "New release introducing AI itinerary generation, microservices architecture with Kafka, real-time notifications, and advanced user management."
 pubDate: 2026-02-08
-tags: ["TripFlow", "AI", "Microservices", "Kafka", "React", "Spring Boot", "Docker"]
+tags: ["TripFlow", "Travel", "React", "Spring Boot", "Docker", "Microservices", "Kafka", "AI"]
 image: "/images/posts/tripflow-showcase.png"
 locale: "en"
 slug: "tripflow-v0.2.0"
