@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import { getLocale, t } from "i18n:astro";
 
-import { buildAltLangUrl } from "@/utils/urlUtils";
+import { buildAltLangUrl, buildUrl } from "@/utils/urlUtils";
 import { formatDate } from "@/utils/formatUtils";
 
 import { ArrowLeftIcon } from "@lucide/astro";
@@ -36,7 +36,7 @@ const currentLocale = getLocale();
     altLangUrl={buildAltLangUrl(`/blog/${post.data.altSlug}`, currentLocale)}
 >
     <InnerHeader
-        backUrl="/blog"
+        backUrl={buildUrl("/blog")}
         altLangUrl={buildAltLangUrl(
             `/blog/${post.data.altSlug}`,
             currentLocale,
