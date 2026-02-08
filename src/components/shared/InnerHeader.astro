@@ -5,11 +5,13 @@ import { buildUrl } from "@utils/urlUtils";
 import { ArrowLeftIcon } from "@lucide/astro";
 import LangToggleButton from "./LangToggleButton.astro";
 
+
 interface Props {
     backUrl?: string;
+    altLangUrl?: string;
 }
 
-const { backUrl } = Astro.props;
+const { backUrl, altLangUrl } = Astro.props;
 const backLink = backUrl || buildUrl("/");
 ---
 
@@ -18,7 +20,7 @@ const backLink = backUrl || buildUrl("/");
         <ArrowLeftIcon size={16} class="icon" />
         <span>{t("common:back")}</span>
     </a>
-    <LangToggleButton />
+    <LangToggleButton altLangUrl={altLangUrl} />
 </header>
 
 <style>

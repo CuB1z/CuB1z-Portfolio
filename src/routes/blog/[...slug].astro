@@ -32,7 +32,13 @@ const currentLocale = getLocale();
     extended
     altLangUrl={buildAltLangUrl(`/blog/${post.data.altSlug}`, currentLocale)}
 >
-    <InnerHeader backUrl="/blog" />
+    <InnerHeader
+        backUrl="/blog"
+        altLangUrl={buildAltLangUrl(
+            `/blog/${post.data.altSlug}`,
+            currentLocale,
+        )}
+    />
 
     <main class="post-container">
         <article class="post-article">
@@ -241,10 +247,9 @@ const currentLocale = getLocale();
             .post-content :global(img) {
                 max-width: 100%;
                 height: auto;
-                border-radius: 8px;
-                margin: 24px 0;
+                border-radius: 4px;
+                margin: 16px 0;
                 border: 1px solid var(--border-color);
-                display: block;
             }
 
             .post-content :global(hr) {

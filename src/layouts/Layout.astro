@@ -21,8 +21,14 @@ const isEs = currentPath.startsWith("/es");
 const cleanPath = isEs ? currentPath.replace(/^\/es/, "") : currentPath;
 
 // Hreflang URLs
-const enUrl = new URL(cleanPath, Astro.site);
-const esUrl = new URL(`/es${cleanPath === "/" ? "" : cleanPath}`, Astro.site);
+const enUrl =
+    locale === "es" && altLangUrl
+        ? new URL(altLangUrl, Astro.site)
+        : new URL(cleanPath, Astro.site);
+const esUrl =
+    locale === "en" && altLangUrl
+        ? new URL(altLangUrl, Astro.site)
+        : new URL(`/es${cleanPath === "/" ? "" : cleanPath}`, Astro.site);
 
 // Canonical URL (self-referencing)
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
