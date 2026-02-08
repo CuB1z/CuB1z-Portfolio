@@ -1,6 +1,6 @@
 ---
 title: "CI/CD y Testing en TripFlow"
-description: "TripFlow Phase 2: Configuración de backend y frontend, pruebas unitarias e integración, y pipelines de CI/CD para una PWA de planificación de viajes robusta."
+description: "TripFlow Fase 2: Configuración de backend y frontend, pruebas unitarias e integración, y pipelines de CI/CD para una PWA de planificación de viajes robusta."
 pubDate: 2025-09-11
 tags: ["TripFlow", "Travel", "React", "Spring Boot", "TFG"]
 image: "/images/posts/tripflow-showcase.png"
