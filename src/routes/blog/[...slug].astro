@@ -83,7 +83,7 @@ const currentLocale = getLocale();
         </article>
 
         <div class="post-actions">
-            <Button variant="primary" href="/blog" title={t("blog:goBack")}
+            <Button variant="primary" href={buildUrl("/blog")} title={t("blog:goBack")}
                 ><ArrowLeftIcon size={16} />{t("blog:goBack")}
             </Button>
         </div>
