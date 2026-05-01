@@ -3,8 +3,8 @@
     "projects": [
         {
             "id": "tripflow",
-            "title": "TripFlow - En Desarrollo",
-            "description": "Planificador de viajes con IA y backend de microservicios que crea itinerarios personalizados y optimizados en una app web moderna.",
+            "title": "TripFlow",
+            "description": "PWA moderna de planificación de viajes que genera itinerarios optimizados con IA, construida con una arquitectura de microservicios en Spring Boot y un frontend en React.",
             "techStack": [
                 "SpringBoot",
                 "React",
@@ -14,7 +14,7 @@
             ],
             "links": {
                 "github": "https://github.com/codeurjc-students/2025-TripFlow",
-                "live": null
+                "live": "https://tripflow.cub1z.es"
             }
         },
         {

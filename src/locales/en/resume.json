@@ -5,22 +5,33 @@
         "title": "Diego Sánchez",
         "subtitle": "Software Engineer & Full Stack Developer",
         "place": "Madrid, Spain",
-        "summary_1": "Hi! I'm Diego,",
-        "summary_2": "I am currently on my last year of pursuing a degree in Software Engineering at Rey Juan Carlos University in Madrid. Throughout my studies, I have built a solid foundation in web development, algorithms, and system design.",
-        "summary_3": "Throughout my academic career, I have complemented my learning with personal projects, where I have applied theoretical knowledge to real contexts. These experiences have allowed me to develop key skills such as problem-solving, critical thinking, and teamwork."
+        "summary_1": "Final-year Software Engineering student with a Full Stack profile. I combine a strong technical foundation with experience in the design and architecture of modern software solutions.",
+        "summary_2": "At Génexys, I contribute to technical decision-making and the development of microservices-based architectures using Python and AWS.",
+        "summary_3": "My technical approach builds on my previous experience at Telefónica, where I worked within professional development workflows, collaborating on the development of scalable projects and the optimization of web performance. I currently apply these same engineering principles in my Final Degree Project (TripFlow), where I design a microservices-based PWA using Spring Boot with generative AI integration. Tech Stack: React • Next.js • TypeScript • Java (Spring Boot) • Python • Node.js • Docker • SQL • Git"
     },
     "experience_summary": {
         "title": "Experience",
         "work_experience": [
             {
-                "company": "Telefónica Innovación Digital",
-                "position": "Full Stack Developer - Intern",
-                "duration": "July 2025 - December 2025",
-                "description": "Involved in the marketing web development team, focusing on creating and maintaining web applications.",
+                "company": "Génexys Technology",
+                "position": "Full Stack Developer",
+                "duration": "Feb 2026 - Present",
+                "description": "Full stack development in a professional environment, contributing to technical decisions and working with FastAPI and AWS.",
                 "achievements": [
-                    "Develop an accessibility a11y web application tool to automatically check web pages for compliance with accessibility standards.",
-                    "Participate in the development of web applications using Next.js and React.",
-                    "Collaborate in tasks related to upgrading and replacing outdated libraries and frameworks."
+                    "Delivered end-to-end features and improvements in a microservice-oriented architecture.",
+                    "Worked with FastAPI and Amazon Web Services (AWS) to build scalable solutions.",
+                    "Collaborated with the team on technical decision-making and engineering best practices."
+                ]
+            },
+            {
+                "company": "Telefónica Innovación Digital",
+                "position": "Full Stack Developer",
+                "duration": "July 2025 - December 2025",
+                "description": "Contributed to web application development with Next.js, working under the Mística Design System and implementing improvements in SEO and accessibility within an agile environment.",
+                "achievements": [
+                    "Implemented SEO and accessibility (a11y) improvements within a professional development workflow.",
+                    "Designed and built a full-stack tool (React, Express, MongoDB) to automate technical audits and generate PDF performance reports.",
+                    "Performed technical audits and web performance optimization (WPO), improving product quality, performance, and usability."
                 ]
             }
         ]
