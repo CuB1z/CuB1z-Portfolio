@@ -5,9 +5,11 @@
         "title": "Diego Sánchez",
         "subtitle": "Ingeniero Software & Desarrollador Full Stack",
         "place": "Madrid, España",
-        "summary_1": "Estudiante de último año de Ingeniería Software con perfil Full Stack. Combino una base técnica sólida con experiencia en el diseño y la arquitectura de soluciones modernas.",
-        "summary_2": "En Génexys participo en la toma de decisiones técnicas y en el desarrollo de arquitecturas basadas en microservicios con Python y AWS. Mi enfoque técnico se apoya en mi etapa previa en Telefónica, donde me integré en flujos de desarrollo profesionales colaborando en la construcción de proyectos escalables y en la optimización del rendimiento web.",
-        "summary_3": "Actualmente aplico estos mismos principios de ingeniería en mi Trabajo de Fin de Grado (TripFlow), donde diseño una PWA basada en microservicios con Spring Boot e integración de IA generativa. Tech Stack: React • Next.js • TypeScript • Java (Spring Boot) • Python • Node.js • Docker • SQL • Git"
+        "summary": [
+            "Estudiante de último año de Ingeniería Software con perfil Full Stack. Combino una base técnica sólida con experiencia en el diseño y la arquitectura de soluciones modernas.",
+            "En Génexys participo en la toma de decisiones técnicas y en el desarrollo de arquitecturas basadas en microservicios con Python y AWS. Mi enfoque técnico se apoya en mi etapa previa en Telefónica, donde me integré en flujos de desarrollo profesionales colaborando en la construcción de proyectos escalables y en la optimización del rendimiento web.",
+            "Actualmente aplico estos mismos principios de ingeniería en mi Trabajo de Fin de Grado (TripFlow), donde diseño una PWA basada en microservicios con Spring Boot e integración de IA generativa."
+        ]
     },
     "experience_summary": {
         "title": "Experiencia",

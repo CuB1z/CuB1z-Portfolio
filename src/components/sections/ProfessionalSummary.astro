@@ -21,26 +21,26 @@ const info = {
     <header>
         <div class="text">
             <h2>{t("resume:professional_summary.title")}</h2>
-            <p>{t("resume:professional_summary.subtitle")}</p>
-        </div>
-        <div class="info">
-            <div class="info-item">
-                <info.email.icon size={14} class="icon" />
-                <span>{info.email.value}</span>
-            </div>
-            <div class="info-item">
+            <p class="subtitle">{t("resume:professional_summary.subtitle")}</p>
+            <div class="info">
+                <div class="info-item">
+                    <info.email.icon size={14} class="icon" />
+                    <span>{info.email.value}</span>
+                </div>
                 <span class="dot">•</span>
-            </div>
-            <div class="info-item place">
-                <info.place.icon size={14} class="icon" />
-                <span>{info.place.value}</span>
+                <div class="info-item place">
+                    <info.place.icon size={14} class="icon" />
+                    <span>{info.place.value}</span>
+                </div>
             </div>
         </div>
     </header>
     <div class="resume-content">
-        <p>{t("resume:professional_summary.summary_1")}</p>
-        <p>{t("resume:professional_summary.summary_2")}</p>
-        <p>{t("resume:professional_summary.summary_3")}</p>
+        {
+            t("resume:professional_summary.summary", {
+                returnObjects: true,
+            }).map((paragraph) => <p>{paragraph}</p>)
+        }
     </div>
     <SocialLinks align="right" />
 </section>
@@ -64,10 +64,6 @@ const info = {
 
         header {
             width: 100%;
-            display: flex;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
             margin-bottom: 32px;
 
             h2 {
@@ -75,19 +71,19 @@ const info = {
                 margin-bottom: 8px;
             }
 
-            p {
+            .subtitle {
                 color: var(--accent-light);
                 font-weight: 500;
                 letter-spacing: 0.5px;
+                margin-bottom: 20px;
             }
         }
 
         .info {
             display: flex;
-            justify-content: flex-end;
-            align-items: flex-start;
-            gap: 16px;
             flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
             color: var(--text-secondary);
             font-size: 14px;
             font-weight: 500;
@@ -101,10 +97,10 @@ const info = {
                 .icon {
                     margin-right: 8px;
                 }
+            }
 
-                .dot {
-                    color: var(--accent);
-                }
+            .dot {
+                color: var(--accent);
             }
         }
 
