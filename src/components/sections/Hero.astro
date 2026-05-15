@@ -5,10 +5,18 @@ import { MailIcon, GithubIcon, LinkedinIcon } from "@lucide/astro";
 ---
 
 <section class="hero">
+    <div class="hero-avatar" aria-hidden="true">
+        <img
+            src="https://avatars.githubusercontent.com/u/121297520?v=4"
+            alt=""
+            loading="eager"
+        />
+    </div>
+
     <div class="hero-content">
         <div class="name-row">
             <h1 class="name">
-                {t("hero:name")}<span class="dot">.</span>
+                {t("hero:name")}
             </h1>
         </div>
 
@@ -35,14 +43,6 @@ import { MailIcon, GithubIcon, LinkedinIcon } from "@lucide/astro";
             </a>
         </div>
     </div>
-
-    <div class="hero-avatar" aria-hidden="true">
-        <img
-            src="https://avatars.githubusercontent.com/u/121297520?v=4"
-            alt=""
-            loading="eager"
-        />
-    </div>
 </section>
 
 <style>
@@ -50,14 +50,18 @@ import { MailIcon, GithubIcon, LinkedinIcon } from "@lucide/astro";
         width: 100%;
         padding-top: 16px;
         margin-bottom: 72px;
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 48px;
+        display: flex;
+        flex-direction: column;
         align-items: center;
+        gap: 32px;
+        text-align: center;
     }
 
     .hero-content {
         min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .hero-avatar {
@@ -66,7 +70,6 @@ import { MailIcon, GithubIcon, LinkedinIcon } from "@lucide/astro";
         border-radius: 9999px;
         overflow: hidden;
         flex-shrink: 0;
-        margin-right: 24px;
     }
 
     .hero-avatar img {
@@ -81,32 +84,28 @@ import { MailIcon, GithubIcon, LinkedinIcon } from "@lucide/astro";
         grid-template-columns: 1fr auto;
         gap: 20px;
         align-items: baseline;
-        margin-bottom: 32px;
+        margin-bottom: 10px;
     }
 
     .name {
-        font-size: clamp(40px, 6vw, 60px);
+        font-size: clamp(30px, 4vw, 42px);
         font-weight: 600;
         letter-spacing: -0.03em;
-        line-height: 1;
+        line-height: 1.1;
         color: var(--ink);
-    }
-
-    .name .dot {
-        color: var(--accent);
     }
 
     .role {
-        font-size: clamp(19px, 2.3vw, 24px);
-        color: var(--ink);
+        font-size: clamp(16px, 1.8vw, 19px);
+        color: var(--accent);
         font-weight: 500;
         letter-spacing: -0.015em;
         line-height: 1.35;
-        margin-bottom: 16px;
+        margin-bottom: 32px;
     }
 
     .role-meta {
-        font-size: 16px;
+        font-size: 15px;
         color: var(--ink-soft);
         max-width: 56ch;
         line-height: 1.65;
@@ -120,9 +119,10 @@ import { MailIcon, GithubIcon, LinkedinIcon } from "@lucide/astro";
     .hero-contact {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         gap: 12px 28px;
         margin-top: 32px;
-        font-size: 15.5px;
+        font-size: 14.5px;
         font-weight: 500;
     }
 
@@ -135,7 +135,7 @@ import { MailIcon, GithubIcon, LinkedinIcon } from "@lucide/astro";
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        color: var(--ink);
+        color: var(--ink-soft);
         transition: color 0.2s ease;
     }
 
@@ -155,11 +155,9 @@ import { MailIcon, GithubIcon, LinkedinIcon } from "@lucide/astro";
 
     @media (max-width: 768px) {
         .hero {
-            grid-template-columns: 1fr;
             gap: 28px;
         }
         .hero-avatar {
-            order: -1;
             width: 96px;
             height: 96px;
         }

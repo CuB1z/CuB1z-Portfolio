@@ -9,21 +9,31 @@ const { altLangUrl } = Astro.props as Props;
 
 const locale = getLocale();
 const currentPath = Astro.url.pathname;
+const cleanPath = currentPath.replace(/^\/es/, "") || "/";
 
-const targetPath =
-    locale === "en"
-        ? `/es${currentPath}`
-        : currentPath.replace(/^\/es/, "") || "/";
-
-const currentLang = locale === "en" ? "EN" : "ES";
-const otherLang = locale === "en" ? "ES" : "EN";
+const enPath = locale === "en" ? currentPath : (altLangUrl ?? cleanPath);
+const esPath = locale === "es" ? currentPath : (altLangUrl ?? `/es${cleanPath === "/" ? "" : cleanPath}`);
 ---
 
-<a class="lang" href={altLangUrl || targetPath} title={`Switch to ${otherLang}`}>
-    <span class="current">{currentLang}</span>
+<div class="lang">
+    <a
+        class:list={["item", { active: locale === "en" }]}
+        href={enPath}
+        aria-current={locale === "en" ? "page" : undefined}
+        title="Switch to EN"
+    >
+        EN
+    </a>
     <span class="sep">/</span>
-    <span class="other">{otherLang}</span>
-</a>
+    <a
+        class:list={["item", { active: locale === "es" }]}
+        href={esPath}
+        aria-current={locale === "es" ? "page" : undefined}
+        title="Switch to ES"
+    >
+        ES
+    </a>
+</div>
 
 <style>
     .lang {
@@ -32,29 +42,24 @@ const otherLang = locale === "en" ? "ES" : "EN";
         gap: 6px;
         font-size: 13px;
         font-weight: 500;
-        color: var(--ink);
         letter-spacing: 0.02em;
     }
 
-    .lang .current {
-        color: var(--ink);
-    }
-
-    .lang .sep {
-        color: var(--ink-mute);
-        font-weight: 400;
-    }
-
-    .lang .other {
+    .item {
         color: var(--ink-mute);
         transition: color 0.2s ease;
     }
 
-    .lang:hover {
+    .item.active {
         color: var(--ink);
     }
 
-    .lang:hover .other {
+    .item:not(.active):hover {
         color: var(--accent);
+    }
+
+    .sep {
+        color: var(--ink-mute);
+        font-weight: 400;
     }
 </style>

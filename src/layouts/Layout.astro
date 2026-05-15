@@ -32,7 +32,7 @@ const esUrl =
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<html lang={locale} data-theme="dark">
+<html lang={locale}>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -106,26 +106,15 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         --max-width-extended: 1000px;
     }
 
-    [data-theme="dark"] {
+    :root {
         --paper: #16191D;
-        --paper-2: #14171C;
-        --ink: #ECEEF1;
-        --ink-soft: #B6BCC4;
-        --ink-mute: #6B7280;
-        --rule: #21262D;
-        --rule-strong: #2A3038;
-        --accent-soft: #73B3D826;
-    }
-
-    [data-theme="light"] {
-        --paper: #FAFAF7;
-        --paper-2: #F2F2EE;
-        --ink: #14171C;
-        --ink-soft: #3A4049;
-        --ink-mute: #8A8F98;
-        --rule: #E4E2DC;
-        --rule-strong: #CFCDC7;
-        --accent-soft: #73B3D81F;
+        --paper-2: #1A1D21;
+        --ink: #F1FAFF;
+        --ink-soft: #B1B6BE;
+        --ink-mute: #4A5565;
+        --rule: #252C37;
+        --rule-strong: #2F3845;
+        --accent-soft: #73B3D85F;
     }
 
     /* Legacy variable aliases — keep until all components are migrated */
@@ -200,6 +189,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         height: auto;
         aspect-ratio: 16 / 9;
         border: 1px solid var(--rule);
+        border-radius: 8px;
     }
 
     @media (max-width: 768px) {
