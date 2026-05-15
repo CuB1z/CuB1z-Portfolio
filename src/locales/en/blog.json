@@ -1,4 +1,7 @@
 {
     "title": "Blog",
-    "goBack": "Go back to the blog"
+    "goBack": "Go back to the blog",
+    "heading": "Notes &",
+    "headingEm": "essays",
+    "lede": "On software development, technology and lessons learned along the way."
 }

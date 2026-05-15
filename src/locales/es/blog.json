@@ -1,4 +1,7 @@
 {
     "title": "Blog",
-    "goBack": "Volver al blog"
+    "goBack": "Volver al blog",
+    "heading": "Notas y",
+    "headingEm": "ensayos",
+    "lede": "Sobre desarrollo de software, tecnología y lecciones aprendidas por el camino."
 }
