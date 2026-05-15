@@ -1,72 +1,27 @@
 ---
-import { ArrowUpIcon } from "@lucide/astro";
+const year = new Date().getFullYear();
 ---
 
-<footer>
-    <a class="left" href="#">
-        <ArrowUpIcon size={18} class="icon" />
-        <span>CuB1z</span>
-    </a>
-    <div class="right">
-        <span>© 2026</span>
-    </div>
+<footer class="foot">
+    <span>© {year}&nbsp;&nbsp;&nbsp;Madrid</span>
 </footer>
 
 <style>
-    footer {
+    .foot {
         width: 100%;
-        padding: 16px;
         margin-top: 64px;
+        padding: 24px 0 0;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        color: var(--text-secondary);
-        font-size: 16px;
-        font-weight: 500;
-    }
-    .left {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        color: var(--text-secondary);
-        transition: all 0.2s ease-in-out;
-
-        .icon {
-            animation: bounce 1.5s infinite linear;
-        }
-
-        span {
-            transition: scale 0.2s ease-in-out;
-        }
-
-        &:hover {
-            color: var(--accent);
-
-            .icon {
-                animation-play-state: paused;
-            }
-
-            span {
-                scale: 1.02;
-            }
-        }
+        font-size: 13px;
+        color: var(--ink-mute);
+        letter-spacing: 0.04em;
     }
 
-    @media (max-width: 480px) {
-        footer {
-            margin-top: 32px;
-        }
-    }
-
-    @keyframes bounce {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-2px);
-        }
-        100% {
-            transform: translateY(0);
+    @media (max-width: 600px) {
+        .foot {
+            margin-top: 48px;
         }
     }
 </style>

@@ -1,9 +1,6 @@
 ---
 import { getLocale } from "i18n:astro";
 
-import Button from "@components/shared/Button.astro";
-import { GlobeIcon } from "@lucide/astro";
-
 interface Props {
     altLangUrl?: string;
 }
@@ -18,10 +15,46 @@ const targetPath =
         ? `/es${currentPath}`
         : currentPath.replace(/^\/es/, "") || "/";
 
-const buttonText = locale === "en" ? "EN" : "ES";
+const currentLang = locale === "en" ? "EN" : "ES";
+const otherLang = locale === "en" ? "ES" : "EN";
 ---
 
-<Button variant="primary" href={altLangUrl || targetPath} title={buttonText}>
-    <GlobeIcon size={16} />
-    {buttonText}
-</Button>
+<a class="lang" href={altLangUrl || targetPath} title={`Switch to ${otherLang}`}>
+    <span class="current">{currentLang}</span>
+    <span class="sep">/</span>
+    <span class="other">{otherLang}</span>
+</a>
+
+<style>
+    .lang {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink);
+        letter-spacing: 0.02em;
+    }
+
+    .lang .current {
+        color: var(--ink);
+    }
+
+    .lang .sep {
+        color: var(--ink-mute);
+        font-weight: 400;
+    }
+
+    .lang .other {
+        color: var(--ink-mute);
+        transition: color 0.2s ease;
+    }
+
+    .lang:hover {
+        color: var(--ink);
+    }
+
+    .lang:hover .other {
+        color: var(--accent);
+    }
+</style>
