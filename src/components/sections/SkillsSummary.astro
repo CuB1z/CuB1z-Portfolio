@@ -4,7 +4,6 @@ import { t } from "i18n:astro";
 
 <section class="skills">
     <header class="section-head">
-        <p class="lbl">{t("resume:skills_summary.label")}</p>
         <h2>
             {t("resume:skills_summary.heading")} <span class="em">{t("resume:skills_summary.headingEm")}</span>
         </h2>
@@ -30,15 +29,6 @@ import { t } from "i18n:astro";
     .section-head {
         padding-bottom: 28px;
         border-bottom: 1px solid var(--rule);
-    }
-
-    .lbl {
-        font-size: 11.5px;
-        font-weight: 500;
-        color: var(--ink-mute);
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        margin-bottom: 16px;
     }
 
     .section-head h2 {
