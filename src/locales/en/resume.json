@@ -13,7 +13,6 @@
     },
     "experience_summary": {
         "title": "Experience",
-        "label": "01 · Experience",
         "heading": "Work",
         "headingEm": "history",
         "work_experience": [
@@ -43,7 +42,6 @@
     },
     "education_summary": {
         "title": "Education",
-        "label": "02 · Education",
         "heading": "Studies &",
         "headingEm": "degrees",
         "education_details": [
@@ -63,7 +61,6 @@
     },
     "skills_summary": {
         "title": "Skills",
-        "label": "03 · Stack",
         "heading": "Tools &",
         "headingEm": "technologies",
         "skills": [
