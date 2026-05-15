@@ -1,110 +1,163 @@
 ---
-import { CalendarIcon } from "@lucide/astro";
 import { t } from "i18n:astro";
+
+const studies = t("resume:education_summary.education_details", {
+    returnObjects: true,
+}) as Array<{
+    institution: string;
+    degree: string;
+    duration: string;
+    description: string;
+}>;
+
+const splitDuration = (duration: string) => {
+    const [start, ...rest] = duration.split(/\s*[-–—]\s*/);
+    return { start: start.trim(), end: rest.length ? rest.join(" - ").trim() : null };
+};
 ---
 
-<section>
-    <header>
-        <h2>{t("resume:education_summary.title")}</h2>
+<section class="edu">
+    <header class="section-head">
+        <p class="lbl">{t("resume:education_summary.label")}</p>
+        <h2>
+            {t("resume:education_summary.heading")} <span class="em">{t("resume:education_summary.headingEm")}</span>
+        </h2>
     </header>
-    <ul class="education-list">
+
+    <ul class="list">
         {
-            t("resume:education_summary.education_details", {
-                returnObjects: true,
-            }).map((edu) => (
-                <li class="edu">
-                    <div class="header">
-                        <h3>{edu.degree}</h3>
-                        <p>
-                            <CalendarIcon size={16} class="icon" />
-                            {edu.duration}
-                        </p>
-                    </div>
-                    <p class="institution">{edu.institution}</p>
-                    <p class="description">{edu.description}</p>
-                </li>
-            ))
+            studies.map((edu) => {
+                const { start, end } = splitDuration(edu.duration);
+                return (
+                    <li class="entry">
+                        <div class="body">
+                            <h3 class="degree">{edu.degree}</h3>
+                            <p class="institution">{edu.institution}</p>
+                            <p class="desc">{edu.description}</p>
+                        </div>
+                        <div class="when">
+                            <span class="when-date">{start}</span>
+                            {end && <span class="when-date when-end">{end}</span>}
+                        </div>
+                    </li>
+                );
+            })
         }
     </ul>
 </section>
 
 <style>
-    section {
+    .edu {
         width: 100%;
-        padding: 24px;
+        margin-bottom: 64px;
+    }
+
+    .section-head {
+        padding-bottom: 28px;
+        border-bottom: 1px solid var(--rule);
+    }
+
+    .lbl {
+        font-size: 11.5px;
+        font-weight: 500;
+        color: var(--ink-mute);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+    }
+
+    .section-head h2 {
+        font-size: clamp(28px, 3.4vw, 36px);
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: -0.022em;
+    }
+
+    .section-head h2 .em {
+        color: var(--accent);
+    }
+
+    .list {
+        list-style: none;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        margin-bottom: 48px;
-        border-radius: 8px;
-        background-color: var(--bg-secondary);
-        background-image: radial-gradient(
-            circle at 5% 95%,
-            var(--aureola-big) 100px,
-            transparent 4px
-        );
-        border: 1px solid var(--border-color);
+    }
 
-        header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            color: var(--text-primary);
+    .entry {
+        display: grid;
+        grid-template-columns: 1fr 140px;
+        gap: 32px;
+        padding: 28px 0;
+        border-bottom: 1px solid var(--rule);
+    }
+
+    .entry:last-child {
+        border-bottom: none;
+    }
+
+    .when {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+        padding-top: 10px;
+    }
+
+    .when-date {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--ink-mute);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+
+
+    .body {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 0;
+    }
+
+    .degree {
+        font-size: clamp(20px, 2.2vw, 24px);
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: -0.02em;
+    }
+
+    .institution {
+        font-size: 15px;
+        color: var(--accent);
+        font-weight: 500;
+        margin-bottom: 6px;
+    }
+
+    .desc {
+        font-size: 15.5px;
+        color: var(--ink-soft);
+        line-height: 1.7;
+        max-width: 64ch;
+    }
+
+    @media (max-width: 600px) {
+        .entry {
+            grid-template-columns: 1fr;
+            gap: 12px;
+            padding: 32px 0;
         }
-
-        .education-list {
-            width: 100%;
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-
-            .edu {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-                padding-left: 16px;
-                border-left: 2px solid var(--green-color);
-
-                .header {
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    flex-wrap: wrap;
-                    gap: 8px;
-                    margin-bottom: 8px;
-
-                    h3 {
-                        color: var(--text-primary);
-                    }
-
-                    p {
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                        color: var(--text-secondary);
-                        font-size: 14px;
-                        font-weight: 500;
-                        letter-spacing: 0.5px;
-                    }
-                }
-            }
-            .institution {
-                color: var(--green-color);
-                font-weight: 500;
-                font-size: 16px;
-                margin-bottom: 8px;
-            }
-
-            .description {
-                color: var(--text-secondary);
-                font-size: 14px;
-                margin-bottom: 8px;
-            }
+        .when {
+            order: -1;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            padding-top: 0;
+        }
+        .when-end::before {
+            content: "—";
+            margin-right: 8px;
+            opacity: 0.6;
         }
     }
 </style>

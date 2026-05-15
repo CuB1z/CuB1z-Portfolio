@@ -1,126 +1,196 @@
 ---
-import { CalendarIcon } from "@lucide/astro";
 import { t } from "i18n:astro";
+
+const experiences = t("resume:experience_summary.work_experience", {
+    returnObjects: true,
+}) as Array<{
+    company: string;
+    position: string;
+    duration: string;
+    description: string;
+    achievements?: string[];
+}>;
+
+const splitDuration = (duration: string) => {
+    const [start, ...rest] = duration.split(/\s*[-–—]\s*/);
+    return { start: start.trim(), end: rest.length ? rest.join(" - ").trim() : null };
+};
 ---
 
-<section>
-    <header>
-        <h2>{t("resume:experience_summary.title")}</h2>
+<section class="exp">
+    <header class="section-head">
+        <p class="lbl">{t("resume:experience_summary.label")}</p>
+        <h2>
+            {t("resume:experience_summary.heading")} <span class="em">{t("resume:experience_summary.headingEm")}</span>
+        </h2>
     </header>
-    <ul class="experience-list">
+
+    <ul class="list">
         {
-            t("resume:experience_summary.work_experience", {
-                returnObjects: true,
-            }).map((job) => (
-                <li class="job">
-                    <div class="header">
-                        <h3>{job.position}</h3>
-                        <p>
-                            <CalendarIcon size={16} class="icon" />
-                            {job.duration}
-                        </p>
-                    </div>
-                    <p class="company">{job.company}</p>
-                    <p class="description">{job.description}</p>
-                    <ul>
-                        {job.achievements.map((achievement) => (
-                            <li>{achievement}</li>
-                        ))}
-                    </ul>
-                </li>
-            ))
+            experiences.map((job) => {
+                const { start, end } = splitDuration(job.duration);
+                return (
+                    <li class="job">
+                        <div class="body">
+                            <h3 class="role">{job.position}</h3>
+                            <p class="company">{job.company}</p>
+                            <p class="desc">{job.description}</p>
+                            {job.achievements && job.achievements.length > 0 && (
+                                <ul class="achievements">
+                                    {job.achievements.map((a) => (
+                                        <li>{a}</li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
+                        <div class="when">
+                            <span class="when-date">{start}</span>
+                            {end && <span class="when-date when-end">{end}</span>}
+                        </div>
+                    </li>
+                );
+            })
         }
     </ul>
 </section>
 
 <style>
-    section {
+    .exp {
         width: 100%;
-        padding: 24px;
+        margin-bottom: 64px;
+    }
+
+    .section-head {
+        padding-bottom: 28px;
+        border-bottom: 1px solid var(--rule);
+    }
+
+    .lbl {
+        font-size: 11.5px;
+        font-weight: 500;
+        color: var(--ink-mute);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+    }
+
+    .section-head h2 {
+        font-size: clamp(28px, 3.4vw, 36px);
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: -0.022em;
+    }
+
+    .section-head h2 .em {
+        color: var(--accent);
+    }
+
+    .list {
+        list-style: none;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        margin-bottom: 48px;
-        border-radius: 8px;
-        background-color: var(--bg-secondary);
-        background-image: radial-gradient(
-            circle at 95% 10%,
-            var(--aureola-big) 100px,
-            transparent 4px
-        );
-        border: 1px solid var(--border-color);
+    }
 
-        header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            color: var(--text-primary);
+    .job {
+        display: grid;
+        grid-template-columns: 1fr 140px;
+        gap: 32px;
+        padding: 28px 0;
+        border-bottom: 1px solid var(--rule);
+    }
+
+    .job:last-child {
+        border-bottom: none;
+    }
+
+    .when {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+        padding-top: 10px;
+    }
+
+    .when-date {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--ink-mute);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+
+
+    .body {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 0;
+    }
+
+    .role {
+        font-size: clamp(20px, 2.2vw, 24px);
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: -0.02em;
+    }
+
+    .company {
+        font-size: 15px;
+        color: var(--accent);
+        font-weight: 500;
+        margin-bottom: 6px;
+    }
+
+    .desc {
+        font-size: 15.5px;
+        color: var(--ink-soft);
+        line-height: 1.7;
+        max-width: 64ch;
+    }
+
+    .achievements {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 12px;
+        font-size: 15px;
+        color: var(--ink-soft);
+        line-height: 1.65;
+    }
+
+    .achievements li {
+        position: relative;
+        padding-left: 16px;
+    }
+
+    .achievements li::before {
+        content: "·";
+        position: absolute;
+        left: 0;
+        color: var(--ink-mute);
+        font-size: 18px;
+        line-height: 1;
+    }
+
+    @media (max-width: 600px) {
+        .job {
+            grid-template-columns: 1fr;
+            gap: 12px;
+            padding: 32px 0;
         }
-
-        .experience-list {
-            width: 100%;
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-
-            .job {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-                padding-left: 16px;
-                border-left: 2px solid var(--accent);
-
-                .header {
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    flex-wrap: wrap;
-                    gap: 8px;
-                    margin-bottom: 8px;
-
-                    h3 {
-                        color: var(--text-primary);
-                    }
-
-                    p {
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                        color: var(--text-secondary);
-                        font-size: 14px;
-                        font-weight: 500;
-                        letter-spacing: 0.5px;
-                    }
-                }
-            }
-            .company {
-                color: var(--accent);
-                font-weight: 500;
-                font-size: 16px;
-                margin-bottom: 8px;
-            }
-
-            .description {
-                color: var(--text-secondary);
-                font-size: 14px;
-                margin-bottom: 8px;
-            }
-
-            ul {
-                list-style: circle;
-                padding-left: 24px;
-                color: var(--text-secondary);
-                font-size: 14px;
-
-                li {
-                    margin-bottom: 4px;
-                }
-            }
+        .when {
+            order: -1;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            padding-top: 0;
+        }
+        .when-end::before {
+            content: "—";
+            margin-right: 8px;
+            opacity: 0.6;
         }
     }
 </style>
