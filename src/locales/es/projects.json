@@ -1,5 +1,8 @@
 {
     "title": "Proyectos",
+    "heading": "Proyectos",
+    "headingEm": "destacados",
+    "lede": "Selección de cosas que he construido: productos en producción, experimentos y herramientas.",
     "projects": [
         {
             "id": "tripflow",
