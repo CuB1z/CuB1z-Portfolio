@@ -1,5 +1,7 @@
 {
     "title": "Página no encontrada",
+    "heading": "Página no",
+    "headingEm": "encontrada",
     "description": "La página que buscas no existe.",
     "button": "Volver al inicio"
 }
