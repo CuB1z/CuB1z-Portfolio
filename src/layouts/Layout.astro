@@ -20,7 +20,6 @@ const currentPath = Astro.url.pathname;
 const isEs = currentPath.startsWith("/es");
 const cleanPath = isEs ? currentPath.replace(/^\/es/, "") : currentPath;
 
-// Hreflang URLs
 const enUrl =
     locale === "es" && altLangUrl
         ? new URL(altLangUrl, Astro.site)
@@ -30,31 +29,27 @@ const esUrl =
         ? new URL(altLangUrl, Astro.site)
         : new URL(`/es${cleanPath === "/" ? "" : cleanPath}`, Astro.site);
 
-// Canonical URL (self-referencing)
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<html lang={locale}>
+<html lang={locale} data-theme="dark">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{t("title")}</title>
         <meta name="description" content={t("description")} />
-        
-        <!-- Canonical & Hreflang -->
+
         <link rel="canonical" href={canonicalUrl} />
         <link rel="alternate" hreflang="en" href={enUrl} />
         <link rel="alternate" hreflang="es" href={esUrl} />
         <link rel="alternate" hreflang="x-default" href={enUrl} />
 
-        <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />
         <meta property="og:url" content={Astro.url} />
         <meta property="og:title" content={t("title")} />
         <meta property="og:description" content={t("description")} />
         <meta property="og:image" content={new URL("/og-image.png", Astro.site)} />
 
-        <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content={Astro.url} />
         <meta property="twitter:title" content={t("title")} />
@@ -62,12 +57,11 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         <meta property="twitter:image" content={new URL("/og-image.png", Astro.site)} />
 
         <link rel="icon" href="/favicon.svg" />
-        
-        <!-- Fonts -->
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-        
+        <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
         <ClientRouter />
     </head>
     <body>
@@ -82,123 +76,112 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 </html>
 
 <style is:global>
-
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Inter", sans-serif;
-        scroll-behavior: smooth;
         scrollbar-width: thin;
-        scrollbar-color: var(--accent-alpha) transparent;
+        scrollbar-color: var(--ink-mute) transparent;
 
         -webkit-tap-highlight-color: transparent;
         -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
         user-select: text;
 
         &::selection {
-            background: var(--accent-alpha);
-            color: var(--text-primary);
+            background: var(--accent);
+            color: var(--paper);
         }
     }
 
+    a {
+        text-decoration: none !important;
+    }
+
     :root {
-        --bg-primary: #16191d;
-        --bg-secondary: #1a1d21;
+        --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+        --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
-        --border-color: #252c37;
+        --accent: #73B3D8;
+        --max-width: 1000px;
+        --max-width-extended: 1000px;
+    }
 
-        --text-primary: #f1faff;
-        --text-secondary: #b1b6be;
-        --text-muted: #4a5565;
+    [data-theme="dark"] {
+        --paper: #16191D;
+        --paper-2: #14171C;
+        --ink: #ECEEF1;
+        --ink-soft: #B6BCC4;
+        --ink-mute: #6B7280;
+        --rule: #21262D;
+        --rule-strong: #2A3038;
+        --accent-soft: #73B3D826;
+    }
 
-        --accent: #73b3d8;
-        --accent-light: #a2b9c7;
-        --accent-alpha: #73b3d85f;
+    [data-theme="light"] {
+        --paper: #FAFAF7;
+        --paper-2: #F2F2EE;
+        --ink: #14171C;
+        --ink-soft: #3A4049;
+        --ink-mute: #8A8F98;
+        --rule: #E4E2DC;
+        --rule-strong: #CFCDC7;
+        --accent-soft: #73B3D81F;
+    }
 
-        --aureola-big: #29353e11;
-        --aureola-small: #73b3d81a;
-
+    /* Legacy variable aliases — keep until all components are migrated */
+    :root {
+        --bg-primary: var(--paper);
+        --bg-secondary: var(--paper-2);
+        --border-color: var(--rule);
+        --text-primary: var(--ink);
+        --text-secondary: var(--ink-soft);
+        --text-muted: var(--ink-mute);
+        --accent-light: var(--ink-soft);
+        --accent-alpha: var(--accent-soft);
         --green-color: #3bb27c;
-        --max-width: 768px;
-        --max-width-extended: 1200px;
+    }
+
+    html, body {
+        background: var(--paper);
+        color: var(--ink-soft);
+        font-family: var(--font-sans);
+        font-size: 16px;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
     body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: var(--bg-primary);
-        background-image: radial-gradient(
-                circle at 10% 10%,
-                var(--aureola-small) 5px,
-                transparent 4px
-            ),
-            radial-gradient(
-                circle at 85% 15%,
-                var(--aureola-small) 5px,
-                transparent 6px
-            ),
-            radial-gradient(
-                circle at 75% 85%,
-                var(--aureola-small) 5px,
-                transparent 3px
-            ),
-            radial-gradient(
-                circle at 25% 75%,
-                var(--aureola-small) 5px,
-                transparent 5px
-            ),
-            radial-gradient(
-                circle at 70% 30%,
-                var(--aureola-small) 5px,
-                transparent 2px
-            ),
-            radial-gradient(
-                circle at 40% 10%,
-                var(--aureola-small) 5px,
-                transparent 3px
-            ),
-            radial-gradient(
-                circle at 15% 30%,
-                var(--aureola-big) 264px,
-                transparent 20px
-            ),
-            radial-gradient(
-                circle at 90% 80%,
-                var(--aureola-big) 264px,
-                transparent 20px
-            );
-        background-size: 100vw 100%;
-        background-repeat: no-repeat;
-        animation: float-dots 25s ease-in-out infinite;
-        color: var(--text-secondary);
-        font-size: 16px;
-        line-height: 1.5;
+        min-height: 100vh;
     }
 
-    a,
-    a:visited,
-    a:hover,
-    a:focus {
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--ink);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+    }
+
+    a, a:visited {
+        color: var(--ink);
+        transition: color 0.2s ease;
+    }
+
+    a:hover, a:focus {
         color: var(--accent);
-        text-decoration: none;
     }
 
     .wrapper {
         width: 100%;
         max-width: var(--max-width);
-        min-height: 100vh;
+        flex: 1;
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: space-between;
-        padding-bottom: 48px;
-        padding-inline: 16px;
+        padding: 0 32px 64px;
 
         &.extended {
             max-width: var(--max-width-extended);
@@ -207,43 +190,21 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
     .content {
         width: 100%;
-        min-height: 90dvh;
+        min-height: 80dvh;
         display: flex;
         flex-direction: column;
-        align-items: center;
     }
 
     iframe {
         width: 100%;
         height: auto;
         aspect-ratio: 16 / 9;
-        border-radius: 8px;
+        border: 1px solid var(--rule);
     }
 
     @media (max-width: 768px) {
         .wrapper {
-            padding-inline: 16px;
-            padding-bottom: 32px;
-        }
-    }
-
-    @keyframes float-dots {
-        0%,
-        100% {
-            background-position:
-                15% 20%,
-                85% 15%,
-                75% 85%,
-                25% 75%,
-                60% 40%;
-        }
-        50% {
-            background-position:
-                18% 25%,
-                82% 18%,
-                78% 82%,
-                22% 72%,
-                63% 43%;
+            padding: 0 24px 48px;
         }
     }
 </style>
