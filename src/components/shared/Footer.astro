@@ -1,9 +1,11 @@
 ---
+import { t } from "i18n:astro";
+
 const year = new Date().getFullYear();
 ---
 
 <footer class="foot">
-    <span>© {year}&nbsp;&nbsp;&nbsp;Madrid</span>
+    <span>© {year}&nbsp;&nbsp;&nbsp;{t("common:location")}</span>
 </footer>
 
 <style>
