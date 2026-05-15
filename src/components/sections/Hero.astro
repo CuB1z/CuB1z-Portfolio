@@ -1,133 +1,178 @@
 ---
 import { t } from "i18n:astro";
-import { MapPinIcon, SparklesIcon } from "@lucide/astro";
-
-import SocialLinks from "@components/sections/SocialLinks.astro";
+import { socialData } from "@/constants/socialData";
+import { MailIcon, GithubIcon, LinkedinIcon } from "@lucide/astro";
 ---
 
-<section>
-    <div class="avatar-wrapper">
-        <div class="image-wrapper">
-            <img
-                src="https://avatars.githubusercontent.com/u/121297520?v=4"
-                alt="CuB1's Avatar"
-            />
+<section class="hero">
+    <div class="hero-content">
+        <div class="name-row">
+            <h1 class="name">
+                {t("hero:name")}<span class="dot">.</span>
+            </h1>
         </div>
-        <div class="active-status">
-            <SparklesIcon size={14} />
+
+        <p class="role">{t("hero:role")}</p>
+
+        <p class="role-meta">
+            <span set:html={t("hero:meta_line_1")} />
+            <br />
+            <span set:html={t("hero:meta_line_2")} />
+        </p>
+
+        <div class="hero-contact">
+            <a href={socialData.email}>
+                <MailIcon size={14} class="ci" />
+                <span>{socialData.email.replace("mailto:", "")}</span>
+            </a>
+            <a href={socialData.github} target="_blank" rel="noopener noreferrer">
+                <GithubIcon size={14} class="ci" />
+                <span>GitHub</span>
+            </a>
+            <a href={socialData.linkedin} target="_blank" rel="noopener noreferrer">
+                <LinkedinIcon size={14} class="ci" />
+                <span>LinkedIn</span>
+            </a>
         </div>
     </div>
-    <h1>{t("hero:name")}</h1>
-    <h2>{t("hero:position")}</h2>
-    <div class="place-container">
-        <MapPinIcon size={20} />
-        <p>{t("hero:place")}</p>
+
+    <div class="hero-avatar" aria-hidden="true">
+        <img
+            src="https://avatars.githubusercontent.com/u/121297520?v=4"
+            alt=""
+            loading="eager"
+        />
     </div>
-    <p class="description">{t("hero:description")}</p>
-    <SocialLinks />
 </section>
 
 <style>
-    section {
+    .hero {
         width: 100%;
-        margin-bottom: 64px;
-        display: flex;
-        flex-direction: column;
+        padding-top: 16px;
+        margin-bottom: 72px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 48px;
         align-items: center;
-        text-align: center;
+    }
 
-        .avatar-wrapper {
-            position: relative;
-            margin-bottom: 32px;
+    .hero-content {
+        min-width: 0;
+    }
 
-            .image-wrapper {
-                position: relative;
-                overflow: hidden;
-                width: 120px;
-                height: 120px;
-                border-radius: 9999px;
-                border: 2px solid var(--accent);
-                box-shadow: 0 0px 24px var(--accent-alpha);
+    .hero-avatar {
+        width: 130px;
+        height: 130px;
+        border-radius: 9999px;
+        overflow: hidden;
+        flex-shrink: 0;
+        margin-right: 24px;
+    }
 
-                img {
-                    width: 100%;
-                    height: 100%;
-                    scale: 1.05;
-                    object-fit: cover;
-                    transition: scale 0.3s ease-in-out;
-                }
+    .hero-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
 
-                &:hover {
-                    img {
-                        scale: 1.10;
-                    }
-                }
-            }
+    .name-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 20px;
+        align-items: baseline;
+        margin-bottom: 32px;
+    }
 
-            .active-status {
-                position: absolute;
-                bottom: 0;
-                right: -24px;
-                padding: 4px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 999px;
-                border: 4px solid var(--bg-primary);
-                background-color: var(--green-color);
-                color: var(--bg-primary);
-                box-shadow: 0 8px 12px -8px var(--green-color);
-                animation: pulse 2s infinite;
-            }
+    .name {
+        font-size: clamp(40px, 6vw, 60px);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        color: var(--ink);
+    }
+
+    .name .dot {
+        color: var(--accent);
+    }
+
+    .role {
+        font-size: clamp(19px, 2.3vw, 24px);
+        color: var(--ink);
+        font-weight: 500;
+        letter-spacing: -0.015em;
+        line-height: 1.35;
+        margin-bottom: 16px;
+    }
+
+    .role-meta {
+        font-size: 16px;
+        color: var(--ink-soft);
+        max-width: 56ch;
+        line-height: 1.65;
+    }
+
+    .role-meta :global(strong) {
+        color: var(--ink);
+        font-weight: 600;
+    }
+
+    .hero-contact {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 28px;
+        margin-top: 32px;
+        font-size: 15.5px;
+        font-weight: 500;
+    }
+
+    .hero-contact a .ci {
+        width: 16px;
+        height: 16px;
+    }
+
+    .hero-contact a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--ink);
+        transition: color 0.2s ease;
+    }
+
+    .hero-contact a:hover {
+        color: var(--accent);
+    }
+
+    .hero-contact a .ci {
+        color: var(--ink-mute);
+        transition: color 0.2s ease;
+        flex-shrink: 0;
+    }
+
+    .hero-contact a:hover .ci {
+        color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+        .hero {
+            grid-template-columns: 1fr;
+            gap: 28px;
         }
-
-        h1 {
-            font-size: 30px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            line-height: 1.2;
-            color: var(--text-primary);
-        }
-
-        h2 {
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 1.5;
-            color: var(--accent-light);
-        }
-
-        .place-container {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-block: 16px;
-            color: var(--accent);
-
-            p {
-                color: inherit;
-            }
-        }
-
-        .description {
-            max-width: 384px;
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
+        .hero-avatar {
+            order: -1;
+            width: 96px;
+            height: 96px;
         }
     }
 
-    @keyframes pulse {
-        0% {
-            opacity: 1;
+    @media (max-width: 600px) {
+        .hero {
+            padding-top: 8px;
+            margin-bottom: 48px;
         }
-        50% {
-            opacity: 0.5;
-        }
-        100% {
-            opacity: 1;
+        .hero-contact {
+            gap: 10px 20px;
+            font-size: 13px;
         }
     }
 </style>

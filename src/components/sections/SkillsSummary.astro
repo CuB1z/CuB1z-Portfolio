@@ -2,62 +2,77 @@
 import { t } from "i18n:astro";
 ---
 
-<section>
-    <header>
-        <h2>{t("resume:skills_summary.title")}</h2>
+<section class="skills">
+    <header class="section-head">
+        <p class="lbl">{t("resume:skills_summary.label")}</p>
+        <h2>
+            {t("resume:skills_summary.heading")} <span class="em">{t("resume:skills_summary.headingEm")}</span>
+        </h2>
     </header>
-    <ul class="skills-list">
+
+    <ul class="list">
         {
             t("resume:skills_summary.skills", {
                 returnObjects: true,
-            }).map((skill) => <li class="skill">{skill}</li>)
+            }).map((skill) => (
+                <li>{skill}</li>
+            ))
         }
     </ul>
 </section>
 
 <style>
-    section {
+    .skills {
         width: 100%;
-        padding: 24px;
+        margin-bottom: 64px;
+    }
+
+    .section-head {
+        padding-bottom: 28px;
+        border-bottom: 1px solid var(--rule);
+    }
+
+    .lbl {
+        font-size: 11.5px;
+        font-weight: 500;
+        color: var(--ink-mute);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+    }
+
+    .section-head h2 {
+        font-size: clamp(28px, 3.4vw, 36px);
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: -0.022em;
+    }
+
+    .section-head h2 .em {
+        color: var(--accent);
+    }
+
+    .list {
+        list-style: none;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-bottom: 48px;
-        border-radius: 8px;
-        background-color: var(--bg-secondary);
-        background-image: radial-gradient(
-            circle at 15% 90%,
-            var(--aureola-big) 100px,
-            transparent 4px
-        );
-        border: 1px solid var(--border-color);
+        flex-wrap: wrap;
+        gap: 10px 12px;
+        padding-top: 28px;
+    }
 
-        header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            color: var(--text-primary);
-        }
+    .list li {
+        padding: 8px 16px;
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        font-size: 13.5px;
+        color: var(--ink-soft);
+        cursor: default;
+        user-select: none;
+        transition: border-color 0.2s ease, color 0.2s ease;
+    }
 
-        .skills-list {
-            width: 100%;
-            list-style: none;
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-
-            .skill {
-                width: max-content;
-                padding: 4px 16px;
-                border-radius: 4px;
-                background-color: var(--accent-alpha);
-                color: var(--text-primary);
-                font-size: 14px;
-                font-weight: 500;
-                letter-spacing: 1px;
-            }
-        }
+    .list li:hover {
+        border-color: var(--accent);
+        color: var(--accent);
     }
 </style>

@@ -21,32 +21,25 @@ const { href, title, smaller } = Astro.props as Props;
 
 <style>
     .social-link {
-        --size: 48px;
+        --size: 36px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         width: var(--size);
         height: var(--size);
-        border-radius: 9999px;
-        border: 1px solid var(--border-color);
-        background-color: var(--bg-secondary);
-        color: var(--text-secondary);
-        text-decoration: none;
-        transition: all 0.2s ease-in-out;
+        border-radius: 999px;
+        border: 1px solid var(--rule);
+        color: var(--ink-soft);
+        background: transparent;
+        transition: color 0.2s ease, border-color 0.2s ease;
+    }
 
-        &.smaller {
-            --size: 40px;
-        }
+    .social-link.smaller {
+        --size: 32px;
+    }
 
-        &:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 2px 8px var(--accent-alpha);
-        }
-
-        &:active {
-            scale: 0.95;
-        }
+    .social-link:hover {
+        color: var(--accent);
+        border-color: var(--accent);
     }
 </style>

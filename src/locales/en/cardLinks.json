@@ -1,14 +1,20 @@
 {
     "projects": {
-        "title": "Featured Projects",
+        "label": "01 · Work",
+        "title": "Featured",
+        "titleEm": "projects",
         "description": "Showcase of my work and skills."
     },
     "blog": {
+        "label": "02 · Writing",
         "title": "Blog",
+        "titleEm": "",
         "description": "Software development and technology."
     },
     "about": {
-        "title": "About Me",
-        "description": "My background and experience."
+        "label": "03 · Profile",
+        "title": "Profile",
+        "titleEm": "",
+        "description": "Complete career overview and achievements."
     }
 }

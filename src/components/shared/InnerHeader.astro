@@ -2,9 +2,7 @@
 import { t } from "i18n:astro";
 import { buildUrl } from "@utils/urlUtils";
 
-import { ArrowLeftIcon } from "@lucide/astro";
 import LangToggleButton from "./LangToggleButton.astro";
-
 
 interface Props {
     backUrl?: string;
@@ -15,42 +13,54 @@ const { backUrl, altLangUrl } = Astro.props;
 const backLink = backUrl || buildUrl("/");
 ---
 
-<header>
-    <a href={backLink} title={t("common:back")}>
-        <ArrowLeftIcon size={16} class="icon" />
+<header class="inner-header">
+    <a class="back" href={backLink} title={t("common:back")}>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
         <span>{t("common:back")}</span>
     </a>
     <LangToggleButton altLangUrl={altLangUrl} />
 </header>
 
 <style>
-    header {
+    .inner-header {
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 12px;
-        margin-block: 24px;
+        padding: 40px 0 64px;
         flex-wrap: wrap;
+    }
 
-        a {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--accent);
-            transition: all 0.2s ease-in-out;
+    .back {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--ink-soft);
+        transition: color 0.2s ease, gap 0.2s ease;
+    }
 
-            .icon {
-                transition: all 0.2s ease-in-out;
-            }
+    .back svg {
+        transition: transform 0.2s ease;
+        width: 16px;
+        height: 16px;
+    }
 
-            &:hover {
-                color: var(--accent-light);
+    .back:hover {
+        color: var(--accent);
+    }
 
-                .icon {
-                    transform: translateX(-2px);
-                }
-            }
+    .back:hover svg {
+        transform: translateX(-3px);
+    }
+
+    @media (max-width: 600px) {
+        .inner-header {
+            padding: 28px 0 40px;
         }
     }
 </style>

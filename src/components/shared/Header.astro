@@ -8,17 +8,32 @@ interface Props {
 const { altLangUrl } = Astro.props as Props;
 ---
 
-<header>
-    <LangToggleButton altLangUrl={altLangUrl} />
+<header class="topbar">
+    <span></span>
+    <div class="right">
+        <LangToggleButton altLangUrl={altLangUrl} />
+    </div>
 </header>
 
 <style>
-    header {
+    .topbar {
         width: 100%;
-        max-width: 1920px;
-        padding: 16px;
-        display: flex;
-        justify-content: flex-end;
+        max-width: var(--max-width);
+        display: grid;
+        grid-template-columns: 1fr auto;
         align-items: center;
+        padding: 40px 24px 24px;
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .topbar {
+            padding: 28px 20px 16px;
+        }
     }
 </style>

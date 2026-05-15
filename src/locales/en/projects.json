@@ -1,5 +1,8 @@
 {
     "title": "Projects",
+    "heading": "Featured",
+    "headingEm": "projects",
+    "lede": "Selected things I've built: shipped products, experiments, and tools.",
     "projects": [
         {
             "id": "tripflow",
