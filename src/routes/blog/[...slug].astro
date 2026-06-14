@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { getLocale, t } from "i18n:astro";
+import { getLocale, getLocalePlaceholder, t } from "i18n:astro";
 
 import { buildAltLangUrl, buildUrl } from "@/utils/urlUtils";
 import { formatDate } from "@/utils/formatUtils";
@@ -11,24 +11,26 @@ import InnerHeader from "@components/shared/InnerHeader.astro";
 import Button from "@/components/shared/Button.astro";
 
 export async function getStaticPaths() {
+    const locale = getLocalePlaceholder();
     const posts = await getCollection("post");
 
-    return posts.map((post) => {
-        const slug = post.data.slug || post.slug;
+    return posts
+        .filter((post) => (post.data.locale ?? "en") === locale)
+        .map((post) => {
+            const slug = post.data.slug || post.slug;
 
-        return {
-            params: {
-                slug: slug,
-            },
-            props: post,
-        };
-    });
+            return {
+                params: {
+                    slug: slug,
+                },
+                props: post,
+            };
+        });
 }
 
 const post = Astro.props;
 const { Content } = await post.render();
 const currentLocale = getLocale();
-
 ---
 
 <Layout
@@ -85,7 +87,10 @@ const currentLocale = getLocale();
         </article>
 
         <div class="post-actions">
-            <Button variant="primary" href={buildUrl("/blog")} title={t("blog:goBack")}
+            <Button
+                variant="primary"
+                href={buildUrl("/blog")}
+                title={t("blog:goBack")}
                 ><ArrowLeftIcon size={16} />{t("blog:goBack")}
             </Button>
         </div>
@@ -181,10 +186,18 @@ const currentLocale = getLocale();
                 line-height: 1.3;
             }
 
-            .post-content :global(h1) { font-size: 28px; }
-            .post-content :global(h2) { font-size: 24px; }
-            .post-content :global(h3) { font-size: 20px; }
-            .post-content :global(h4) { font-size: 17px; }
+            .post-content :global(h1) {
+                font-size: 28px;
+            }
+            .post-content :global(h2) {
+                font-size: 24px;
+            }
+            .post-content :global(h3) {
+                font-size: 20px;
+            }
+            .post-content :global(h4) {
+                font-size: 17px;
+            }
 
             .post-content :global(p) {
                 margin: 16px 0;
@@ -285,10 +298,18 @@ const currentLocale = getLocale();
                     font-size: 15.5px;
                 }
 
-                .post-content :global(h1) { font-size: 22px; }
-                .post-content :global(h2) { font-size: 20px; }
-                .post-content :global(h3) { font-size: 18px; }
-                .post-content :global(h4) { font-size: 16px; }
+                .post-content :global(h1) {
+                    font-size: 22px;
+                }
+                .post-content :global(h2) {
+                    font-size: 20px;
+                }
+                .post-content :global(h3) {
+                    font-size: 18px;
+                }
+                .post-content :global(h4) {
+                    font-size: 16px;
+                }
 
                 .post-content :global(pre) {
                     padding: 16px;
