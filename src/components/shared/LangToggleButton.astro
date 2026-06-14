@@ -12,7 +12,10 @@ const currentPath = Astro.url.pathname;
 const cleanPath = currentPath.replace(/^\/es/, "") || "/";
 
 const enPath = locale === "en" ? currentPath : (altLangUrl ?? cleanPath);
-const esPath = locale === "es" ? currentPath : (altLangUrl ?? `/es${cleanPath === "/" ? "" : cleanPath}`);
+const esPath =
+    locale === "es"
+        ? currentPath
+        : (altLangUrl ?? `/es${cleanPath === "/" ? "/" : cleanPath}`);
 ---
 
 <div class="lang">

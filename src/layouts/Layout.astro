@@ -27,7 +27,7 @@ const enUrl =
 const esUrl =
     locale === "en" && altLangUrl
         ? new URL(altLangUrl, Astro.site)
-        : new URL(`/es${cleanPath === "/" ? "" : cleanPath}`, Astro.site);
+        : new URL(`/es${cleanPath === "/" ? "/" : cleanPath}`, Astro.site);
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
