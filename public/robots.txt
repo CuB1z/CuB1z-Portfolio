@@ -1,5 +1,5 @@
+# Allow all crawlers, including search and AI bots
 User-agent: *
 Allow: /
-Disallow: /private/
 
 Sitemap: https://cub1z.es/sitemap.xml
