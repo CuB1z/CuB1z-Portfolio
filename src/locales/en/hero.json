@@ -1,9 +1,6 @@
 {
-    "name": "Diego Sánchez",
-    "position": "Software Engineer & Full Stack Developer",
-    "description": "Creating exceptional digital experiences with cutting-edge technology and innovative design solutions.",
-    "place": "Madrid, Spain",
-    "role": "Software Engineer & FullStack Developer",
-    "meta_line_1": "Currently at Génexys, building microservices with Python & AWS.",
-    "meta_line_2": "Final-year student at URJC."
+    "eyebrow": "Software Engineer · Madrid",
+    "name_line1": "Diego",
+    "name_line2": "Sánchez",
+    "bio": "Software Engineer focused on <b>software architecture</b>, <b>distributed systems</b> and <b>cloud</b>. Currently at <b>Génexys</b>, building microservices with Python, FastAPI &amp; AWS. Recently graduated in Software Engineering at <b>URJC</b>."
 }

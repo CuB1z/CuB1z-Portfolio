@@ -1,6 +1,11 @@
 {
-    "title": "Diego Sánchez | Portfolio",
-    "description": "Estudiante de último año de Ingeniería del Software en la Universidad Rey Juan Carlos de Madrid, con una sólida formación en desarrollo web, algoritmos y diseño de sistemas.",
-    "back": "Volver",
-    "location": "Madrid, España"
+    "title": "Diego Sánchez | Ingeniero de Software",
+    "description": "Ingeniero de Software centrado en arquitectura, sistemas distribuidos y cloud. Recién graduado en Ingeniería del Software (URJC), actualmente desarrollando microservicios en Génexys.",
+    "nav": {
+        "experience": "Experiencia",
+        "work": "Proyectos",
+        "about": "Sobre mí",
+        "writing": "Blog"
+    },
+    "footer_rights": "Diego Sánchez · Madrid"
 }

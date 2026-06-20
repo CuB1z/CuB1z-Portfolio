@@ -1,88 +1,59 @@
 {
-    "title": "Profile",
-    "description": "Complete career overview and achievements",
-    "professional_summary": {
-        "title": "Diego Sánchez",
-        "subtitle": "Software Engineer & Full Stack Developer",
-        "place": "Madrid, Spain",
-        "summary": [
-            "Final-year Software Engineering student with a Full Stack profile. I combine a strong technical foundation with experience in the design and architecture of modern software solutions.",
-            "At Génexys, I contribute to technical decision-making and the development of microservices-based architectures using Python and AWS. My technical approach builds on my previous experience at Telefónica, where I worked within professional development workflows, collaborating on the development of scalable projects and the optimization of web performance.",
-            "I currently apply these same engineering principles in my Final Degree Project (TripFlow), where I design a microservices-based PWA using Spring Boot with generative AI integration."
-        ]
-    },
-    "experience_summary": {
-        "title": "Experience",
-        "heading": "Work",
-        "headingEm": "history",
-        "work_experience": [
+    "experience": {
+        "heading": "Experience",
+        "items": [
             {
+                "role": "Full-Stack Developer",
                 "company": "Génexys Technology",
-                "position": "Full Stack Developer",
-                "duration": "Feb 2026 - Present",
-                "description": "Full stack development in a professional environment, contributing to technical decisions and working with FastAPI and AWS.",
-                "achievements": [
-                    "Delivered end-to-end features and improvements in a microservice-oriented architecture.",
-                    "Worked with FastAPI and Amazon Web Services (AWS) to build scalable solutions.",
-                    "Collaborated with the team on technical decision-making and engineering best practices."
-                ]
+                "type": "Full-time",
+                "date": "Feb 2026 — Present",
+                "lead": "I contribute to the design and development of microservice-based solutions, supporting the evolution of the platform and the delivery of scalable cloud-native services.",
+                "bullets": [
+                    "Develop and maintain backend services with Python and FastAPI.",
+                    "Design and implement cloud solutions deployed on AWS.",
+                    "Take part in technical discussions on system architecture and platform evolution."
+                ],
+                "tags": ["Python", "FastAPI", "AWS", "Microservices"]
             },
             {
+                "role": "Full-Stack Developer",
                 "company": "Telefónica Innovación Digital",
-                "position": "Full Stack Developer",
-                "duration": "July 2025 - December 2025",
-                "description": "Contributed to web application development with Next.js, working under the Mística Design System and implementing improvements in SEO and accessibility within an agile environment.",
-                "achievements": [
-                    "Implemented SEO and accessibility (a11y) improvements within a professional development workflow.",
-                    "Designed and built a full-stack tool (React, Express, MongoDB) to automate technical audits and generate PDF performance reports.",
-                    "Performed technical audits and web performance optimization (WPO), improving product quality, performance, and usability."
-                ]
+                "type": "Internship",
+                "date": "Jul 2025 — Dec 2025",
+                "lead": "Contributed to the development and optimization of web applications with Next.js within the Mística Design System, focusing on accessibility, SEO and performance.",
+                "bullets": [
+                    "Implemented accessibility (WCAG) and SEO improvements across digital products.",
+                    "Built a full-stack tool (React, Express, MongoDB) to automate technical audits.",
+                    "Ran technical audits and Web Performance Optimization (WPO) in agile teams."
+                ],
+                "tags": ["Next.js", "React", "SEO", "WCAG"]
             }
         ]
     },
-    "education_summary": {
-        "title": "Education",
-        "heading": "Studies &",
-        "headingEm": "degrees",
-        "education_details": [
+    "about": {
+        "heading": "About",
+        "narrative": [
+            "Software Engineer focused on software architecture, distributed systems, and cloud technologies, with experience in full-stack development and backend engineering.",
+            "At Génexys, I contribute to the development of microservices-based solutions using Python, FastAPI, and AWS, while participating in technical discussions and architectural decision-making.",
+            "I recently completed my Bachelor's Degree in Software Engineering by designing and shipping TripFlow ✈️, my Bachelor's Thesis (10/10): an AI-assisted travel planner with real-time collaboration and offline mode."
+        ],
+        "facts": [
             {
-                "institution": "Rey Juan Carlos University - Madrid",
-                "degree": "Bachelor's Degree in Software Engineering",
-                "duration": "2022 - Present",
-                "description": "Last-year student, with honoring grades in web development, operative systems, and data structures."
+                "label": "Education",
+                "lines": ["Bachelor's in Software Engineering", "Universidad Rey Juan Carlos", "2022 – 2026"]
             },
             {
-                "institution": "University of Cambridge",
-                "degree": "B2 First Certificate in English",
-                "duration": "September 2021",
-                "description": "ID: B6462280"
+                "label": "Languages",
+                "lines": ["Spanish — native", "English — B2 (Cambridge)"]
+            },
+            {
+                "label": "Focus",
+                "lines": ["Backend, microservices & cloud (AWS)"]
+            },
+            {
+                "label": "Based in",
+                "lines": ["Madrid, Spain"]
             }
-        ]
-    },
-    "skills_summary": {
-        "title": "Skills",
-        "heading": "Tools &",
-        "headingEm": "technologies",
-        "skills": [
-            "React",
-            "Next.js",
-            "Astro",
-            "Node.js",
-            "Express",
-            "JavaScript",
-            "TypeScript",
-            "Angular",
-            "Restful APIs",
-            "Java",
-            "Spring Boot",
-            "SQL",
-            "Python",
-            "Algorithms",
-            "Git",
-            "Docker",
-            "CI/CD",
-            "Agile Methodologies",
-            "Problem Solving"
         ]
     }
 }

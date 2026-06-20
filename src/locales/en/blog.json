@@ -1,7 +1,7 @@
 {
-    "title": "Blog",
-    "goBack": "Go back to the blog",
-    "heading": "Notes &",
-    "headingEm": "essays",
-    "lede": "On software development, technology and lessons learned along the way."
+    "heading": "Blog",
+    "all_posts": "Read all posts",
+    "back": "All posts",
+    "on_this_page": "On this page",
+    "teaser_heading": "Writing"
 }

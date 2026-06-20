@@ -1,20 +1,14 @@
 {
-    "title": "Projects",
-    "heading": "Featured",
-    "headingEm": "projects",
-    "lede": "Selected things I've built: shipped products, experiments, and tools.",
+    "heading": "Selected Work",
     "projects": [
         {
             "id": "tripflow",
             "title": "TripFlow",
-            "description": "Modern travel-planning PWA that generates AI-powered itineraries, built on a Spring Boot microservices architecture with a React frontend.",
-            "techStack": [
-                "SpringBoot",
-                "React",
-                "TypeScript",
-                "PostgreSQL",
-                "Docker"
-            ],
+            "featured": true,
+            "flag": "Bachelor's Thesis",
+            "image": "/images/projects/tripflow-showcase.webp",
+            "description": "AI-assisted travel planner with real-time collaboration and an offline mode, on a Spring Boot microservices backend with a React frontend. Designed end-to-end and shipped as my Bachelor's Thesis.",
+            "techStack": ["Spring Boot", "React", "TypeScript", "PostgreSQL", "Docker"],
             "links": {
                 "github": "https://github.com/codeurjc-students/2025-TripFlow",
                 "live": "https://tripflow.cub1z.es"
@@ -24,11 +18,7 @@
             "id": "notehub",
             "title": "NoteHub",
             "description": "Lightweight platform that lets you view Markdown notes directly from GitHub repositories, with a clean interface adaptable to any device.",
-            "techStack": [
-                "NextJs",
-                "TypeScript",
-                "GitHub API"
-            ],
+            "techStack": ["Next.js", "TypeScript", "GitHub API"],
             "links": {
                 "github": "https://github.com/CuB1z/NoteHub",
                 "live": "https://n0tehub.vercel.app/"
@@ -38,69 +28,37 @@
             "id": "savex",
             "title": "SaveX",
             "description": "A platform that allows users to compare the prices of products between different supermarkets.",
-            "techStack": [
-                "SpringBoot",
-                "Angular",
-                "TypeScript",
-                "MySQL",
-                "Docker"
-            ],
+            "techStack": ["Spring Boot", "Angular", "MySQL", "Docker"],
             "links": {
                 "github": "https://github.com/CuB1z/SaveX",
                 "live": "https://savex-95hv.onrender.com/"
             }
         },
         {
-            "id": "djsanz",
-            "title": "DJ Sanz",
-            "description": "Portfolio website for DJ Sanz, with a clean and modern interface adaptable to any device.",
-            "techStack": [
-                "NextJs",
-                "React",
-                "TypeScript"
-            ],
-            "links": {
-                "github": null,
-                "live": "https://djsanz.es/"
-            }
-        },
-        {
             "id": "bits-of-battle",
             "title": "Bits of Battle",
-            "description": "A 1vs1 game to play in local with a friend using the same keyboard. Project made for La Hackathon del Dev.",
-            "techStack": [
-                "React",
-                "HTML",
-                "Javascript"
-            ],
+            "description": "A 1vs1 game to play locally with a friend using the same keyboard. Built for La Hackathon del Dev.",
+            "techStack": ["React", "JavaScript", "HTML"],
             "links": {
                 "github": "https://github.com/PortiESP/bits-of-battle",
                 "live": "https://bits-of-battle.vercel.app/"
             }
         },
         {
-            "id": "notion-lovers",
-            "title": "Notion Lovers",
-            "description": "A student-led platform for sharing and accessing university notes. Join us in revolutionizing study habits!",
-            "techStack": [
-                "NextJs",
-                "TypeScript",
-                "Notion API"
-            ],
+            "id": "djsanz",
+            "title": "DJ Sanz",
+            "description": "Portfolio website for DJ Sanz, with a clean and modern interface adaptable to any device.",
+            "techStack": ["Next.js", "React", "TypeScript"],
             "links": {
-                "github": "https://github.com/CuB1z/Notion-Lovers",
-                "live": "https://notionlovers.vercel.app/"
+                "github": null,
+                "live": "https://djsanz.es/"
             }
         },
         {
             "id": "minishell",
             "title": "MiniShell",
             "description": "Simplified Unix/Linux shell built in C that emulates the behavior of a native terminal.",
-            "techStack": [
-                "C",
-                "Linux",
-                "Terminal"
-            ],
+            "techStack": ["C", "Linux", "Terminal"],
             "links": {
                 "github": "https://github.com/CuB1z/MiniShell",
                 "live": null
@@ -109,12 +67,8 @@
         {
             "id": "wallapop-scrapper",
             "title": "Wallapop Scrapper",
-            "description": "A simple wallapop scraping integration with a telegram bot.",
-            "techStack": [
-                "Python",
-                "TeleBot",
-                "MySQL"
-            ],
+            "description": "A simple Wallapop scraping integration with a Telegram bot.",
+            "techStack": ["Python", "TeleBot", "MySQL"],
             "links": {
                 "github": "https://github.com/CuB1z/Wallapop-Scrapper",
                 "live": null
