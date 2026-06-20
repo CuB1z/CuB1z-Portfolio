@@ -1,0 +1,111 @@
+---
+import { t } from "i18n:astro";
+import SectionHeader from "@components/shared/SectionHeader.astro";
+
+interface Props {
+    num: string;
+}
+const { num } = Astro.props as Props;
+
+const heading = t("resume:about.heading");
+const narrative = t("resume:about.narrative", { returnObjects: true }) as string[];
+const facts = t("resume:about.facts", { returnObjects: true }) as Array<{
+    label: string;
+    lines: string[];
+}>;
+---
+
+<section id="about" class="section">
+    <div class="shell">
+        <SectionHeader num={num} heading={heading} />
+
+        <div class="about-grid">
+            <div class="about-text">
+                {narrative.map((p) => <p>{p}</p>)}
+            </div>
+            <aside class="facts">
+                {
+                    facts.map((fact) => (
+                        <div class="fact">
+                            <div class="fk">{fact.label}</div>
+                            <div class="fv">
+                                {fact.lines.map((line, i) =>
+                                    i === 0 ? (
+                                        <b>{line}</b>
+                                    ) : (
+                                        <>
+                                            <br />
+                                            {line}
+                                        </>
+                                    )
+                                )}
+                            </div>
+                        </div>
+                    ))
+                }
+            </aside>
+        </div>
+    </div>
+</section>
+
+<style>
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 76px;
+        align-items: start;
+    }
+    .about-text p {
+        font-size: 16.5px;
+        line-height: 1.75;
+        color: var(--soft);
+        max-width: 58ch;
+    }
+    .about-text p + p {
+        margin-top: 18px;
+    }
+    .facts {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        border-left: 1px solid var(--rule);
+        padding-left: 44px;
+    }
+    .fk {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 8px;
+    }
+    .fv {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--soft);
+    }
+    .fv b {
+        color: var(--ink);
+        font-weight: 600;
+    }
+    @media (max-width: 880px) {
+        .about-grid {
+            grid-template-columns: 1fr;
+            gap: 36px;
+        }
+        .facts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px 40px;
+            border-left: 0;
+            padding-left: 0;
+            border-top: 1px solid var(--rule);
+            padding-top: 30px;
+        }
+    }
+    @media (max-width: 520px) {
+        .facts {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

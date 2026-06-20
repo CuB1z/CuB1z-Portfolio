@@ -1,10 +1,16 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Hero from "@components/sections/Hero.astro";
-import CardLinks from "@components/sections/CardLinks.astro";
+import Experience from "@components/sections/Experience.astro";
+import Work from "@components/sections/Work.astro";
+import About from "@components/sections/About.astro";
+import WritingTeaser from "@components/sections/WritingTeaser.astro";
 ---
 
-<Layout showHeader>
+<Layout home>
     <Hero />
-    <CardLinks />
+    <Experience num="01" />
+    <Work num="02" />
+    <About num="03" />
+    <WritingTeaser num="04" />
 </Layout>

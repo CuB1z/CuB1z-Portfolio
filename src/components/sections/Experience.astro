@@ -1,0 +1,178 @@
+---
+import { t } from "i18n:astro";
+import SectionHeader from "@components/shared/SectionHeader.astro";
+
+interface Props {
+    num: string;
+}
+const { num } = Astro.props as Props;
+
+const heading = t("resume:experience.heading");
+const items = t("resume:experience.items", { returnObjects: true }) as Array<{
+    role: string;
+    company: string;
+    type: string;
+    date: string;
+    lead: string;
+    bullets: string[];
+    tags: string[];
+}>;
+---
+
+<section id="experience" class="section">
+    <div class="shell">
+        <SectionHeader num={num} heading={heading} />
+
+        <div class="xp">
+            {
+                items.map((item) => (
+                    <div class="item">
+                        <div class="head">
+                            <div class="head-l">
+                                <h3>{item.role}</h3>
+                                <div class="org">{item.company}</div>
+                            </div>
+                            <div class="head-r">
+                                <span class="badge">{item.type}</span>
+                                <div class="when">{item.date}</div>
+                            </div>
+                        </div>
+                        <p class="lead">{item.lead}</p>
+                        <ul>
+                            {item.bullets.map((b) => (
+                                <li>{b}</li>
+                            ))}
+                        </ul>
+                        <div class="tags">
+                            {item.tags.map((tg) => (
+                                <span>{tg}</span>
+                            ))}
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .xp {
+        display: flex;
+        flex-direction: column;
+        padding-left: 8px;
+    }
+    .item {
+        position: relative;
+        padding: 0 0 38px 32px;
+        border-left: 1px solid var(--rule);
+    }
+    .item:last-child {
+        padding-bottom: 0;
+        border-left-color: transparent;
+    }
+    .item::before {
+        content: "";
+        position: absolute;
+        left: -5px;
+        top: 7px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 4px var(--bg);
+    }
+    .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+    }
+    .head-l {
+        min-width: 0;
+    }
+    .item h3 {
+        font-size: 21px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+    }
+    .org {
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 14.5px;
+        margin-top: 5px;
+    }
+    .head-r {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 9px;
+        flex-shrink: 0;
+        text-align: right;
+        padding-top: 4px;
+    }
+    .when {
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--mute);
+        white-space: nowrap;
+    }
+    .badge {
+        font-family: var(--font-mono);
+        font-size: 10.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        border: 1px solid var(--accent-dim);
+        background: var(--accent-dim);
+        border-radius: 999px;
+        padding: 3px 10px;
+        white-space: nowrap;
+    }
+    .lead {
+        font-size: 15px;
+        line-height: 1.7;
+        margin-top: 16px;
+        max-width: 70ch;
+    }
+    .item ul {
+        list-style: none;
+        margin-top: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+    }
+    .item li {
+        position: relative;
+        padding-left: 18px;
+        font-size: 14.5px;
+        line-height: 1.65;
+        max-width: 70ch;
+    }
+    .item li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 9px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--mute);
+    }
+    .item .tags {
+        margin-top: 16px;
+    }
+    @media (max-width: 560px) {
+        .head {
+            flex-direction: column;
+            gap: 10px;
+        }
+        .head-r {
+            flex-direction: row;
+            align-items: center;
+            text-align: left;
+            padding-top: 0;
+        }
+    }
+</style>
