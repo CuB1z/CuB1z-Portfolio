@@ -1,21 +1,37 @@
 # Diego Sánchez (CuB1z) Portfolio
 
-Diego Sánchez is a Software Engineer and Full Stack Developer based in Madrid, Spain.
+Diego Sánchez is a Software Engineer based in Madrid, Spain, focused on software
+architecture, distributed systems and cloud. Recently graduated in Software
+Engineering at Universidad Rey Juan Carlos (URJC); currently a Full-Stack
+Developer at Génexys, building microservices with Python, FastAPI and AWS.
+
+This is a bilingual single-page portfolio plus a blog. English is served at the
+root; Spanish under /es.
 
 ## Navigation
 
-- / (Home): Introduction and featured content.
-- /projects: Showcase of technical projects.
-- /resume: Professional experience and CV.
-- /blog: Tech articles and thoughts.
+- / — Home: hero, experience, selected work and about, on one page (Spanish: /es).
+- /blog — Writing: posts on engineering, architecture and the TripFlow project (Spanish: /es/blog).
+- /blog/<slug> — individual blog post (Spanish: /es/blog/<slug>).
 
-## Technical Skills
+## Experience
 
-- Languages: TypeScript, Java, Python, C++
-- Web: React, Astro, Next.js, TailwindCSS
-- Backend: Spring Boot, NodeJS
-- Tools: Git, Docker, GitHub Actions
+- Génexys Technology — Full-Stack Developer (Feb 2026 – present): microservices with Python, FastAPI and AWS.
+- Telefónica Innovación Digital — Full-Stack Developer, internship (Jul – Dec 2025): Next.js, accessibility (WCAG), SEO and web performance.
+
+## Featured project
+
+- TripFlow — Bachelor's Thesis (10/10): an AI-assisted travel planner with real-time collaboration and an offline mode, on a Spring Boot microservices backend with a React frontend. Live at https://tripflow.cub1z.es
+
+## Technical skills
+
+- Backend: Python, FastAPI, Java, Spring Boot, Node.js, microservices, REST APIs
+- Frontend: React, Next.js, Astro, TypeScript, JavaScript
+- Cloud & tooling: AWS, Docker, Git, CI/CD
+- Focus: software architecture, distributed systems, cloud-native
 
 ## Contact
 
-Find me on GitHub and LinkedIn as CuB1z.
+- Email: cub1zdev@gmail.com
+- GitHub: https://github.com/CuB1z
+- LinkedIn: https://www.linkedin.com/in/cub1z/
