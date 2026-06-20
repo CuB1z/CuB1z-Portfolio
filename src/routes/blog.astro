@@ -3,214 +3,211 @@ import { getLocale, t } from "i18n:astro";
 import { getCollection } from "astro:content";
 
 import { buildUrl } from "@/utils/urlUtils";
-import { formatDateParts } from "@/utils/formatUtils";
-
 import Layout from "@layouts/Layout.astro";
-import InnerHeader from "@components/shared/InnerHeader.astro";
+import Breadcrumb from "@components/shared/Breadcrumb.astro";
+import ArrowButton from "@components/shared/ArrowButton.astro";
 
-const currentLocale = getLocale();
+const locale = getLocale();
 
 const allPosts = await getCollection("post");
-const posts = allPosts.filter(
-    (post) => !post.data.locale || post.data.locale === currentLocale
-);
+const posts = allPosts
+    .filter((post) => (post.data.locale ?? "en") === locale)
+    .sort(
+        (a, b) =>
+            new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+    );
 
-const sortedPosts = posts.sort(
-    (a, b) =>
-        new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-);
+const fmt = (date: Date) =>
+    new Date(date).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
+        month: "short",
+        year: "numeric",
+    });
+
+const PER_PAGE = 4;
+const pageCount = Math.ceil(posts.length / PER_PAGE);
 ---
 
-<Layout>
-    <InnerHeader />
+<Layout navActive="writing" title={`${t("blog:heading")} — Diego Sánchez`}>
+    <div class="blog-wrap">
+        <div class="shell">
+            <div class="crumbs-top">
+                <Breadcrumb
+                    items={[
+                        { label: locale === "es" ? "Inicio" : "Home", href: buildUrl("/") },
+                        { label: t("blog:heading") },
+                    ]}
+                />
+            </div>
+            <header class="page-head">
+                <h1>{t("blog:heading")}</h1>
+            </header>
 
-    <section class="blog">
-        <header class="page-head">
-            <h1>
-                {t("blog:heading")} <span class="em">{t("blog:headingEm")}</span>
-            </h1>
-            <p class="lede">{t("blog:lede")}</p>
-        </header>
-
-        <ul class="post-list">
-            {
-                sortedPosts.map((post) => (
-                    <li>
-                        <a class="post" href={buildUrl(`/blog/${post.slug}`)}>
-                            <div class="body">
-                                <h2 class="title">
-                                    <span>{post.data.title}</span>
-                                    <span class="arrow" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M7 17 17 7M9 7h8v8"/>
-                                        </svg>
-                                    </span>
-                                </h2>
-                                <p class="excerpt">{post.data.description}</p>
-                                {post.data.tags && (
-                                    <p class="peek">
-                                        {post.data.tags.map((tag, i) => (
-                                            <>
-                                                {i > 0 && <span class="sep">·</span>}
-                                                <span class="tag">{tag}</span>
-                                            </>
-                                        ))}
-                                    </p>
-                                )}
-                            </div>
-                            <time class="date">
-                                <span>{formatDateParts(post.data.pubDate, currentLocale).line1}</span>
-                                <span>{formatDateParts(post.data.pubDate, currentLocale).line2}</span>
-                            </time>
+            <div class="list">
+                {
+                    posts.map((post) => (
+                        <a class="post" href={buildUrl(`/blog/${post.data.slug || post.slug}`)}>
+                            <span class="date">{fmt(post.data.pubDate)}</span>
+                            <h2>
+                                {post.data.title}
+                                <span class="ar">
+                                    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M7 17 17 7M9 7h8v8" />
+                                    </svg>
+                                </span>
+                            </h2>
+                            <p class="excerpt">{post.data.description}</p>
+                            {post.data.tags && (
+                                <div class="tags">
+                                    {post.data.tags.slice(0, 4).map((tag) => (
+                                        <span>{tag}</span>
+                                    ))}
+                                </div>
+                            )}
                         </a>
-                    </li>
-                ))
+                    ))
+                }
+            </div>
+
+            {
+                pageCount > 1 && (
+                    <nav class="pager" aria-label="Pagination" hidden>
+                        <ArrowButton dir="prev" label="Previous page" />
+                        <div class="pg-nums">
+                            {Array.from({ length: pageCount }).map((_, i) => (
+                                <button type="button" class="pg-num" data-page={i + 1}>{i + 1}</button>
+                            ))}
+                        </div>
+                        <ArrowButton dir="next" label="Next page" />
+                    </nav>
+                )
             }
-        </ul>
-    </section>
+        </div>
+    </div>
 </Layout>
 
 <style>
-    .blog {
-        width: 100%;
+    .blog-wrap {
+        position: relative;
+        z-index: 1;
+        padding: 124px 0 72px;
     }
-
-    .page-head {
-        padding-bottom: 40px;
+    .crumbs-top {
         margin-bottom: 24px;
-        border-bottom: 1px solid var(--rule);
     }
-
     .page-head h1 {
-        font-size: clamp(32px, 4.5vw, 44px);
-        font-weight: 600;
-        letter-spacing: -0.025em;
+        font-size: clamp(40px, 7vw, 68px);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1;
         color: var(--ink);
-        margin-bottom: 16px;
     }
-
-    .page-head h1 .em {
-        color: var(--accent);
-    }
-
-    .lede {
-        font-size: 16px;
-        color: var(--ink-soft);
-        max-width: 60ch;
-        line-height: 1.65;
-    }
-
-    .post-list {
-        list-style: none;
+    .list {
+        margin-top: 36px;
         display: flex;
         flex-direction: column;
     }
-
-    .post-list li {
-        border-bottom: 1px solid var(--rule);
-    }
-
     .post {
-        display: grid;
-        grid-template-columns: 1fr 140px;
-        gap: 32px;
-        padding: 28px 0;
-        align-items: start;
-        color: var(--ink);
-        text-decoration: none;
+        display: block;
+        padding: 32px 0;
+        border-top: 1px solid var(--rule);
+        transition: padding-left 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
     }
-
-    .date {
-        font-size: 12px;
-        font-weight: 500;
-        color: var(--ink-mute);
-        letter-spacing: 0.1em;
+    .post:first-child {
+        border-top: 0;
+    }
+    @media (hover: hover) {
+        .post:hover {
+            padding-left: 14px;
+        }
+    }
+    .post .date {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        padding-top: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 6px;
-        line-height: 1.2;
+        color: var(--mute);
+        margin-bottom: 12px;
     }
-
-    .body {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        min-width: 0;
-    }
-
-    .title {
-        display: inline-flex;
-        align-items: baseline;
-        gap: 10px;
-        font-size: clamp(20px, 2.4vw, 26px);
-        font-weight: 600;
+    .post h2 {
+        font-size: clamp(21px, 2.3vw, 27px);
+        font-weight: 700;
+        letter-spacing: -0.022em;
         color: var(--ink);
-        letter-spacing: -0.02em;
-        width: max-content;
-        max-width: 100%;
-        transition: color 0.2s ease, gap 0.2s ease;
+        line-height: 1.25;
+        max-width: 30ch;
+        transition: color 0.18s;
     }
-
-    .post:hover .title {
+    .post:hover h2 {
         color: var(--accent);
     }
-
-    .excerpt {
+    .post h2 .ar {
+        display: inline-flex;
+        vertical-align: -2px;
+        color: var(--mute);
+        margin-left: 8px;
+        transition: color 0.18s, transform 0.25s;
+    }
+    .post:hover h2 .ar {
+        color: var(--accent);
+        transform: translate(3px, -3px);
+    }
+    .post .excerpt {
+        margin-top: 12px;
         font-size: 15.5px;
-        color: var(--ink-soft);
-        line-height: 1.7;
+        line-height: 1.65;
+        color: var(--soft);
         max-width: 64ch;
     }
-
-    .peek {
-        margin-top: 8px;
-        font-size: 12.5px;
-        color: var(--ink-mute);
+    .post .tags {
+        margin-top: 16px;
     }
 
-    .peek .tag {
-        color: var(--ink-soft);
-        text-decoration: underline;
-        text-decoration-color: var(--rule-strong);
-        text-underline-offset: 6px;
-        text-decoration-thickness: 1px;
+    .pager {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+        margin-top: 52px;
     }
-
-    .peek .sep {
-        display: inline-block;
-        margin: 0 12px;
-        color: var(--ink-mute);
-        opacity: 0.5;
+    .pg-nums {
+        display: flex;
+        gap: 7px;
     }
-
-    .title .arrow {
-        color: var(--ink-mute);
+    .pager button {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        min-width: 34px;
+        height: 34px;
+        padding: 0 8px;
+        border: 0;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--soft);
+        cursor: pointer;
         display: inline-flex;
-        align-self: center;
-        transition: color 0.2s ease, transform 0.3s ease;
-        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        transition: color 0.15s, background 0.15s;
     }
-
-    .post:hover .arrow {
+    .pager button:hover:not(:disabled):not(.current) {
         color: var(--accent);
-        transform: translate(4px, -4px);
+        background: var(--accent-dim);
+    }
+    .pager button.current {
+        color: var(--accent);
+        background: var(--accent-dim);
+        font-weight: 600;
+        cursor: default;
+    }
+    .pager button:disabled {
+        opacity: 0.3;
+        cursor: default;
     }
 
     @media (max-width: 600px) {
-        .post {
-            grid-template-columns: 1fr;
-            gap: 12px;
-            padding: 32px 0;
-        }
-        .date {
-            order: -1;
-            align-items: flex-start;
-            flex-direction: row;
-            gap: 4px;
-            padding-top: 0;
+        .blog-wrap {
+            padding: 104px 0 56px;
         }
     }
 </style>

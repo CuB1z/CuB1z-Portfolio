@@ -4,11 +4,8 @@ import { getLocale, getLocalePlaceholder, t } from "i18n:astro";
 
 import { buildAltLangUrl, buildUrl } from "@/utils/urlUtils";
 import { formatDate } from "@/utils/formatUtils";
-
-import { ArrowLeftIcon } from "@lucide/astro";
 import Layout from "@layouts/Layout.astro";
-import InnerHeader from "@components/shared/InnerHeader.astro";
-import Button from "@/components/shared/Button.astro";
+import Breadcrumb from "@components/shared/Breadcrumb.astro";
 
 export async function getStaticPaths() {
     const locale = getLocalePlaceholder();
@@ -18,304 +15,340 @@ export async function getStaticPaths() {
         .filter((post) => (post.data.locale ?? "en") === locale)
         .map((post) => {
             const slug = post.data.slug || post.slug;
-
-            return {
-                params: {
-                    slug: slug,
-                },
-                props: post,
-            };
+            return { params: { slug }, props: post };
         });
 }
 
 const post = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
 const currentLocale = getLocale();
+
+const toc = headings.filter((h) => h.depth === 2);
+const altLangUrl = buildAltLangUrl(`/blog/${post.data.altSlug}`, currentLocale);
 ---
 
 <Layout
-    altLangUrl={buildAltLangUrl(`/blog/${post.data.altSlug}`, currentLocale)}
+    title={`${post.data.title} — Diego Sánchez`}
+    description={post.data.description}
+    altLangUrl={altLangUrl}
+    navActive="writing"
 >
-    <InnerHeader
-        backUrl={buildUrl("/blog")}
-        altLangUrl={buildAltLangUrl(
-            `/blog/${post.data.altSlug}`,
-            currentLocale,
-        )}
-    />
+    <article class="article">
+        <Breadcrumb
+            items={[
+                { label: currentLocale === "es" ? "Inicio" : "Home", href: buildUrl("/") },
+                { label: t("blog:heading"), href: buildUrl("/blog") },
+                { label: post.data.title },
+            ]}
+        />
 
-    <main class="post-container">
-        <article class="post-article">
+        <div class:list={["layout", { "has-toc": toc.length > 0 }]}>
+            <div class="main">
+                <header class="p-head">
+                    <h1 class="p-title">{post.data.title}</h1>
+                    <div class="p-meta">
+                        <time>{formatDate(post.data.pubDate, currentLocale)}</time>
+                        {
+                            post.data.tags && (
+                                <>
+                                    <span class="dot">·</span>
+                                    {post.data.tags.map((tag) => (
+                                        <span class="tag">{tag}</span>
+                                    ))}
+                                </>
+                            )
+                        }
+                    </div>
+                </header>
+
+                {
+                    post.data.image && (
+                        <img class="hero-img" src={post.data.image} alt={post.data.title} loading="eager" />
+                    )
+                }
+
+                <div class="post-content">
+                    <Content />
+                </div>
+
+                <div class="p-foot">
+                    <a href={buildUrl("/blog")} class="back">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                        {t("blog:back")}
+                    </a>
+                </div>
+            </div>
+
             {
-                post.data.image && (
-                    <img
-                        src={post.data.image}
-                        alt={post.data.title}
-                        class="post-hero-image"
-                    />
+                toc.length > 0 && (
+                    <aside class="toc">
+                        <div class="toc-title">{t("blog:on_this_page")}</div>
+                        <nav>
+                            {toc.map((h) => (
+                                <a href={`#${h.slug}`}>{h.text}</a>
+                            ))}
+                        </nav>
+                    </aside>
                 )
             }
-
-            <header class="post-header">
-                <h1 class="post-title-main">
-                    {post.data.title}
-                </h1>
-
-                <div class="post-meta">
-                    <time class="post-date-main">
-                        {formatDate(post.data.pubDate, currentLocale)}
-                    </time>
-
-                    {
-                        post.data.tags && (
-                            <p class="post-tags-main">
-                                {post.data.tags.map((tag, i) => (
-                                    <>
-                                        {i > 0 && <span class="sep">·</span>}
-                                        <span class="tag">{tag}</span>
-                                    </>
-                                ))}
-                            </p>
-                        )
-                    }
-                </div>
-            </header>
-
-            <div class="post-content">
-                <Content />
-            </div>
-        </article>
-
-        <div class="post-actions">
-            <Button
-                variant="primary"
-                href={buildUrl("/blog")}
-                title={t("blog:goBack")}
-                ><ArrowLeftIcon size={16} />{t("blog:goBack")}
-            </Button>
         </div>
-
-        <style>
-            .post-container {
-                width: 100%;
-            }
-
-            .post-article {
-                margin-bottom: 48px;
-            }
-
-            .post-hero-image {
-                width: 100%;
-                max-width: 100%;
-                height: 300px;
-                object-fit: cover;
-                margin-bottom: 40px;
-                border: 1px solid var(--rule);
-                border-radius: 8px;
-                display: block;
-            }
-
-            .post-header {
-                margin-bottom: 48px;
-                padding-bottom: 28px;
-                border-bottom: 1px solid var(--rule);
-            }
-
-            .post-title-main {
-                font-size: clamp(28px, 4vw, 40px);
-                font-weight: 600;
-                line-height: 1.15;
-                letter-spacing: -0.025em;
-                color: var(--ink);
-                margin: 0 0 20px 0;
-            }
-
-            .post-meta {
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                gap: 16px 22px;
-            }
-
-            .post-date-main {
-                color: var(--ink-mute);
-                font-size: 12px;
-                font-weight: 500;
-                letter-spacing: 0.1em;
-                text-transform: uppercase;
-            }
-
-            .post-tags-main {
-                font-size: 12.5px;
-                color: var(--ink-mute);
-            }
-
-            .post-tags-main .tag {
-                color: var(--ink-soft);
-                text-decoration: underline;
-                text-decoration-color: var(--rule-strong);
-                text-underline-offset: 6px;
-                text-decoration-thickness: 1px;
-            }
-
-            .post-tags-main .sep {
-                display: inline-block;
-                margin: 0 12px;
-                color: var(--ink-mute);
-                opacity: 0.5;
-            }
-
-            .post-content {
-                color: var(--ink-soft);
-                line-height: 1.75;
-                font-size: 16.5px;
-                max-width: 100%;
-                overflow-wrap: break-word;
-            }
-
-            .post-content :global(h1),
-            .post-content :global(h2),
-            .post-content :global(h3),
-            .post-content :global(h4),
-            .post-content :global(h5),
-            .post-content :global(h6) {
-                color: var(--ink);
-                margin: 36px 0 14px 0;
-                font-weight: 600;
-                letter-spacing: -0.02em;
-                line-height: 1.3;
-            }
-
-            .post-content :global(h1) {
-                font-size: 28px;
-            }
-            .post-content :global(h2) {
-                font-size: 24px;
-            }
-            .post-content :global(h3) {
-                font-size: 20px;
-            }
-            .post-content :global(h4) {
-                font-size: 17px;
-            }
-
-            .post-content :global(p) {
-                margin: 16px 0;
-            }
-
-            .post-content :global(a) {
-                color: var(--accent);
-                border-bottom: 1px solid transparent;
-                transition: border-color 0.2s ease;
-            }
-
-            .post-content :global(a:hover) {
-                border-bottom-color: var(--accent);
-            }
-
-            .post-content :global(ul),
-            .post-content :global(ol) {
-                margin: 16px 0;
-                padding-left: 24px;
-            }
-
-            .post-content :global(li) {
-                margin: 6px 0;
-            }
-
-            .post-content :global(blockquote) {
-                margin: 28px 0;
-                padding: 8px 0 8px 20px;
-                border-left: 2px solid var(--accent);
-                color: var(--ink);
-                font-size: 16px;
-                line-height: 1.65;
-            }
-
-            .post-content :global(code) {
-                background-color: var(--paper-2);
-                padding: 2px 6px;
-                font-family: var(--font-mono);
-                font-size: 13.5px;
-                border: 1px solid var(--rule);
-                border-radius: 3px;
-            }
-
-            .post-content :global(pre) {
-                background-color: var(--paper-2);
-                padding: 20px;
-                overflow-x: auto;
-                margin: 24px 0;
-                border: 1px solid var(--rule);
-                border-radius: 8px;
-                max-width: 100%;
-                font-size: 13.5px;
-                line-height: 1.55;
-            }
-
-            .post-content :global(pre code) {
-                background: none;
-                padding: 0;
-                border: none;
-            }
-
-            .post-content :global(img) {
-                max-width: 100%;
-                height: auto;
-                margin: 24px 0;
-                border: 1px solid var(--rule);
-                border-radius: 8px;
-            }
-
-            .post-content :global(hr) {
-                border: none;
-                height: 1px;
-                background-color: var(--rule);
-                margin: 36px 0;
-            }
-
-            .post-actions {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding-top: 32px;
-                border-top: 1px solid var(--rule);
-            }
-
-            @media (max-width: 768px) {
-                .post-hero-image {
-                    height: 200px;
-                    margin-bottom: 28px;
-                }
-
-                .post-header {
-                    margin-bottom: 32px;
-                    padding-bottom: 20px;
-                }
-
-                .post-content {
-                    font-size: 15.5px;
-                }
-
-                .post-content :global(h1) {
-                    font-size: 22px;
-                }
-                .post-content :global(h2) {
-                    font-size: 20px;
-                }
-                .post-content :global(h3) {
-                    font-size: 18px;
-                }
-                .post-content :global(h4) {
-                    font-size: 16px;
-                }
-
-                .post-content :global(pre) {
-                    padding: 16px;
-                    font-size: 12.5px;
-                }
-            }
-        </style>
-    </main>
+    </article>
 </Layout>
+
+<style>
+    .article {
+        position: relative;
+        z-index: 1;
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 120px 32px 72px;
+    }
+    .back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--soft);
+        transition: color 0.18s;
+    }
+    .back svg {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.18s;
+    }
+    .back:hover {
+        color: var(--accent);
+    }
+    .back:hover svg {
+        transform: translateX(-3px);
+    }
+
+    .layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 60px;
+        align-items: start;
+        margin-top: 22px;
+    }
+    .layout.has-toc {
+        grid-template-columns: minmax(0, 1fr) 220px;
+    }
+    .main {
+        min-width: 0;
+    }
+
+    .p-head {
+        margin: 8px 0 28px;
+        max-width: 780px;
+    }
+    .p-title {
+        font-size: clamp(28px, 4vw, 42px);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        color: var(--ink);
+    }
+    .p-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px 14px;
+        margin-top: 18px;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--mute);
+    }
+    .p-meta .dot {
+        opacity: 0.5;
+    }
+    .p-meta .tag {
+        color: var(--soft);
+    }
+    .hero-img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 1px solid var(--rule-2);
+        margin: 8px 0 40px;
+        display: block;
+    }
+
+    /* TOC */
+    .toc {
+        position: sticky;
+        top: 104px;
+    }
+    .toc-title {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--mute);
+        margin-bottom: 16px;
+    }
+    .toc nav {
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid var(--rule);
+    }
+    .toc a {
+        font-size: 13.5px;
+        line-height: 1.4;
+        color: var(--soft);
+        padding: 7px 0 7px 16px;
+        border-left: 2px solid transparent;
+        margin-left: -1px;
+        transition: color 0.15s, border-color 0.15s;
+    }
+    .toc a:hover {
+        color: var(--ink);
+    }
+    .toc a.active {
+        color: var(--accent);
+        border-left-color: var(--accent);
+        font-weight: 600;
+    }
+
+    .p-foot {
+        margin-top: 56px;
+        padding-top: 28px;
+        border-top: 1px solid var(--rule);
+    }
+
+    @media (max-width: 880px) {
+        .layout.has-toc {
+            grid-template-columns: 1fr;
+        }
+        .toc {
+            display: none;
+        }
+    }
+
+    /* prose */
+    .post-content {
+        font-size: 16.5px;
+        line-height: 1.8;
+        color: var(--soft);
+        max-width: 760px;
+        overflow-wrap: break-word;
+    }
+    .post-content :global(p) {
+        margin: 18px 0;
+    }
+    .post-content :global(strong) {
+        color: var(--ink);
+        font-weight: 600;
+    }
+    .post-content :global(h2),
+    .post-content :global(h3),
+    .post-content :global(h4) {
+        color: var(--ink);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.25;
+        scroll-margin-top: 96px;
+    }
+    .post-content :global(h2) {
+        font-size: 25px;
+        margin: 46px 0 4px;
+    }
+    .post-content :global(h3) {
+        font-size: 20px;
+        margin: 32px 0 4px;
+    }
+    .post-content :global(h4) {
+        font-size: 17px;
+        margin: 28px 0 4px;
+    }
+    .post-content :global(a) {
+        color: var(--accent);
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.18s;
+    }
+    .post-content :global(a:hover) {
+        border-bottom-color: var(--accent);
+    }
+    .post-content :global(ul),
+    .post-content :global(ol) {
+        margin: 18px 0;
+        padding-left: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+    }
+    .post-content :global(li) {
+        line-height: 1.65;
+    }
+    .post-content :global(blockquote) {
+        margin: 28px 0;
+        padding: 4px 0 4px 22px;
+        border-left: 2px solid var(--accent);
+        color: var(--ink);
+        font-size: 17px;
+        line-height: 1.6;
+    }
+    .post-content :global(code) {
+        font-family: var(--font-mono);
+        font-size: 13.5px;
+        background: var(--bg-card-2);
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        padding: 2px 6px;
+        color: var(--accent-bright);
+    }
+    .post-content :global(pre) {
+        background: var(--bg-card);
+        border: 1px solid var(--rule-2);
+        border-radius: 12px;
+        padding: 20px;
+        overflow-x: auto;
+        margin: 24px 0;
+        font-size: 13.5px;
+        line-height: 1.6;
+    }
+    .post-content :global(pre code) {
+        background: none;
+        border: none;
+        padding: 0;
+        color: var(--soft);
+    }
+    .post-content :global(img) {
+        max-width: 100%;
+        height: auto;
+        margin: 24px 0;
+        border: 1px solid var(--rule-2);
+        border-radius: 12px;
+    }
+    .post-content :global(iframe) {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        height: auto;
+        border: 1px solid var(--rule-2);
+        border-radius: 12px;
+        margin: 24px 0;
+    }
+    .post-content :global(hr) {
+        border: none;
+        height: 1px;
+        background: var(--rule);
+        margin: 40px 0;
+    }
+
+    @media (max-width: 600px) {
+        .article {
+            padding: 104px 22px 56px;
+        }
+    }
+    @media (max-width: 560px) {
+        .post-content {
+            font-size: 15.5px;
+        }
+        .post-content :global(h2) {
+            font-size: 22px;
+        }
+    }
+</style>

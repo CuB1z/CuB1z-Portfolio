@@ -1,0 +1,44 @@
+---
+// Reusable prev/next chevron control. Behaviour is wired by the page
+// (selected via [data-rel]); this component only owns markup + style.
+interface Props {
+    dir: "prev" | "next";
+    label: string;
+}
+const { dir, label } = Astro.props as Props;
+const d = dir === "prev" ? "m15 18-6-6 6-6" : "m9 18 6-6-6-6";
+---
+
+<button type="button" class="icon-btn" data-rel={dir} aria-label={label}>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d={d} /></svg>
+</button>
+
+<style>
+    .icon-btn {
+        font-family: var(--font-mono);
+        min-width: 34px;
+        height: 34px;
+        padding: 0 8px;
+        border: 0;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--soft);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: color 0.15s, background 0.15s;
+    }
+    .icon-btn:hover:not(:disabled) {
+        color: var(--accent);
+        background: var(--accent-dim);
+    }
+    .icon-btn:disabled {
+        opacity: 0.3;
+        cursor: default;
+    }
+    .icon-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+</style>
