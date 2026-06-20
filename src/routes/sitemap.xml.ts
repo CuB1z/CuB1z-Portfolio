@@ -1,6 +1,6 @@
 import { getCollection } from "astro:content";
 
-const staticPages = ["", "projects", "resume", "blog"];
+const staticPages = ["", "blog"];
 const locales = ["", "es"];
 
 /** Joins path segments into an absolute path with exactly one trailing slash. */

@@ -4,7 +4,7 @@ import { t } from "i18n:astro";
 import { buildUrl } from "@utils/urlUtils";
 ---
 
-<Layout single>
+<Layout>
     <section class="notfound">
         <h1 class="title">
             <span class="num">404</span>
@@ -53,7 +53,7 @@ import { buildUrl } from "@utils/urlUtils";
     }
 
     .title .num {
-        color: var(--ink-mute);
+        color: var(--mute);
         flex-shrink: 0;
     }
 
@@ -63,7 +63,7 @@ import { buildUrl } from "@utils/urlUtils";
 
     .lede {
         font-size: 16px;
-        color: var(--ink-soft);
+        color: var(--soft);
         line-height: 1.65;
         max-width: 56ch;
     }
