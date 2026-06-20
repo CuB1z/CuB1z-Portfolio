@@ -3,7 +3,7 @@ title: "TripFlow v1.0.0: Viajes colaborativos, mapas y acceso offline"
 description: "TripFlow v1.0.0 cierra el hito Advanced Features V2 con itinerarios colaborativos, enlaces seguros para compartir, mapas interactivos, acceso offline-first y exportación en PDF."
 pubDate: 2026-04-15
 tags: ["TripFlow", "Travel", "React", "Spring Boot", "Docker", "Collaboration", "Maps", "PWA"]
-image: "/images/posts/tripflow-showcase.png"
+image: "/images/posts/tripflow-showcase.webp"
 locale: "es"
 slug: "tripflow-v1.0.0-planificador-colaborativo"
 altSlug: "tripflow-v1.0.0"
@@ -74,7 +74,7 @@ La nueva capa de mapas incluye:
 - **Búsqueda inteligente** mediante consulta más filtrado por radio.
 - **Integración directa con el viaje** para añadir lugares recomendados a los días del itinerario.
 
-![Vista móvil de TripFlow v1.0.0](/images/posts/tripflow-v1.0.0-mobile-preview.png)
+![Vista móvil de TripFlow v1.0.0](/images/posts/tripflow-v1.0.0-mobile-preview.webp)
 
 ---
 
@@ -118,4 +118,4 @@ Planificado para la evolución post-v1:
 - 💳 **Planes y pagos** con niveles de suscripción, checkout e historial de facturación.
 - 🏆 **Logros de viaje y gamificación** para reforzar la participación de los usuarios con el tiempo.
 
-![Banner de TripFlow](/images/posts/tripflow-banner.png)
+![Banner de TripFlow](/images/posts/tripflow-banner.webp)

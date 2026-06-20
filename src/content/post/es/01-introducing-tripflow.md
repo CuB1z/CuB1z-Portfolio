@@ -3,7 +3,7 @@ title: "Presentando TripFlow"
 description: "TripFlow es una PWA inteligente e intuitiva para planificación de viajes que ayuda a los viajeros a crear itinerarios generados por IA, optimizar rutas y planificar viajes de manera eficiente."
 pubDate: 2025-09-09
 tags: ["TripFlow", "Viajes", "React", "Spring Boot", "TFG"]
-image: "/images/posts/tripflow-showcase.png"
+image: "/images/posts/tripflow-showcase.webp"
 locale: "es"
 slug: "presentando-tripflow"
 altSlug: "introducing-tripflow"
@@ -15,7 +15,7 @@ Esta publicación es una introducción a mi **Trabajo de Fin de Grado (TFG)**, l
 
 **TripFlow** es una innovadora **Aplicación Web Progresiva (PWA)** diseñada para la **gestión integral de itinerarios de viaje y la optimización inteligente de rutas**. Construida con tecnologías web modernas, permite a los viajeros crear, personalizar y optimizar sus viajes con la ayuda de **inteligencia artificial y algoritmos avanzados**.
 
-![TripFlow Showcase Wireframe](/images/posts/tripflow-showcase.png)
+![TripFlow Showcase Wireframe](/images/posts/tripflow-showcase.webp)
 
 En esta etapa inicial, me centré en definir las **funcionalidades principales** de la aplicación, así como las intenciones y herramientas que debía incluir.  
 Esto también implicó trabajar en el **diseño de las primeras pantallas y el flujo de navegación**, creando una visión clara de cómo los usuarios interactuarán con TripFlow desde el principio.
@@ -82,4 +82,4 @@ Seguiré compartiendo avances del proyecto a medida que progrese, incluyendo nue
 
 Acompáñame para ver cómo TripFlow evoluciona desde un **concepto** hasta convertirse en una **PWA completamente funcional**.
 
-![TripFlow Banner](/images/posts/tripflow-banner.png)
+![TripFlow Banner](/images/posts/tripflow-banner.webp)

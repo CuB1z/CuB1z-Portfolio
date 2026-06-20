@@ -3,7 +3,7 @@ title: "TripFlow MVP Inicial"
 description: "TripFlow MVP completado: autenticación, gestión de itinerarios y aplicación dockerizada con tests full-stack y pipelines de CI/CD."
 pubDate: 2025-11-15
 tags: ["TripFlow", "Travel", "React", "Spring Boot", "TFG", "Docker", "Playwright"]
-image: "/images/posts/tripflow-showcase.png"
+image: "/images/posts/tripflow-showcase.webp"
 locale: "es"
 slug: "tripflow-mvp-inicial"
 altSlug: "tripflow-mvp"
@@ -27,19 +27,19 @@ Aquí tienes una visión general de alto nivel de la arquitectura:
 
 > **💈 Resumen del Modelo de Dominio**
 >
-> ![TripFlow MVP Domain Model](/images/posts/tripflow-mvp-domain-model.png)
+> ![TripFlow MVP Domain Model](/images/posts/tripflow-mvp-domain-model.webp)
 
 ---
 
 > **💻 Resumen de la Arquitectura del Servidor**
 >
-> ![TripFlow MVP Backend Architecture](/images/posts/tripflow-mvp-architecture-backend.png)
+> ![TripFlow MVP Backend Architecture](/images/posts/tripflow-mvp-architecture-backend.webp)
 
 ---
 
 > **🌐 Resumen de la Arquitectura del Cliente**
 >
-> ![TripFlow MVP Frontend Architecture](/images/posts/tripflow-mvp-architecture-frontend.png)
+> ![TripFlow MVP Frontend Architecture](/images/posts/tripflow-mvp-architecture-frontend.webp)
 
 ---
 
@@ -447,4 +447,4 @@ Durante la próxima fase, TripFlow se está preparando para la versión 0.2.0 co
 - 🏗️ **Transición a una arquitectura de microservicios con Kafka**
 - 🎓 **Integración con la API de Unsplash**
 
-![TripFlow Banner](/images/posts/tripflow-banner.png)
+![TripFlow Banner](/images/posts/tripflow-banner.webp)

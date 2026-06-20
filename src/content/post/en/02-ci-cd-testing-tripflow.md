@@ -3,7 +3,7 @@ title: "CI/CD & Testing TripFlow"
 description: "TripFlow Phase 2: Backend & frontend setup, unit and integration tests, and CI/CD pipelines for a robust travel planning PWA."
 pubDate: 2025-09-11
 tags: ["TripFlow", "Travel", "React", "Spring Boot", "TFG"]
-image: "/images/posts/tripflow-showcase.png"
+image: "/images/posts/tripflow-showcase.webp"
 locale: "en"
 slug: "ci-cd-testing-tripflow"
 altSlug: "ci-cd-pruebas-tripflow"
@@ -151,4 +151,4 @@ You can see the full code [here](https://github.com/codeurjc-students/2025-TripF
 
 During the next phase, I’ll be developing the TripFlow MVP, adding core features and updating the corresponding tests to ensure everything works smoothly. This will build on the foundation established in Phase 2 and bring the app closer to a fully functional travel planning PWA — **follow along to see the progress!**
 
-![TripFlow Banner](/images/posts/tripflow-banner.png)
+![TripFlow Banner](/images/posts/tripflow-banner.webp)

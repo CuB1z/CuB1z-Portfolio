@@ -3,7 +3,7 @@ title: "YAGNI en la práctica"
 description: "Deja de sobrepensar para un futuro que todavía no existe. Aprende el lado práctico de YAGNI (You Ain't Gonna Need It) y cómo evitar el coste del código que nadie necesita hoy."
 pubDate: 2026-03-23
 tags: ["Arquitectura", "Ingeniería", "Backend", "Testing"]
-image: "/images/posts/cover-yagni-in-practice.png"
+image: "/images/posts/cover-yagni-in-practice.webp"
 locale: "es"
 slug: "yagni-en-la-practica"
 altSlug: "yagni-in-practice"

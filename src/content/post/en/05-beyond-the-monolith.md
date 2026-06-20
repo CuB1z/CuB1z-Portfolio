@@ -3,7 +3,7 @@ title: "Beyond the Monolith"
 description: "Is your architecture scaling your app or just your cloud bill? A guide to knowing when to embrace microservices and when to stick with a modular monolith."
 pubDate: 2026-03-16
 tags: ["Microservices", "Architecture", "Engineering", "Backend", "DevOps"]
-image: "/images/posts/cover-beyond-the-monolith.png"
+image: "/images/posts/cover-beyond-the-monolith.webp"
 locale: "en"
 slug: "beyond-the-monolith"
 altSlug: "mas-alla-del-monolito"

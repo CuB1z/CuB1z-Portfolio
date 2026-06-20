@@ -3,7 +3,7 @@ title: "YAGNI in Practice"
 description: "Stop over-engineering for a future that hasn't arrived. Learn the practical side of YAGNI (You Ain't Gonna Need It) and how to save your team from the 'Maintenance Tax' of speculative code."
 pubDate: 2026-03-23
 tags: ["Architecture", "Engineering", "Backend", "Testing"]
-image: "/images/posts/cover-yagni-in-practice.png"
+image: "/images/posts/cover-yagni-in-practice.webp"
 locale: "en"
 slug: "yagni-in-practice"
 altSlug: "yagni-en-la-practica"

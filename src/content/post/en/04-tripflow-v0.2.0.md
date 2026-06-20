@@ -3,7 +3,7 @@ title: "TripFlow v0.2.0: AI & Microservices"
 description: "New release introducing AI itinerary generation, microservices architecture with Kafka, real-time notifications, and advanced user management."
 pubDate: 2026-02-08
 tags: ["TripFlow", "Travel", "React", "Spring Boot", "Docker", "Microservices", "Kafka", "AI"]
-image: "/images/posts/tripflow-showcase.png"
+image: "/images/posts/tripflow-showcase.webp"
 locale: "en"
 slug: "tripflow-v0.2.0"
 altSlug: "tripflow-v0.2.0-ia-microservicios"
@@ -33,7 +33,7 @@ To scale itinerary generation and enable real-time interactivity, we have refact
 
 ### 📐 Architecture Diagram
 
-![Microservices Architecture](/images/posts/tripflow-v0.2.0-system-architecture.png)
+![Microservices Architecture](/images/posts/tripflow-v0.2.0-system-architecture.webp)
 
 > **🛠️ Tech Upgrade**
 >
@@ -72,7 +72,7 @@ The jewel in the crown of this version. Now you can get a complete travel plan s
 - **Asynchronous Processing**: Request your trip and keep browsing. Kafka manages the queue in the background.
 - **Intelligent Rate Limiting**: Quota control to ensure fair use of resources.
 
-![AI Assistant](/images/posts/tripflow-ai-preview-en.png)
+![AI Assistant](/images/posts/tripflow-ai-preview-en.webp)
 
 ---
 
@@ -132,7 +132,7 @@ We have polished every detail to offer a premium experience.
 - **User Profiles**: Full avatar customization and account management.
 - **Mobile-First UI**: Our application now feels alive and reactive.
 
-![Mobile Interface](/images/posts/tripflow-v0.2.0-mobile-preview.png)
+![Mobile Interface](/images/posts/tripflow-v0.2.0-mobile-preview.webp)
 
 ---
 
@@ -155,4 +155,4 @@ The journey doesn't stop here. We are charging towards **v1.0.0** with a clear v
 - 📄 **PDF Export for travel plans**
 - 🔍 **Nearby Places Discovery**
 
-![TripFlow Banner](/images/posts/tripflow-banner.png)
+![TripFlow Banner](/images/posts/tripflow-banner.webp)

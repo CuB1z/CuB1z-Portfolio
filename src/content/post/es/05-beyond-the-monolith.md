@@ -3,7 +3,7 @@ title: "Más allá del monolito"
 description: "¿Tu arquitectura escala tu aplicación o solo tu factura de la nube? Una guía para saber cuándo usar microservicios y cuándo mantener un monolito modular."
 pubDate: 2026-03-16
 tags: ["Microservicios", "Arquitectura", "Ingeniería", "Backend", "DevOps"]
-image: "/images/posts/cover-beyond-the-monolith.png"
+image: "/images/posts/cover-beyond-the-monolith.webp"
 locale: "es"
 slug: "mas-alla-del-monolito"
 altSlug: "beyond-the-monolith"
