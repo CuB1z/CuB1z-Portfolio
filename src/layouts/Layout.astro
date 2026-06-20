@@ -1,20 +1,31 @@
 ---
 import { t, getLocale } from "i18n:astro";
 
-import Footer from "@components/shared/Footer.astro";
-import Header from "@components/shared/Header.astro";
 import { ClientRouter } from "astro:transitions";
 
+import Nav from "@components/shared/Nav.astro";
+import Footer from "@components/shared/Footer.astro";
+
 interface Props {
-    extended?: boolean;
-    single?: boolean;
+    title?: string;
+    description?: string;
     altLangUrl?: string;
-    showHeader?: boolean;
+    navActive?: string;
+    home?: boolean;
 }
 
-const { extended, single, altLangUrl, showHeader = false } = Astro.props as Props;
+const {
+    title,
+    description,
+    altLangUrl,
+    navActive,
+    home = false,
+} = Astro.props as Props;
 
 const locale = getLocale();
+
+const pageTitle = title ?? t("title");
+const pageDescription = description ?? t("description");
 
 const currentPath = Astro.url.pathname;
 const isEs = currentPath.startsWith("/es");
@@ -36,8 +47,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{t("title")}</title>
-        <meta name="description" content={t("description")} />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
 
         <link rel="canonical" href={canonicalUrl} />
         <link rel="alternate" hreflang="en" href={enUrl} />
@@ -46,155 +57,309 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content={Astro.url} />
-        <meta property="og:title" content={t("title")} />
-        <meta property="og:description" content={t("description")} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
         <meta property="og:image" content={new URL("/og-image.png", Astro.site)} />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content={Astro.url} />
-        <meta property="twitter:title" content={t("title")} />
-        <meta property="twitter:description" content={t("description")} />
+        <meta property="twitter:title" content={pageTitle} />
+        <meta property="twitter:description" content={pageDescription} />
         <meta property="twitter:image" content={new URL("/og-image.png", Astro.site)} />
 
         <link rel="icon" href="/favicon.svg" />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap"
+            rel="stylesheet"
+        />
 
         <ClientRouter />
     </head>
     <body>
-        {showHeader && !single && <Header altLangUrl={altLangUrl} />}
-        <div class={"wrapper" + (extended ? " extended" : "")}>
-            <main class="content">
-                <slot />
-            </main>
-            {!single && <Footer />}
-        </div>
+        <Nav home={home} active={navActive} altLangUrl={altLangUrl} />
+        <slot />
+        <Footer />
+
+        <script>
+            // Active-section + table-of-contents highlighting.
+            // Re-runs on every navigation so it keeps working with view transitions.
+            let navObserver: IntersectionObserver | undefined;
+            let tocObserver: IntersectionObserver | undefined;
+
+            function initNav() {
+                navObserver?.disconnect();
+                const links = Array.from(
+                    document.querySelectorAll<HTMLAnchorElement>(".nav-links a")
+                );
+                const sections = Array.from(document.querySelectorAll("section[id]"));
+                if (!links.length || !sections.length) return;
+                const setActive = (id: string) =>
+                    links.forEach((a) =>
+                        a.classList.toggle("active", a.getAttribute("href") === "#" + id)
+                    );
+                navObserver = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((e) => {
+                            if (e.isIntersecting) setActive((e.target as HTMLElement).id);
+                        });
+                    },
+                    { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+                );
+                sections.forEach((s) => navObserver!.observe(s));
+            }
+
+            function initToc() {
+                tocObserver?.disconnect();
+                const links = Array.from(
+                    document.querySelectorAll<HTMLAnchorElement>(".toc a")
+                );
+                const headings = Array.from(
+                    document.querySelectorAll<HTMLElement>(".post-content h2[id]")
+                );
+                if (!links.length || !headings.length) return;
+                const setActive = (id: string) =>
+                    links.forEach((a) =>
+                        a.classList.toggle("active", a.getAttribute("href") === "#" + id)
+                    );
+                tocObserver = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((e) => {
+                            if (e.isIntersecting) setActive((e.target as HTMLElement).id);
+                        });
+                    },
+                    { rootMargin: "-96px 0px -65% 0px", threshold: 0 }
+                );
+                headings.forEach((h) => tocObserver!.observe(h));
+                if (headings[0]) setActive(headings[0].id);
+            }
+
+            function initPager() {
+                const list = document.querySelector<HTMLElement>(".list");
+                const pager = document.querySelector<HTMLElement>(".pager");
+                if (!list || !pager) return;
+                const posts = Array.from(list.querySelectorAll<HTMLElement>(".post"));
+                const numBtns = Array.from(
+                    pager.querySelectorAll<HTMLButtonElement>(".pg-num")
+                );
+                const prev = pager.querySelector<HTMLButtonElement>('[data-rel="prev"]');
+                const next = pager.querySelector<HTMLButtonElement>('[data-rel="next"]');
+                if (!numBtns.length || !prev || !next) return;
+                const PER = 4;
+                const pages = numBtns.length;
+                let current = 1;
+                const go = (n: number, scroll = false) => {
+                    current = Math.min(Math.max(1, n), pages);
+                    posts.forEach((p, idx) => {
+                        p.style.display =
+                            Math.floor(idx / PER) + 1 === current ? "" : "none";
+                    });
+                    numBtns.forEach((b, i) =>
+                        b.classList.toggle("current", i + 1 === current)
+                    );
+                    prev.disabled = current === 1;
+                    next.disabled = current === pages;
+                    if (scroll) {
+                        const head = document.querySelector<HTMLElement>(".page-head");
+                        const y = head
+                            ? head.getBoundingClientRect().top + window.scrollY - 90
+                            : 0;
+                        window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+                    }
+                };
+                numBtns.forEach((b, i) => (b.onclick = () => go(i + 1, true)));
+                prev.onclick = () => go(current - 1, true);
+                next.onclick = () => go(current + 1, true);
+                pager.hidden = false;
+                go(1);
+            }
+
+            function initCarousel() {
+                const grid = document.querySelector<HTMLElement>("#work .grid");
+                const ctrl = document.querySelector<HTMLElement>("#work .car-ctrl");
+                if (!grid || !ctrl) return;
+                const prev = ctrl.querySelector<HTMLButtonElement>('[data-rel="prev"]');
+                const next = ctrl.querySelector<HTMLButtonElement>('[data-rel="next"]');
+                const dots = Array.from(
+                    ctrl.querySelectorAll<HTMLButtonElement>(".car-dot")
+                );
+                const cards = Array.from(grid.querySelectorAll<HTMLElement>(".card"));
+                if (!prev || !next || !cards.length) return;
+                const step = () => cards[0].getBoundingClientRect().width + 14;
+                const current = () => Math.round(grid.scrollLeft / step());
+                const go = (i: number) => {
+                    const n = ((i % cards.length) + cards.length) % cards.length;
+                    grid.scrollTo({ left: n * step(), behavior: "smooth" });
+                };
+                const update = () => {
+                    const idx = current();
+                    dots.forEach((d, i) => d.classList.toggle("active", i === idx));
+                };
+                dots.forEach((d, i) => (d.onclick = () => go(i)));
+                prev.onclick = () => go(current() - 1);
+                next.onclick = () => go(current() + 1);
+                grid.addEventListener("scroll", update, { passive: true });
+                update();
+            }
+
+            document.addEventListener("astro:page-load", () => {
+                initNav();
+                initToc();
+                initPager();
+                initCarousel();
+            });
+        </script>
     </body>
 </html>
 
 <style is:global>
-    * {
+    *,
+    *::before,
+    *::after {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         scrollbar-width: thin;
-        scrollbar-color: var(--ink-mute) transparent;
-
+        scrollbar-color: var(--mute) transparent;
         -webkit-tap-highlight-color: transparent;
-        -webkit-touch-callout: none;
-        user-select: text;
-
-        &::selection {
-            background: var(--accent);
-            color: var(--paper);
-        }
-    }
-
-    a {
-        text-decoration: none !important;
     }
 
     :root {
         --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
         --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
-        --accent: #73B3D8;
-        --max-width: 1000px;
-        --max-width-extended: 1000px;
+        --bg: #0a0c10;
+        --bg-card: #10141a;
+        --bg-card-2: #141922;
+        --ink: #f3f7fb;
+        --soft: #a7b1bd;
+        --mute: #5b6675;
+        --rule: #1a1f27;
+        --rule-2: #272f3a;
+        --accent: #73b3d8;
+        --accent-bright: #9ccde9;
+        --accent-dim: rgba(115, 179, 216, 0.14);
+        --accent-glow: rgba(115, 179, 216, 0.1);
+
+        --max-width: 1080px;
     }
 
-    :root {
-        --paper: #16191D;
-        --paper-2: #1A1D21;
-        --ink: #F1FAFF;
-        --ink-soft: #B1B6BE;
-        --ink-mute: #4A5565;
-        --rule: #252C37;
-        --rule-strong: #2F3845;
-        --accent-soft: #73B3D85F;
-    }
-
-    /* Legacy variable aliases — keep until all components are migrated */
-    :root {
-        --bg-primary: var(--paper);
-        --bg-secondary: var(--paper-2);
-        --border-color: var(--rule);
-        --text-primary: var(--ink);
-        --text-secondary: var(--ink-soft);
-        --text-muted: var(--ink-mute);
-        --accent-light: var(--ink-soft);
-        --accent-alpha: var(--accent-soft);
-        --green-color: #3bb27c;
-    }
-
-    html, body {
-        background: var(--paper);
-        color: var(--ink-soft);
-        font-family: var(--font-sans);
-        font-size: 16px;
-        line-height: 1.55;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+    html {
+        scroll-behavior: smooth;
     }
 
     body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        font-family: var(--font-sans);
+        background: var(--bg);
+        color: var(--soft);
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
         min-height: 100vh;
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background: radial-gradient(
+            120% 70% at 50% -10%,
+            var(--accent-glow),
+            transparent 55%
+        );
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    ::selection {
+        background: var(--accent);
+        color: var(--bg);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         color: var(--ink);
-        font-weight: 600;
         letter-spacing: -0.02em;
-        line-height: 1.2;
+        line-height: 1.15;
+        font-weight: 700;
     }
 
-    a, a:visited {
-        color: var(--ink);
-        transition: color 0.2s ease;
-    }
-
-    a:hover, a:focus {
-        color: var(--accent);
-    }
-
-    .wrapper {
+    /* shared container */
+    .shell {
+        position: relative;
+        z-index: 1;
         width: 100%;
         max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 32px;
+    }
+
+    /* home section scaffolding */
+    .section {
+        padding: 64px 0;
+        scroll-margin-top: 96px;
+    }
+
+    .sec-head {
+        display: flex;
+        align-items: baseline;
+        gap: 16px;
+        margin-bottom: 40px;
+    }
+    .sec-head .num {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--accent);
+        font-weight: 600;
+    }
+    .sec-head h2 {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink);
+    }
+    .sec-head .line {
         flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 0 24px 64px;
-
-        &.extended {
-            max-width: var(--max-width-extended);
-        }
+        height: 1px;
+        background: var(--rule);
     }
 
-    .content {
-        width: 100%;
-        min-height: 80dvh;
+    /* shared tech tag chips */
+    .tags {
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 7px;
     }
-
-    iframe {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 16 / 9;
+    .tags span {
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        color: var(--soft);
+        background: rgba(255, 255, 255, 0.04);
         border: 1px solid var(--rule);
-        border-radius: 8px;
+        border-radius: 7px;
+        padding: 4px 9px;
     }
 
-    @media (max-width: 768px) {
-        .wrapper {
-            padding: 0 20px 48px;
+    @media (max-width: 600px) {
+        .shell {
+            padding: 0 22px;
+        }
+        .section {
+            padding: 52px 0;
         }
     }
 </style>

@@ -1,0 +1,168 @@
+---
+import { t, getLocale } from "i18n:astro";
+import { buildUrl } from "@utils/urlUtils";
+
+interface Props {
+    home?: boolean;
+    active?: string;
+    altLangUrl?: string;
+}
+
+const { home = false, active, altLangUrl } = Astro.props as Props;
+
+const locale = getLocale();
+
+const homeBase = home ? "" : buildUrl("/");
+const homeHref = buildUrl("/");
+const items = [
+    { id: "experience", label: t("common:nav.experience"), href: home ? "#experience" : `${homeBase}#experience` },
+    { id: "work", label: t("common:nav.work"), href: home ? "#work" : `${homeBase}#work` },
+    { id: "about", label: t("common:nav.about"), href: home ? "#about" : `${homeBase}#about` },
+    { id: "writing", label: t("common:nav.writing"), href: home ? "#writing" : buildUrl("/blog") },
+];
+
+// language switch — show both locales, highlight the current one
+const currentPath = Astro.url.pathname;
+const cleanPath = currentPath.replace(/^\/es/, "") || "/";
+const enPath = locale === "en" ? currentPath : (altLangUrl ?? cleanPath);
+const esPath =
+    locale === "es"
+        ? currentPath
+        : (altLangUrl ?? `/es${cleanPath === "/" ? "/" : cleanPath}`);
+---
+
+<nav class="nav">
+    <div class="nav-inner">
+        <div class="nav-in">
+            <div class="nav-left">
+                <a href={homeHref} class="logo-link" aria-label={locale === "es" ? "Inicio" : "Home"}>
+                    <svg viewBox="0 0 339 116" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M18 47H2C0.895431 47 0 47.8954 0 49V113.5C0 114.605 0.895432 115.5 2 115.5H118.5C132.747 115.5 146.484 107.629 159.316 87.5811C159.735 86.9275 159.731 86.0838 159.309 85.4322L150.789 72.2651C149.974 71.0053 148.11 71.0615 147.345 72.3521C142.002 81.3604 137.459 86.9864 131.806 90.9161C123.808 96.4768 113.549 97 103.807 97H22C20.8954 97 20 96.1046 20 95V49C20 47.8954 19.1046 47 18 47Z" fill="#FAFAFA"/>
+                        <path d="M333.382 0H209C192 0 179.5 8 179.5 31.5C179.5 59 195.5 66 209 66H300.16C304.381 66 308.818 65.906 312.497 67.9746C325.09 75.0561 319.304 96.5 306.5 96.5H209C203.294 96.5 199.368 92.1753 197.586 89.6955C196.938 88.7931 195.703 88.4305 194.725 88.9587L182.673 95.4698C181.646 96.0249 181.313 97.3453 181.962 98.3164C190.986 111.826 196.726 115.495 209 115.5H301.372C307.109 115.5 312.912 115.159 318.326 113.26C331.831 108.522 337.614 99.6363 338 81.5C338.5 58 324 48.5 307 46.5H211C195 46.5 195.5 19.5 211 19.5H301.583C307.181 19.5 312.919 19.2392 317.914 16.7136C323.652 13.8127 329.08 9.16234 334.804 3.33552C336.031 2.08631 335.133 0 333.382 0Z" fill="#FAFAFA"/>
+                        <path d="M139.5 33.7177L153.745 54.8396C153.904 55.0759 154.171 55.2177 154.456 55.2177C158.975 55.2177 163.414 54.0275 167.327 51.7669L170.54 49.911C171.192 49.5337 171.397 48.6869 170.988 48.0534L158.5 28.7177C150.778 16.0614 143.964 9.75955 132.894 4.95962C125.211 1.62807 116.743 0.717651 108.369 0.717651H2.28632C1.5759 0.717651 1 1.29356 1 2.00398V4.00499C1 8.45203 1.04251 13.3447 3.9901 16.6745C7.05518 20.1371 12.3584 20.2177 16.9827 20.2177H106.665C116.155 20.2177 126.471 20.5931 133.586 26.8723C135.594 28.6441 137.461 30.8328 139.5 33.7177Z" fill="#FAFAFA"/>
+                        <path d="M157 57.295C156.38 57.295 156.008 57.9842 156.349 58.5026L173.65 85.3932C174.243 86.2957 175.446 86.5644 176.367 86L188.468 78.5827C189.426 77.9959 189.713 76.7359 189.103 75.7925L173.788 52.0787C173.403 51.4816 172.616 51.2919 172.001 51.6475L168.143 53.8764C164.587 55.931 161.107 57.295 157 57.295Z" fill="#0C59FC"/>
+                    </svg>
+                </a>
+                <div class="nav-links">
+                    {
+                        items.map((item) => (
+                            <a href={item.href} class:list={{ active: active === item.id }}>
+                                {item.label}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+            <div class="lang">
+                <a href={enPath} class:list={{ active: locale === "en" }} aria-label="English">EN</a>
+                <span class="sep">/</span>
+                <a href={esPath} class:list={{ active: locale === "es" }} aria-label="Español">ES</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .nav {
+        position: fixed;
+        top: 16px;
+        left: 0;
+        right: 0;
+        z-index: 60;
+        pointer-events: none;
+    }
+    .nav-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 32px;
+    }
+    .nav-in {
+        pointer-events: auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        height: 54px;
+        padding: 0 12px;
+        border-radius: 999px;
+        border: 1px solid var(--rule);
+        background: rgba(14, 18, 24, 0.5);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 10px 30px -16px rgba(0, 0, 0, 0.6);
+    }
+    .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        min-width: 0;
+    }
+    .logo-link {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 8px;
+        transition: transform 0.2s ease;
+    }
+    .logo-link:hover {
+        transform: scale(1.05);
+    }
+    .logo-link svg {
+        height: 18px;
+        width: auto;
+        display: block;
+    }
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+    }
+    .nav-links a {
+        color: var(--soft);
+        font-size: 14.5px;
+        font-weight: 500;
+        padding: 8px 12px;
+        border-radius: 999px;
+        transition: color 0.18s;
+        white-space: nowrap;
+    }
+    .nav-links a:hover {
+        color: var(--ink);
+    }
+    .nav-links a.active {
+        color: var(--accent);
+    }
+    .lang {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13.5px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        padding-right: 4px;
+    }
+    .lang a {
+        color: var(--mute);
+        transition: color 0.18s;
+    }
+    .lang a.active {
+        color: var(--ink);
+    }
+    .lang a:not(.active):hover {
+        color: var(--accent);
+    }
+    .lang .sep {
+        color: var(--mute);
+        font-weight: 400;
+    }
+    @media (max-width: 600px) {
+        .nav-inner {
+            padding: 0 22px;
+        }
+        .nav-links {
+            display: none;
+        }
+    }
+</style>

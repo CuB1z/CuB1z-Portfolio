@@ -1,0 +1,15 @@
+---
+// Numbered section heading ("01 · Heading ────"). Relies on the global
+// `.sec-head` styles defined in Layout.
+interface Props {
+    num: string;
+    heading: string;
+}
+const { num, heading } = Astro.props as Props;
+---
+
+<div class="sec-head">
+    <span class="num">{num}</span>
+    <h2>{heading}</h2>
+    <span class="line"></span>
+</div>
