@@ -4,6 +4,7 @@ description: "TripFlow Phase 2: Backend & frontend setup, unit and integration t
 pubDate: 2025-09-11
 tags: ["TripFlow", "Travel", "React", "Spring Boot", "TFG"]
 image: "/images/posts/tripflow-showcase.webp"
+imageAlt: "Two smartphones showing the TripFlow app: a dashboard welcoming Diego with trip stats, and a trip detail screen for a Japan itinerary with a photo of a Japanese city and pagoda."
 locale: "en"
 slug: "ci-cd-testing-tripflow"
 altSlug: "ci-cd-pruebas-tripflow"

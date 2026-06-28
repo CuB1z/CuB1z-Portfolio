@@ -4,6 +4,7 @@ description: "TripFlow es una PWA inteligente e intuitiva para planificación de
 pubDate: 2025-09-09
 tags: ["TripFlow", "Viajes", "React", "Spring Boot", "TFG"]
 image: "/images/posts/tripflow-showcase.webp"
+imageAlt: "Dos móviles mostrando la app TripFlow: un panel de inicio que da la bienvenida a Diego con estadísticas del viaje, y la pantalla de detalle de un itinerario por Japón con una foto de una ciudad japonesa y una pagoda."
 locale: "es"
 slug: "presentando-tripflow"
 altSlug: "introducing-tripflow"

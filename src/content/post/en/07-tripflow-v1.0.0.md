@@ -4,6 +4,7 @@ description: "TripFlow v1.0.0 closes the Advanced Features V2 milestone with col
 pubDate: 2026-04-15
 tags: ["TripFlow", "Travel", "React", "Spring Boot", "Docker", "Collaboration", "Maps", "PWA"]
 image: "/images/posts/tripflow-showcase.webp"
+imageAlt: "Two smartphones showing the TripFlow app: a dashboard welcoming Diego with trip stats, and a trip detail screen for a Japan itinerary with a photo of a Japanese city and pagoda."
 locale: "en"
 slug: "tripflow-v1.0.0"
 altSlug: "tripflow-v1.0.0-planificador-colaborativo"

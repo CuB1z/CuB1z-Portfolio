@@ -4,6 +4,7 @@ description: "Deja de sobrepensar para un futuro que todavía no existe. Aprende
 pubDate: 2026-03-23
 tags: ["Arquitectura", "Ingeniería", "Backend", "Testing"]
 image: "/images/posts/cover-yagni-in-practice.webp"
+imageAlt: "Ilustración de una máquina absurdamente sobre-ingenierizada: una caja negra cubierta de pantallas, indicadores, engranajes, tubos, cables y brazos robóticos — una metáfora del over-engineering."
 locale: "es"
 slug: "yagni-en-la-practica"
 altSlug: "yagni-in-practice"

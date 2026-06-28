@@ -4,6 +4,7 @@ description: "TripFlow MVP Complete: Authentication, itinerary management and Do
 pubDate: 2025-11-15
 tags: ["TripFlow", "Travel", "React", "Spring Boot", "TFG", "Docker", "Playwright"]
 image: "/images/posts/tripflow-showcase.webp"
+imageAlt: "Two smartphones showing the TripFlow app: a dashboard welcoming Diego with trip stats, and a trip detail screen for a Japan itinerary with a photo of a Japanese city and pagoda."
 locale: "en"
 slug: "tripflow-mvp"
 altSlug: "tripflow-mvp-inicial"

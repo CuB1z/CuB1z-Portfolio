@@ -4,6 +4,7 @@ description: "Nuevo lanzamiento introduciendo generación de itinerarios con IA,
 pubDate: 2026-02-08
 tags: ["TripFlow", "Travel", "React", "Spring Boot", "Docker", "Microservicios", "Kafka", "IA"]
 image: "/images/posts/tripflow-showcase.webp"
+imageAlt: "Dos móviles mostrando la app TripFlow: un panel de inicio que da la bienvenida a Diego con estadísticas del viaje, y la pantalla de detalle de un itinerario por Japón con una foto de una ciudad japonesa y una pagoda."
 locale: "es"
 slug: "tripflow-v0.2.0-ia-microservicios"
 altSlug: "tripflow-v0.2.0"
