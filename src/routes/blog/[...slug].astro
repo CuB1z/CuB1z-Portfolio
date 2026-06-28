@@ -52,7 +52,7 @@ const blogPostingLd = {
 ---
 
 <Layout
-    title={`${post.data.title} — Diego Sánchez Rincón`}
+    title={`${post.data.title} · Diego Sánchez Rincón`}
     description={post.data.description}
     altLangUrl={altLangUrl}
     navActive="writing"
@@ -115,21 +115,21 @@ const blogPostingLd = {
                 </div>
 
                 <aside class="author-card">
-                    <img
-                        class="a-avatar"
-                        src="/images/diego-sanchez.webp"
-                        alt="Diego Sánchez Rincón"
-                        width="46"
-                        height="46"
-                        loading="lazy"
-                    />
-                    <div class="a-body">
+                    <div class="a-head">
+                        <img
+                            class="a-avatar"
+                            src="/images/diego-sanchez.webp"
+                            alt="Diego Sánchez Rincón"
+                            width="46"
+                            height="46"
+                            loading="lazy"
+                        />
                         <span class="a-name">{authorName}</span>
-                        <p class="a-bio">{t("blog:author_bio")}</p>
-                        <div class="a-links">
-                            <a href={socialData.github} target="_blank" rel="noopener noreferrer">GitHub</a>
-                            <a href={socialData.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                        </div>
+                    </div>
+                    <p class="a-bio">{t("blog:author_bio")}</p>
+                    <div class="a-links">
+                        <a href={socialData.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href={socialData.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     </div>
                 </aside>
 
@@ -238,13 +238,18 @@ const blogPostingLd = {
     /* author bio card */
     .author-card {
         display: flex;
-        align-items: flex-start;
-        gap: 16px;
+        flex-direction: column;
+        gap: 14px;
         margin-top: 56px;
         padding: 24px;
         border: 1px solid var(--rule);
         border-radius: 16px;
         background: var(--bg-card);
+    }
+    .a-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
     }
     .a-avatar {
         flex-shrink: 0;
@@ -256,13 +261,12 @@ const blogPostingLd = {
         display: block;
     }
     .a-name {
-        display: block;
         font-weight: 700;
         color: var(--ink);
         font-size: 15px;
     }
     .a-bio {
-        margin: 6px 0 0;
+        margin: 0;
         font-size: 14px;
         line-height: 1.6;
         color: var(--soft);
@@ -271,7 +275,6 @@ const blogPostingLd = {
     .a-links {
         display: flex;
         gap: 16px;
-        margin-top: 12px;
         font-size: 13px;
         font-weight: 600;
     }
