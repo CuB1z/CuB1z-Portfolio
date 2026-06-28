@@ -6,5 +6,7 @@
     "teaser_heading": "Writing",
     "by": "By",
     "updated": "Updated",
+    "min_read": "min read",
+    "read_next": "Read next",
     "author_bio": "Software Engineer based in Madrid, focused on software architecture, distributed systems and cloud. Currently building microservices at Génexys with Python, FastAPI and AWS."
 }

@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import { getLocale, getLocalePlaceholder, t } from "i18n:astro";
 
 import { buildAltLangUrl, buildUrl } from "@/utils/urlUtils";
-import { formatDate } from "@/utils/formatUtils";
+import { formatDate, formatMonthYear } from "@/utils/formatUtils";
 import { socialData } from "@/constants/socialData";
 import Layout from "@layouts/Layout.astro";
 import Breadcrumb from "@components/shared/Breadcrumb.astro";
@@ -49,6 +49,22 @@ const blogPostingLd = {
     author: { "@type": "Person", name: authorName, url: siteUrl, image: authorImage },
     mainEntityOfPage: canonicalHref,
 };
+
+const words = post.body.trim().split(/\s+/).length;
+const readingTime = Math.max(1, Math.round(words / 200));
+
+// Related posts: same locale, ranked by shared tags then recency.
+const myTags = new Set(post.data.tags ?? []);
+const sharedTags = (p: typeof post) =>
+    (p.data.tags ?? []).filter((tag) => myTags.has(tag)).length;
+const related = (await getCollection("post"))
+    .filter((p) => p.id !== post.id && (p.data.locale ?? "en") === currentLocale)
+    .sort(
+        (a, b) =>
+            sharedTags(b) - sharedTags(a) ||
+            b.data.pubDate.getTime() - a.data.pubDate.getTime()
+    )
+    .slice(0, 3);
 ---
 
 <Layout
@@ -77,21 +93,25 @@ const blogPostingLd = {
                     <h1 class="p-title">{post.data.title}</h1>
                     <div class="p-meta">
                         <span class="byline">{t("blog:by")} {authorName}</span>
-                        <span class="dot">·</span>
-                        <time datetime={post.data.pubDate.toISOString()}>
-                            {formatDate(post.data.pubDate, currentLocale)}
-                        </time>
-                        {
-                            post.data.updatedDate && (
-                                <>
-                                    <span class="dot">·</span>
-                                    <time datetime={post.data.updatedDate.toISOString()}>
-                                        {t("blog:updated")}{" "}
-                                        {formatDate(post.data.updatedDate, currentLocale)}
-                                    </time>
-                                </>
-                            )
-                        }
+                        <span class="sep author-sep">·</span>
+                        <span class="meta-info">
+                            <time datetime={post.data.pubDate.toISOString()}>
+                                {formatDate(post.data.pubDate, currentLocale)}
+                            </time>
+                            {
+                                post.data.updatedDate && (
+                                    <>
+                                        <span class="sep">·</span>
+                                        <time datetime={post.data.updatedDate.toISOString()}>
+                                            {t("blog:updated")}{" "}
+                                            {formatDate(post.data.updatedDate, currentLocale)}
+                                        </time>
+                                    </>
+                                )
+                            }
+                            <span class="sep">·</span>
+                            <span>{readingTime} {t("blog:min_read")}</span>
+                        </span>
                     </div>
                     {
                         post.data.tags && (
@@ -113,6 +133,25 @@ const blogPostingLd = {
                 <div class="post-content">
                     <Content />
                 </div>
+
+                {
+                    related.length > 0 && (
+                        <nav class="read-next" aria-label={t("blog:read_next")}>
+                            <span class="rn-title">{t("blog:read_next")}</span>
+                            <ul>
+                                {related.map((r) => (
+                                    <li>
+                                        <a href={buildUrl(`/blog/${r.data.slug || r.slug}`)}>
+                                            <span class="rn-date">{formatMonthYear(r.data.pubDate, currentLocale)}</span>
+                                            <span class="rn-name">{r.data.title}</span>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
+                    )
+                }
 
                 <aside class="author-card">
                     <div class="a-head">
@@ -215,7 +254,7 @@ const blogPostingLd = {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        gap: 10px 14px;
+        gap: 6px 8px;
         margin-top: 18px;
         font-family: var(--font-mono);
         font-size: 11.5px;
@@ -223,13 +262,25 @@ const blogPostingLd = {
         text-transform: uppercase;
         color: var(--mute);
     }
-    .p-meta .dot {
-        opacity: 0.5;
-    }
     .p-meta .byline {
         color: var(--ink);
         text-transform: none;
         letter-spacing: 0.02em;
+    }
+    .meta-info {
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .p-meta .sep {
+        opacity: 0.5;
+    }
+    /* the author/date separator only makes sense when they share a line */
+    @media (max-width: 480px) {
+        .author-sep {
+            display: none;
+        }
     }
     .p-tags {
         margin-top: 18px;
@@ -284,6 +335,71 @@ const blogPostingLd = {
     }
     .a-links a:hover {
         color: var(--accent-bright);
+    }
+
+    /* read next */
+    .read-next {
+        margin-top: 56px;
+    }
+    .rn-title {
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--mute);
+    }
+    .read-next ul {
+        list-style: none;
+        margin: 14px 0 0;
+        padding: 0;
+    }
+    .read-next li {
+        border-top: 1px solid var(--rule);
+    }
+    .read-next li:first-child {
+        border-top: 0;
+    }
+    .read-next a {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 0;
+        transition: padding-left 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    @media (hover: hover) {
+        .read-next a:hover {
+            padding-left: 10px;
+        }
+    }
+    .rn-date {
+        flex-shrink: 0;
+        width: 84px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--mute);
+    }
+    .rn-name {
+        flex: 1;
+        font-size: 15.5px;
+        font-weight: 600;
+        color: var(--ink);
+        transition: color 0.18s;
+    }
+    .read-next a:hover .rn-name {
+        color: var(--accent);
+    }
+    .read-next a svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        color: var(--mute);
+        transition: color 0.18s, transform 0.25s;
+    }
+    .read-next a:hover svg {
+        color: var(--accent);
+        transform: translate(3px, -3px);
     }
     .hero-img {
         width: 100%;
