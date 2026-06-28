@@ -7,7 +7,23 @@ interface Props {
     items: Crumb[];
 }
 const { items } = Astro.props as Props;
+
+const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((c, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: c.label,
+        item: new URL(c.href ?? Astro.url.pathname, Astro.site).toString(),
+    })),
+};
 ---
+
+<script
+    type="application/ld+json"
+    set:html={JSON.stringify(breadcrumbLd)}
+/>
 
 <nav class="crumbs" aria-label="Breadcrumb">
     {

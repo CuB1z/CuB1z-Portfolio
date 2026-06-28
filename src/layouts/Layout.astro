@@ -5,6 +5,7 @@ import { ClientRouter } from "astro:transitions";
 
 import Nav from "@components/shared/Nav.astro";
 import Footer from "@components/shared/Footer.astro";
+import { socialData } from "@/constants/socialData";
 
 interface Props {
     title?: string;
@@ -41,6 +42,49 @@ const esUrl =
         : new URL(`/es${cleanPath === "/" ? "/" : cleanPath}`, Astro.site);
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+
+const siteUrl = Astro.site!.toString().replace(/\/$/, "");
+const email = socialData.email.replace(/^mailto:/, "");
+
+const jobTitle = t("schema.jobTitle");
+const knowsAbout = t("schema.knowsAbout", { returnObjects: true }) as string[];
+
+const personLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Diego Sánchez Rincón",
+    alternateName: ["Diego Sánchez", "CuB1z"],
+    givenName: "Diego",
+    familyName: "Sánchez Rincón",
+    url: siteUrl,
+    image: `${siteUrl}/images/diego-sanchez.webp`,
+    jobTitle,
+    description: pageDescription,
+    worksFor: { "@type": "Organization", name: "Génexys Technology" },
+    alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Universidad Rey Juan Carlos",
+    },
+    address: {
+        "@type": "PostalAddress",
+        addressLocality: "Madrid",
+        addressCountry: "ES",
+    },
+    email,
+    knowsAbout,
+    sameAs: [socialData.github, socialData.linkedin],
+};
+
+const websiteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: `Diego Sánchez Rincón — ${jobTitle}`,
+    alternateName: ["Diego Sánchez", "CuB1z"],
+    url: siteUrl,
+    description: pageDescription,
+    inLanguage: locale,
+    author: { "@type": "Person", name: "Diego Sánchez Rincón", url: siteUrl },
+};
 ---
 
 <html lang={locale}>
@@ -68,6 +112,20 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         <meta property="twitter:image" content={new URL("/og-image.png", Astro.site)} />
 
         <link rel="icon" href="/favicon.svg" />
+
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(websiteLd)}
+        />
+        {
+            home && (
+                <script
+                    type="application/ld+json"
+                    set:html={JSON.stringify(personLd)}
+                />
+            )
+        }
+        <slot name="head" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

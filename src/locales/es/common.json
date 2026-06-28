@@ -1,5 +1,5 @@
 {
-    "title": "Diego Sánchez | Ingeniero de Software",
+    "title": "Diego Sánchez Rincón | Ingeniero de Software",
     "description": "Ingeniero de Software centrado en arquitectura, sistemas distribuidos y cloud. Recién graduado en Ingeniería del Software (URJC), actualmente desarrollando microservicios en Génexys.",
     "nav": {
         "experience": "Experiencia",
@@ -7,5 +7,21 @@
         "about": "Sobre mí",
         "writing": "Blog"
     },
-    "footer_rights": "Diego Sánchez · Madrid"
+    "footer_rights": "Diego Sánchez Rincón · Madrid",
+    "schema": {
+        "jobTitle": "Ingeniero de Software",
+        "knowsAbout": [
+            "Arquitectura de software",
+            "Sistemas distribuidos",
+            "Cloud computing",
+            "Python",
+            "FastAPI",
+            "Java",
+            "Spring Boot",
+            "React",
+            "Next.js",
+            "AWS",
+            "Microservicios"
+        ]
+    }
 }

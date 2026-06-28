@@ -3,5 +3,8 @@
     "all_posts": "Ver todos los posts",
     "back": "Todos los posts",
     "on_this_page": "En esta página",
-    "teaser_heading": "Blog"
+    "teaser_heading": "Blog",
+    "by": "Por",
+    "updated": "Actualizado",
+    "author_bio": "Ingeniero de Software en Madrid, centrado en arquitectura de software, sistemas distribuidos y cloud. Actualmente desarrolla microservicios en Génexys con Python, FastAPI y AWS."
 }

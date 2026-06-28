@@ -3,5 +3,8 @@
     "all_posts": "Read all posts",
     "back": "All posts",
     "on_this_page": "On this page",
-    "teaser_heading": "Writing"
+    "teaser_heading": "Writing",
+    "by": "By",
+    "updated": "Updated",
+    "author_bio": "Software Engineer based in Madrid, focused on software architecture, distributed systems and cloud. Currently building microservices at Génexys with Python, FastAPI and AWS."
 }

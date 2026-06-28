@@ -1,5 +1,5 @@
 {
-    "title": "Diego Sánchez | Software Engineer",
+    "title": "Diego Sánchez Rincón | Software Engineer",
     "description": "Software Engineer focused on architecture, distributed systems and cloud. Recently graduated in Software Engineering (URJC), currently building microservices at Génexys.",
     "nav": {
         "experience": "Experience",
@@ -7,5 +7,21 @@
         "about": "About",
         "writing": "Writing"
     },
-    "footer_rights": "Diego Sánchez · Madrid"
+    "footer_rights": "Diego Sánchez Rincón · Madrid",
+    "schema": {
+        "jobTitle": "Software Engineer",
+        "knowsAbout": [
+            "Software architecture",
+            "Distributed systems",
+            "Cloud computing",
+            "Python",
+            "FastAPI",
+            "Java",
+            "Spring Boot",
+            "React",
+            "Next.js",
+            "AWS",
+            "Microservices"
+        ]
+    }
 }

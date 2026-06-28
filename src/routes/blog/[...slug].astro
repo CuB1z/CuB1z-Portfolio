@@ -4,6 +4,7 @@ import { getLocale, getLocalePlaceholder, t } from "i18n:astro";
 
 import { buildAltLangUrl, buildUrl } from "@/utils/urlUtils";
 import { formatDate } from "@/utils/formatUtils";
+import { socialData } from "@/constants/socialData";
 import Layout from "@layouts/Layout.astro";
 import Breadcrumb from "@components/shared/Breadcrumb.astro";
 
@@ -25,14 +26,42 @@ const currentLocale = getLocale();
 
 const toc = headings.filter((h) => h.depth === 2);
 const altLangUrl = buildAltLangUrl(`/blog/${post.data.altSlug}`, currentLocale);
+
+const authorName = "Diego Sánchez Rincón";
+const siteUrl = Astro.site!.toString().replace(/\/$/, "");
+const authorImage = `${siteUrl}/images/diego-sanchez.webp`;
+const canonicalHref = new URL(Astro.url.pathname, Astro.site).toString();
+
+const blogPostingLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.data.title,
+    description: post.data.description,
+    datePublished: post.data.pubDate.toISOString(),
+    ...(post.data.updatedDate && {
+        dateModified: post.data.updatedDate.toISOString(),
+    }),
+    inLanguage: currentLocale,
+    ...(post.data.image && {
+        image: new URL(post.data.image, Astro.site).toString(),
+    }),
+    ...(post.data.tags && { keywords: post.data.tags }),
+    author: { "@type": "Person", name: authorName, url: siteUrl, image: authorImage },
+    mainEntityOfPage: canonicalHref,
+};
 ---
 
 <Layout
-    title={`${post.data.title} — Diego Sánchez`}
+    title={`${post.data.title} — Diego Sánchez Rincón`}
     description={post.data.description}
     altLangUrl={altLangUrl}
     navActive="writing"
 >
+    <script
+        slot="head"
+        type="application/ld+json"
+        set:html={JSON.stringify(blogPostingLd)}
+    />
     <article class="article">
         <Breadcrumb
             items={[
@@ -47,18 +76,32 @@ const altLangUrl = buildAltLangUrl(`/blog/${post.data.altSlug}`, currentLocale);
                 <header class="p-head">
                     <h1 class="p-title">{post.data.title}</h1>
                     <div class="p-meta">
-                        <time>{formatDate(post.data.pubDate, currentLocale)}</time>
+                        <span class="byline">{t("blog:by")} {authorName}</span>
+                        <span class="dot">·</span>
+                        <time datetime={post.data.pubDate.toISOString()}>
+                            {formatDate(post.data.pubDate, currentLocale)}
+                        </time>
                         {
-                            post.data.tags && (
+                            post.data.updatedDate && (
                                 <>
                                     <span class="dot">·</span>
-                                    {post.data.tags.map((tag) => (
-                                        <span class="tag">{tag}</span>
-                                    ))}
+                                    <time datetime={post.data.updatedDate.toISOString()}>
+                                        {t("blog:updated")}{" "}
+                                        {formatDate(post.data.updatedDate, currentLocale)}
+                                    </time>
                                 </>
                             )
                         }
                     </div>
+                    {
+                        post.data.tags && (
+                            <div class="tags p-tags">
+                                {post.data.tags.map((tag) => (
+                                    <span>{tag}</span>
+                                ))}
+                            </div>
+                        )
+                    }
                 </header>
 
                 {
@@ -70,6 +113,25 @@ const altLangUrl = buildAltLangUrl(`/blog/${post.data.altSlug}`, currentLocale);
                 <div class="post-content">
                     <Content />
                 </div>
+
+                <aside class="author-card">
+                    <img
+                        class="a-avatar"
+                        src="/images/diego-sanchez.webp"
+                        alt="Diego Sánchez Rincón"
+                        width="46"
+                        height="46"
+                        loading="lazy"
+                    />
+                    <div class="a-body">
+                        <span class="a-name">{authorName}</span>
+                        <p class="a-bio">{t("blog:author_bio")}</p>
+                        <div class="a-links">
+                            <a href={socialData.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+                            <a href={socialData.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        </div>
+                    </div>
+                </aside>
 
                 <div class="p-foot">
                     <a href={buildUrl("/blog")} class="back">
@@ -164,8 +226,61 @@ const altLangUrl = buildAltLangUrl(`/blog/${post.data.altSlug}`, currentLocale);
     .p-meta .dot {
         opacity: 0.5;
     }
-    .p-meta .tag {
+    .p-meta .byline {
+        color: var(--ink);
+        text-transform: none;
+        letter-spacing: 0.02em;
+    }
+    .p-tags {
+        margin-top: 18px;
+    }
+
+    /* author bio card */
+    .author-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        margin-top: 56px;
+        padding: 24px;
+        border: 1px solid var(--rule);
+        border-radius: 16px;
+        background: var(--bg-card);
+    }
+    .a-avatar {
+        flex-shrink: 0;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid var(--rule-2);
+        display: block;
+    }
+    .a-name {
+        display: block;
+        font-weight: 700;
+        color: var(--ink);
+        font-size: 15px;
+    }
+    .a-bio {
+        margin: 6px 0 0;
+        font-size: 14px;
+        line-height: 1.6;
         color: var(--soft);
+        max-width: 60ch;
+    }
+    .a-links {
+        display: flex;
+        gap: 16px;
+        margin-top: 12px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+    .a-links a {
+        color: var(--accent);
+        transition: color 0.18s;
+    }
+    .a-links a:hover {
+        color: var(--accent-bright);
     }
     .hero-img {
         width: 100%;
