@@ -7,7 +7,7 @@ const year = new Date().getFullYear();
 
 <footer class="foot">
     <div class="shell foot-bar">
-        <span class="copy">© {year} {t("common:footer_rights")}</span>
+        <span class="copy"><span class="mark">© {year}</span> {t("common:footer_rights")}</span>
         <div class="foot-links">
             <a href={socialData.github} target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href={socialData.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -35,6 +35,9 @@ const year = new Date().getFullYear();
         font-family: var(--font-mono);
         font-size: 12px;
         color: var(--mute);
+    }
+    .copy .mark {
+        font-family: var(--font-sans);
     }
     .foot-links {
         display: flex;
