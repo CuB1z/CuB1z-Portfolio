@@ -1,0 +1,75 @@
+{
+    "meta_title": "TripFlow · Planificador de viajes con IA (TFG) | Diego Sánchez Rincón",
+    "meta_description": "TripFlow: un planificador de viajes asistido por IA con colaboración en tiempo real, mapas interactivos y acceso offline. Backend de microservicios Spring Boot y frontend React PWA. Trabajo de Fin de Grado, calificado con 10/10.",
+    "tagline": "Un planificador de viajes asistido por IA que reúne todo el viaje en un solo lugar, con colaboración en tiempo real, mapas interactivos y acceso offline completo.",
+    "live": "Ver demo",
+    "source": "Código fuente",
+    "image_alt": "Dos móviles mostrando la app TripFlow: un panel con estadísticas del viaje y la pantalla de detalle de un itinerario por Japón.",
+
+    "problem_heading": "El problema",
+    "problem_lede": "Planificar un viaje obliga a hacer malabares con media docena de herramientas que no se hablan entre sí. El resultado: información dispersa, copiada a mano y desactualizada casi al instante.",
+    "problem_points": [
+        { "n": "01", "text": "La información vive dispersa entre buscadores, mapas, blogs y chats." },
+        { "n": "02", "text": "Nada está conectado: cada dato se copia a mano y queda desactualizado al instante." },
+        { "n": "03", "text": "En grupo se multiplica: preferencias distintas y cambios que se pierden." }
+    ],
+
+    "compare_heading": "Todo el viaje en un solo lugar",
+    "compare_intro": "La mayoría de herramientas resuelven solo una parte del problema. TripFlow buscó cubrirlo entero (planificación temporal, IA, colaboración en tiempo real y offline) en un único producto.",
+    "compare_cols": ["Maps", "TripAdvisor", "Roamy", "Wanderlog", "TripFlow"],
+    "compare_rows": [
+        { "feature": "Planificación temporal", "values": ["—", "—", "✓", "✓", "✓"] },
+        { "feature": "Colaboración en tiempo real", "values": ["—", "—", "—", "Pago", "✓"] },
+        { "feature": "Generación por IA", "values": ["—", "—", "✓", "✓", "✓"] },
+        { "feature": "Soporte offline", "values": ["Parcial", "—", "—", "Pago", "✓"] },
+        { "feature": "Multiplataforma", "values": ["✓", "✓", "—", "✓", "✓"] },
+        { "feature": "Modelo de uso", "values": ["Gratis", "Gratis", "Gratis", "Freemium", "Freemium"] }
+    ],
+
+    "features_heading": "Características",
+    "features_intro": "Todo lo necesario para planificar un viaje, desde la primera idea hasta un itinerario compartible y disponible sin conexión.",
+    "features": [
+        { "title": "Itinerarios por días", "desc": "Planifica viajes por días y actividades, con rutas optimizadas entre lugares." },
+        { "title": "Asistente de IA", "desc": "Genera un itinerario completo a partir de una sola petición con un asistente de IA." },
+        { "title": "Colaboración en tiempo real", "desc": "Planificad juntos con colaboración en vivo y por roles." },
+        { "title": "Mapa interactivo + PDF", "desc": "Visualiza todo en un mapa interactivo y exporta un PDF limpio." },
+        { "title": "Enlaces públicos", "desc": "Comparte cualquier itinerario mediante un enlace público seguro." },
+        { "title": "PWA multiplataforma · Offline", "desc": "Una PWA instalable que funciona en cualquier dispositivo, incluso sin conexión." }
+    ],
+
+    "arch_heading": "Arquitectura distribuida",
+    "arch_intro": "TripFlow es un sistema distribuido: una PWA en React habla con un conjunto de microservicios Spring Boot a través de un gateway, y esos servicios se coordinan de forma asíncrona mediante un bus de eventos Apache Kafka.",
+    "arch_layers": [
+        { "name": "Cliente SPA / PWA", "tech": "React · Vite" },
+        { "name": "Gateway", "tech": "Cloudflare · Traefik · HTTPS" },
+        { "name": "Microservicios", "tech": "Spring Boot · Java 21", "services": ["API Principal", "IA", "Notificaciones"], "bus": "Bus de eventos · Apache Kafka" },
+        { "name": "Persistencia", "tech": "PostgreSQL · H2" }
+    ],
+
+    "decisions_heading": "Decisiones técnicas clave",
+    "decisions_intro": "Un puñado de decisiones marcaron el proyecto más que el resto, en seguridad, IA, tiempo real y offline.",
+    "decisions": [
+        { "n": "01", "title": "Autenticación JWT", "desc": "Doble token JWT (acceso 15 min, refresco 30 días) en cookies HttpOnly para mitigar XSS." },
+        { "n": "02", "title": "IA asíncrona y segura", "desc": "Filtrado de prompt injection a la entrada y sanitización del JSON generado a la salida." },
+        { "n": "03", "title": "Tiempo real", "desc": "WebSocket + STOMP con validación del JWT en el propio handshake para autorizar los eventos." },
+        { "n": "04", "title": "PWA offline", "desc": "Un service worker instala la app y permite consultar itinerarios sin conexión, durante el viaje." }
+    ],
+
+    "metrics_heading": "Calidad y entrega",
+    "metrics_intro": "Construido con una cultura sólida de testing y automatización desde el primer día: cada cambio pasa por el mismo pipeline.",
+    "metrics": [
+        { "value": "950+", "label": "tests automáticos", "sub": "313 backend · 640 frontend · 8 suites E2E (Playwright)" },
+        { "value": "67%", "label": "cobertura de código", "sub": "medida en cada build" },
+        { "value": "803+", "label": "commits en CI/CD", "sub": "build + tests antes de cada merge" },
+        { "value": "100%", "label": "despliegue automático", "sub": "VPS · Dokploy · Traefik · HTTPS" }
+    ],
+
+    "journey_heading": "El recorrido",
+    "journey_intro": "TripFlow fue mi Trabajo de Fin de Grado en la Universidad Rey Juan Carlos, calificado con 10/10, diseñado y desarrollado de principio a fin. Creció de forma iterativa en tres versiones, y cada una se entregó como una release funcional y desplegada, no un prototipo, desde el primer commit hasta la v1.0.0.",
+    "milestones": [
+        { "version": "v0.1", "name": "MVP", "desc": "Autenticación e itinerarios base." },
+        { "version": "v0.2", "name": "Inteligencia", "desc": "IA, notificaciones y administración." },
+        { "version": "v1.0", "name": "Producto", "desc": "Mapas, colaboración, enlaces, PWA y PDF." }
+    ],
+    "log_intro": "Cada release, documentada desde el primer commit hasta la v1.0.0:"
+}

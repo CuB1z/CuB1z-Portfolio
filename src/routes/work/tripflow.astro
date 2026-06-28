@@ -1,0 +1,835 @@
+---
+import { getCollection } from "astro:content";
+import { getLocale, t } from "i18n:astro";
+
+import { buildUrl } from "@/utils/urlUtils";
+import Layout from "@layouts/Layout.astro";
+import Breadcrumb from "@components/shared/Breadcrumb.astro";
+import SectionHeader from "@components/shared/SectionHeader.astro";
+import Carousel from "@components/shared/Carousel.astro";
+
+const locale = getLocale();
+
+// Build log: TripFlow-tagged posts in this locale, oldest first.
+const log = (await getCollection("post"))
+    .filter(
+        (p) =>
+            (p.data.locale ?? "en") === locale &&
+            (p.data.tags ?? []).includes("TripFlow")
+    )
+    .sort(
+        (a, b) =>
+            new Date(a.data.pubDate).getTime() -
+            new Date(b.data.pubDate).getTime()
+    );
+
+const fmtDate = (date: Date) =>
+    new Date(date).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
+        month: "short",
+        year: "numeric",
+    });
+
+const problemPoints = t("tripflow:problem_points", { returnObjects: true }) as {
+    n: string;
+    text: string;
+}[];
+const compareCols = t("tripflow:compare_cols", { returnObjects: true }) as string[];
+const compareRows = t("tripflow:compare_rows", { returnObjects: true }) as {
+    feature: string;
+    values: string[];
+}[];
+const features = t("tripflow:features", { returnObjects: true }) as {
+    title: string;
+    desc: string;
+}[];
+const archLayers = t("tripflow:arch_layers", { returnObjects: true }) as {
+    name: string;
+    tech: string;
+    services?: string[];
+    bus?: string;
+}[];
+const decisions = t("tripflow:decisions", { returnObjects: true }) as {
+    n: string;
+    title: string;
+    desc: string;
+}[];
+const metrics = t("tripflow:metrics", { returnObjects: true }) as {
+    value: string;
+    label: string;
+    sub: string;
+}[];
+const milestones = t("tripflow:milestones", { returnObjects: true }) as {
+    version: string;
+    name: string;
+    desc: string;
+}[];
+
+const lastCol = compareCols.length - 1;
+
+const live = "https://tripflow.cub1z.es";
+const repo = "https://github.com/codeurjc-students/2025-TripFlow";
+const image = "/images/projects/tripflow-showcase.webp";
+
+const siteUrl = Astro.site!.toString().replace(/\/$/, "");
+const appLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "TripFlow",
+    applicationCategory: "TravelApplication",
+    operatingSystem: "Web",
+    description: t("tripflow:meta_description"),
+    url: live,
+    inLanguage: locale,
+    author: { "@type": "Person", name: "Diego Sánchez Rincón", url: siteUrl },
+    offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+    keywords:
+        "AI travel planning, microservices, Spring Boot, React, PWA, Kafka",
+    image: new URL(image, Astro.site).toString(),
+    mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).toString(),
+};
+---
+
+<Layout
+    title={t("tripflow:meta_title")}
+    description={t("tripflow:meta_description")}
+    navActive="work"
+>
+    <script
+        slot="head"
+        type="application/ld+json"
+        set:html={JSON.stringify(appLd)}
+    />
+
+    <article class="tf">
+        <div class="shell">
+            <Breadcrumb
+                items={[
+                    { label: locale === "es" ? "Inicio" : "Home", href: buildUrl("/") },
+                    { label: t("common:nav.work"), href: `${buildUrl("/")}#work` },
+                    { label: "TripFlow" },
+                ]}
+            />
+
+            <header class="hero">
+                <div class="hero-text">
+                    <h1>TripFlow</h1>
+                    <p class="tagline">{t("tripflow:tagline")}</p>
+                    <div class="cta">
+                        <a class="btn primary" href={live} target="_blank" rel="noopener noreferrer">
+                            {t("tripflow:live")}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                        </a>
+                        <a class="btn ghost" href={repo} target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.2 3.44 9.6 8.21 11.16.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.37-1.34-1.74-1.34-1.74-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.79 2.81 1.27 3.5.97.11-.76.42-1.27.76-1.56-2.67-.3-5.47-1.31-5.47-5.81 0-1.28.47-2.33 1.24-3.15-.13-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.2.96-.26 1.98-.39 3-.4 1.02 0 2.04.14 3 .4 2.28-1.52 3.29-1.2 3.29-1.2.66 1.64.25 2.86.12 3.16.77.82 1.24 1.87 1.24 3.15 0 4.51-2.81 5.5-5.49 5.79.43.36.81 1.08.81 2.18 0 1.58-.01 2.85-.01 3.24 0 .31.21.68.83.56C20.57 21.88 24 17.48 24 12.29 24 5.78 18.63.5 12 .5z"/></svg>
+                            {t("tripflow:source")}
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-media">
+                    <img class="shot" src={image} alt={t("tripflow:image_alt")} loading="eager" />
+                </div>
+            </header>
+
+            <section class="section">
+                <SectionHeader num="01" heading={t("tripflow:problem_heading")} />
+                <p class="lede">{t("tripflow:problem_lede")}</p>
+                <div class="problem">
+                    {
+                        problemPoints.map((p) => (
+                            <div class="prob">
+                                <span class="prob-n">{p.n}</span>
+                                <p>{p.text}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </section>
+
+            <section class="section">
+                <SectionHeader num="02" heading={t("tripflow:compare_heading")} />
+                <p class="lede">{t("tripflow:compare_intro")}</p>
+                <div class="table-wrap cmp-desktop">
+                    <table class="compare">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="rowhead"></th>
+                                {
+                                    compareCols.map((c, i) => (
+                                        <th scope="col" class:list={[{ own: i === lastCol }]}>{c}</th>
+                                    ))
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                compareRows.map((row) => (
+                                    <tr>
+                                        <th scope="row" class="rowhead">{row.feature}</th>
+                                        {row.values.map((v, i) => (
+                                            <td
+                                                class:list={[
+                                                    {
+                                                        yes: v === "✓",
+                                                        dash: v === "—",
+                                                        own: i === lastCol,
+                                                    },
+                                                ]}
+                                            >
+                                                {v}
+                                            </td>
+                                        ))}
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="cmp-mobile">
+                    <Carousel cols={1} label="features">
+                        {
+                            compareRows.map((row) => (
+                                <div class="cmp-card">
+                                    <span class="cmp-feature">{row.feature}</span>
+                                    {row.values.map((v, i) => (
+                                        <div class:list={["cmp-line", { own: i === lastCol }]}>
+                                            <span class="cmp-tool">{compareCols[i]}</span>
+                                            <span class:list={["cmp-val", { yes: v === "✓", dash: v === "—" }]}>{v}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            ))
+                        }
+                    </Carousel>
+                </div>
+            </section>
+
+            <section class="section">
+                <SectionHeader num="03" heading={t("tripflow:features_heading")} />
+                <p class="lede">{t("tripflow:features_intro")}</p>
+                <Carousel cols={3} label="features">
+                    {
+                        features.map((f) => (
+                            <div class="feat">
+                                <h3>{f.title}</h3>
+                                <p>{f.desc}</p>
+                            </div>
+                        ))
+                    }
+                </Carousel>
+            </section>
+
+            <section class="section">
+                <SectionHeader num="04" heading={t("tripflow:arch_heading")} />
+                <p class="lede">{t("tripflow:arch_intro")}</p>
+                <div class="arch">
+                    {
+                        archLayers.map((layer, i) => (
+                            <>
+                                <div class:list={["layer", { wide: !!layer.services }]}>
+                                    <div class="layer-head">
+                                        <span class="layer-name">{layer.name}</span>
+                                        <span class="layer-tech">{layer.tech}</span>
+                                    </div>
+                                    {layer.services && (
+                                        <div class="services">
+                                            {layer.services.map((s) => (
+                                                <span class="svc">{s}</span>
+                                            ))}
+                                        </div>
+                                    )}
+                                    {layer.bus && <div class="bus">{layer.bus}</div>}
+                                </div>
+                                {i < archLayers.length - 1 && (
+                                    <div class="connector">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+                                    </div>
+                                )}
+                            </>
+                        ))
+                    }
+                </div>
+            </section>
+
+            <section class="section">
+                <SectionHeader num="05" heading={t("tripflow:decisions_heading")} />
+                <p class="lede">{t("tripflow:decisions_intro")}</p>
+                <div class="dec-grid">
+                    {
+                        decisions.map((d) => (
+                            <div class="dec">
+                                <span class="dec-n">{d.n}</span>
+                                <h3>{d.title}</h3>
+                                <p>{d.desc}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </section>
+
+            <section class="section">
+                <SectionHeader num="06" heading={t("tripflow:metrics_heading")} />
+                <p class="lede">{t("tripflow:metrics_intro")}</p>
+                <div class="metrics">
+                    {
+                        metrics.map((m) => (
+                            <div class="metric">
+                                <span class="metric-val">{m.value}</span>
+                                <span class="metric-label">{m.label}</span>
+                                <span class="metric-sub">{m.sub}</span>
+                            </div>
+                        ))
+                    }
+                </div>
+            </section>
+
+            <section class="section">
+                <SectionHeader num="07" heading={t("tripflow:journey_heading")} />
+                <p class="lede">{t("tripflow:journey_intro")}</p>
+                <div class="milestones">
+                    {
+                        milestones.map((m, i) => (
+                            <div class:list={["ms", { last: i === milestones.length - 1 }]}>
+                                <span class="ms-v">{m.version}</span>
+                                <span class="ms-name">{m.name}</span>
+                                <p class="ms-desc">{m.desc}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+                <p class="log-intro">{t("tripflow:log_intro")}</p>
+                <ol class="log">
+                    {
+                        log.map((post) => (
+                            <li>
+                                <a href={buildUrl(`/blog/${post.data.slug || post.slug}`)}>
+                                    <span class="log-date">{fmtDate(post.data.pubDate)}</span>
+                                    <span class="log-title">{post.data.title}</span>
+                                    <svg class="log-ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ol>
+            </section>
+        </div>
+    </article>
+</Layout>
+
+<style>
+    .tf {
+        position: relative;
+        z-index: 1;
+        padding: 120px 0 72px;
+    }
+
+    /* hero */
+    .hero {
+        margin-top: 48px;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 48px;
+        align-items: center;
+    }
+    .hero-text,
+    .hero-media {
+        min-width: 0;
+    }
+    .hero h1 {
+        font-size: clamp(40px, 5.5vw, 66px);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        color: var(--ink);
+        margin: 0;
+    }
+    .tagline {
+        font-size: clamp(16px, 1.8vw, 19px);
+        line-height: 1.6;
+        color: var(--soft);
+        margin-top: 16px;
+    }
+    .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+    }
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 11px 18px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        transition: transform 0.18s, border-color 0.18s, background 0.18s, color 0.18s;
+    }
+    .btn svg {
+        width: 15px;
+        height: 15px;
+    }
+    .btn.primary {
+        background: var(--accent);
+        color: var(--bg);
+    }
+    .btn.primary:hover {
+        transform: translateY(-2px);
+    }
+    .btn.ghost {
+        border-color: var(--rule-2);
+        color: var(--ink);
+        background: var(--bg-card);
+    }
+    .btn.ghost:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-2px);
+    }
+    .shot {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        border-radius: 16px;
+        border: 1px solid var(--rule-2);
+        display: block;
+    }
+
+    /* shared lede */
+    .lede {
+        font-size: 16.5px;
+        line-height: 1.7;
+        color: var(--soft);
+        max-width: 72ch;
+        margin-top: -16px;
+        margin-bottom: 32px;
+    }
+
+    /* problem */
+    .problem {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+    .prob {
+        border: 1px solid var(--rule);
+        border-radius: 14px;
+        padding: 22px;
+        background: var(--bg-card);
+    }
+    .prob-n {
+        font-family: var(--font-mono);
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--accent);
+    }
+    .prob p {
+        margin-top: 12px;
+        font-size: 15px;
+        line-height: 1.6;
+        color: var(--soft);
+    }
+
+    /* comparison table */
+    .table-wrap {
+        overflow-x: auto;
+        scrollbar-width: thin;
+    }
+    .compare {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 640px;
+        font-size: 14.5px;
+    }
+    .compare th,
+    .compare td {
+        padding: 14px 16px;
+        text-align: center;
+        border-bottom: 1px solid var(--rule);
+    }
+    .compare thead th {
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--mute);
+        font-weight: 600;
+        border-bottom-color: var(--rule-2);
+    }
+    .compare .rowhead {
+        text-align: left;
+        color: var(--ink);
+        font-weight: 600;
+        white-space: nowrap;
+    }
+    .compare td.yes {
+        color: var(--accent);
+        font-weight: 700;
+    }
+    .compare td.dash {
+        color: var(--mute);
+    }
+    .compare .own {
+        background: var(--accent-dim);
+        color: var(--accent);
+    }
+    .compare thead th.own {
+        color: var(--accent-bright);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .compare tbody tr:last-child td,
+    .compare tbody tr:last-child th {
+        border-bottom: 0;
+    }
+    .compare tbody tr:last-child td.own {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    /* comparison: table on desktop, card carousel on mobile */
+    .cmp-mobile {
+        display: none;
+    }
+    @media (max-width: 640px) {
+        .cmp-desktop {
+            display: none;
+        }
+        .cmp-mobile {
+            display: block;
+        }
+    }
+    .cmp-card {
+        border: 1px solid var(--rule);
+        border-radius: 14px;
+        padding: 4px 18px 10px;
+        background: var(--bg-card);
+    }
+    .cmp-feature {
+        display: block;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--ink);
+        padding: 14px 0 8px;
+        border-bottom: 1px solid var(--rule);
+    }
+    .cmp-line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--rule);
+    }
+    .cmp-card .cmp-line:last-child {
+        border-bottom: 0;
+    }
+    .cmp-tool {
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--mute);
+    }
+    .cmp-val {
+        font-size: 14.5px;
+        color: var(--soft);
+    }
+    .cmp-val.yes {
+        color: var(--accent);
+        font-weight: 700;
+    }
+    .cmp-val.dash {
+        color: var(--mute);
+    }
+    .cmp-line.own .cmp-tool {
+        color: var(--accent-bright);
+    }
+    .cmp-line.own .cmp-val {
+        color: var(--accent);
+        font-weight: 700;
+    }
+
+    /* features */
+    .feat {
+        border: 1px solid var(--rule);
+        border-radius: 16px;
+        padding: 24px;
+        background: var(--bg-card);
+        transition: border-color 0.2s, transform 0.2s;
+    }
+    .feat:hover {
+        border-color: var(--accent);
+        transform: translateY(-4px);
+    }
+    .feat h3 {
+        font-size: 16.5px;
+        font-weight: 700;
+        color: var(--ink);
+    }
+    .feat p {
+        font-size: 14.5px;
+        line-height: 1.6;
+        color: var(--soft);
+        margin-top: 10px;
+    }
+
+    /* architecture */
+    .arch {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .layer {
+        border: 1px solid var(--rule-2);
+        border-radius: 14px;
+        padding: 18px 22px;
+        background: var(--bg-card);
+    }
+    .layer.wide {
+        background: var(--bg-card-2);
+    }
+    .layer-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+    .layer-name {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--ink);
+    }
+    .layer-tech {
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--mute);
+    }
+    .services {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+    }
+    .svc {
+        flex: 1;
+        min-width: 110px;
+        text-align: center;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--rule-2);
+        border-radius: 10px;
+        padding: 10px 12px;
+    }
+    .bus {
+        margin-top: 10px;
+        text-align: center;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        color: var(--accent);
+        background: var(--accent-dim);
+        border: 1px solid var(--accent-dim);
+        border-radius: 10px;
+        padding: 9px 12px;
+    }
+    .connector {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 0;
+    }
+    .connector svg {
+        color: var(--accent);
+    }
+    /* technical decisions */
+    .dec-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+    .dec {
+        border: 1px solid var(--rule);
+        border-radius: 16px;
+        padding: 24px;
+        background: var(--bg-card);
+    }
+    .dec-n {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--accent);
+    }
+    .dec h3 {
+        font-size: 16.5px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-top: 6px;
+    }
+    .dec p {
+        font-size: 14.5px;
+        line-height: 1.6;
+        color: var(--soft);
+        margin-top: 10px;
+    }
+
+    /* metrics */
+    .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+    .metric {
+        display: flex;
+        flex-direction: column;
+        padding: 22px;
+        border: 1px solid var(--rule);
+        border-radius: 16px;
+        background: var(--bg-card);
+    }
+    .metric-val {
+        font-size: clamp(34px, 4vw, 44px);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--ink);
+        line-height: 1;
+    }
+    .metric-label {
+        margin-top: 10px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--accent);
+    }
+    .metric-sub {
+        margin-top: 8px;
+        font-size: 12.5px;
+        line-height: 1.5;
+        color: var(--mute);
+    }
+
+    /* journey: milestones + build log */
+    .milestones {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+    .ms {
+        border: 1px solid var(--rule);
+        border-radius: 16px;
+        padding: 22px;
+        background: var(--bg-card);
+    }
+    .ms.last {
+        border-color: var(--accent);
+        background: linear-gradient(150deg, var(--bg-card-2), var(--bg-card));
+    }
+    .ms-v {
+        font-family: var(--font-mono);
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--soft);
+    }
+    .ms.last .ms-v {
+        color: var(--accent);
+    }
+    .ms-name {
+        display: block;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-top: 6px;
+    }
+    .ms-desc {
+        margin-top: 8px;
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--soft);
+    }
+    .log-intro {
+        margin-top: 36px;
+        font-size: 15px;
+        color: var(--soft);
+    }
+    .log {
+        list-style: none;
+        margin-top: 26px;
+        padding: 0;
+    }
+    .log li {
+        border-top: 1px solid var(--rule);
+    }
+    .log li:last-child {
+        border-bottom: 1px solid var(--rule);
+    }
+    .log a {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 18px 0;
+        transition: padding-left 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    @media (hover: hover) {
+        .log a:hover {
+            padding-left: 12px;
+        }
+    }
+    .log-date {
+        flex-shrink: 0;
+        width: 88px;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--mute);
+    }
+    .log-title {
+        flex: 1;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--ink);
+        transition: color 0.18s;
+    }
+    .log a:hover .log-title {
+        color: var(--accent);
+    }
+    .log-ar {
+        width: 17px;
+        height: 17px;
+        flex-shrink: 0;
+        color: var(--mute);
+        transition: color 0.18s, transform 0.25s;
+    }
+    .log a:hover .log-ar {
+        color: var(--accent);
+        transform: translate(3px, -3px);
+    }
+
+    @media (max-width: 880px) {
+        .hero {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+    }
+    @media (max-width: 760px) {
+        .problem,
+        .dec-grid,
+        .metrics,
+        .milestones {
+            grid-template-columns: 1fr;
+        }
+        /* don't lift the feature cards while swiping the carousel */
+        .feat:hover {
+            transform: none;
+        }
+    }
+    @media (max-width: 600px) {
+        .tf {
+            padding: 104px 0 56px;
+        }
+    }
+</style>

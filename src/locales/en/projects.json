@@ -5,6 +5,7 @@
             "id": "tripflow",
             "title": "TripFlow",
             "featured": true,
+            "page": "/work/tripflow",
             "flag": "Bachelor's Thesis",
             "image": "/images/projects/tripflow-showcase.webp",
             "description": "AI-assisted travel planner with real-time collaboration and an offline mode, on a Spring Boot microservices backend with a React frontend. Designed end-to-end and shipped as my Bachelor's Thesis.",

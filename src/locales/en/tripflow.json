@@ -1,0 +1,75 @@
+{
+    "meta_title": "TripFlow · AI travel planner (Bachelor's Thesis) | Diego Sánchez Rincón",
+    "meta_description": "TripFlow: an AI-assisted travel planner with real-time collaboration, interactive maps and offline access. Spring Boot microservices backend with a React PWA frontend. Bachelor's Thesis, graded 10/10.",
+    "tagline": "An AI-assisted travel planner that brings the whole trip together in one place, with real-time collaboration, interactive maps and full offline access.",
+    "live": "Live demo",
+    "source": "Source code",
+    "image_alt": "Two smartphones showing the TripFlow app: a dashboard with trip stats and a trip detail screen for a Japan itinerary.",
+
+    "problem_heading": "The problem",
+    "problem_lede": "Planning a trip means juggling half a dozen tools that don't talk to each other. The result is information that's scattered, copied by hand and out of date almost immediately.",
+    "problem_points": [
+        { "n": "01", "text": "Information is scattered across search engines, maps, blogs and chats." },
+        { "n": "02", "text": "Nothing is connected: every detail is copied by hand and goes stale instantly." },
+        { "n": "03", "text": "In a group it multiplies: different preferences and changes that get lost." }
+    ],
+
+    "compare_heading": "The whole trip in one place",
+    "compare_intro": "Most tools solve only a slice of the problem. TripFlow set out to cover the whole of it (time-based planning, AI, real-time collaboration and offline) in a single product.",
+    "compare_cols": ["Maps", "TripAdvisor", "Roamy", "Wanderlog", "TripFlow"],
+    "compare_rows": [
+        { "feature": "Time-based planning", "values": ["—", "—", "✓", "✓", "✓"] },
+        { "feature": "Real-time collaboration", "values": ["—", "—", "—", "Paid", "✓"] },
+        { "feature": "AI generation", "values": ["—", "—", "✓", "✓", "✓"] },
+        { "feature": "Offline support", "values": ["Partial", "—", "—", "Paid", "✓"] },
+        { "feature": "Cross-platform", "values": ["✓", "✓", "—", "✓", "✓"] },
+        { "feature": "Pricing", "values": ["Free", "Free", "Free", "Freemium", "Freemium"] }
+    ],
+
+    "features_heading": "Features",
+    "features_intro": "Everything you need to plan a trip, from the first idea to a shareable, offline-ready itinerary.",
+    "features": [
+        { "title": "Day-by-day itineraries", "desc": "Plan trips by days and activities, with optimized routes between places." },
+        { "title": "AI assistant", "desc": "Generate a complete itinerary from a single prompt with an AI assistant." },
+        { "title": "Real-time collaboration", "desc": "Plan together with live, role-based collaboration." },
+        { "title": "Interactive map + PDF", "desc": "Visualize everything on an interactive map and export a clean PDF." },
+        { "title": "Public share links", "desc": "Share any itinerary through a secure public link." },
+        { "title": "Cross-platform PWA · Offline", "desc": "An installable PWA that works on any device, even with no connection." }
+    ],
+
+    "arch_heading": "Distributed architecture",
+    "arch_intro": "TripFlow is a distributed system: a React PWA talks to a set of Spring Boot microservices through a gateway, and those services coordinate asynchronously over an Apache Kafka event bus.",
+    "arch_layers": [
+        { "name": "SPA / PWA client", "tech": "React · Vite" },
+        { "name": "Gateway", "tech": "Cloudflare · Traefik · HTTPS" },
+        { "name": "Microservices", "tech": "Spring Boot · Java 21", "services": ["Main API", "AI", "Notifications"], "bus": "Event bus · Apache Kafka" },
+        { "name": "Persistence", "tech": "PostgreSQL · H2" }
+    ],
+
+    "decisions_heading": "Key technical decisions",
+    "decisions_intro": "A handful of decisions shaped the project the most, around security, AI, real-time and offline.",
+    "decisions": [
+        { "n": "01", "title": "JWT authentication", "desc": "Dual JWT (15-min access, 30-day refresh) in HttpOnly cookies to mitigate XSS." },
+        { "n": "02", "title": "Async, secure AI", "desc": "Prompt-injection filtering on the way in, and sanitization of the generated JSON on the way out." },
+        { "n": "03", "title": "Real time", "desc": "WebSocket + STOMP with JWT validation in the handshake itself to authorize events." },
+        { "n": "04", "title": "Offline PWA", "desc": "A service worker installs the app and lets you consult itineraries with no connection, mid-trip." }
+    ],
+
+    "metrics_heading": "Quality & delivery",
+    "metrics_intro": "Built with a strong testing and automation culture from day one: every change ships through the same pipeline.",
+    "metrics": [
+        { "value": "950+", "label": "automated tests", "sub": "313 backend · 640 frontend · 8 E2E suites (Playwright)" },
+        { "value": "67%", "label": "code coverage", "sub": "measured on every build" },
+        { "value": "803+", "label": "commits in CI/CD", "sub": "build + tests before every merge" },
+        { "value": "100%", "label": "automated deploy", "sub": "VPS · Dokploy · Traefik · HTTPS" }
+    ],
+
+    "journey_heading": "The journey",
+    "journey_intro": "TripFlow was my Bachelor's Thesis at Universidad Rey Juan Carlos, graded 10/10, designed and built end to end. It grew iteratively across three versions, and each one shipped as a working, deployed release rather than a prototype, from the first commit to v1.0.0.",
+    "milestones": [
+        { "version": "v0.1", "name": "MVP", "desc": "Authentication and base itineraries." },
+        { "version": "v0.2", "name": "Intelligence", "desc": "AI, notifications and administration." },
+        { "version": "v1.0", "name": "Product", "desc": "Maps, collaboration, share links, PWA and PDF." }
+    ],
+    "log_intro": "Each release, documented from first commit to v1.0.0:"
+}
