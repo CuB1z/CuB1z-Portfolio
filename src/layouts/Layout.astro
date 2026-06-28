@@ -112,6 +112,12 @@ const websiteLd = {
         <meta property="twitter:image" content={new URL("/og-image.png", Astro.site)} />
 
         <link rel="icon" href="/favicon.svg" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="Diego Sánchez Rincón · Blog"
+            href={isEs ? "/es/rss.xml" : "/rss.xml"}
+        />
 
         <script
             type="application/ld+json"
@@ -293,6 +299,20 @@ const websiteLd = {
 
     html {
         scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
     }
 
     body {
