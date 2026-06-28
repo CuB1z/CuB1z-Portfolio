@@ -1,6 +1,7 @@
 ---
 import { t } from "i18n:astro";
-import ArrowButton from "@components/shared/ArrowButton.astro";
+import { buildUrl } from "@/utils/urlUtils";
+import Carousel from "@components/shared/Carousel.astro";
 import SectionHeader from "@components/shared/SectionHeader.astro";
 
 interface Props {
@@ -12,6 +13,7 @@ interface Project {
     id: string;
     title: string;
     featured?: boolean;
+    page?: string;
     flag?: string;
     image?: string;
     description: string;
@@ -25,6 +27,13 @@ const projects = t("projects:projects", { returnObjects: true }) as Project[];
 const featured = projects.find((p) => p.featured) ?? projects[0];
 const rest = projects.filter((p) => p !== featured);
 
+// Featured card links to its internal case-study page when one exists,
+// otherwise straight to the live demo.
+const featuredHref = featured.page
+    ? buildUrl(featured.page)
+    : featured.links.live;
+const featuredExternal = !featured.page;
+
 const previewHost = featured.links.live
     ? new URL(featured.links.live).host
     : null;
@@ -35,13 +44,14 @@ const previewHost = featured.links.live
         <SectionHeader num={num} heading={heading} />
 
         <article class="feat-wide">
-            {featured.links.live && (
+            {featuredHref && (
                 <a
                     class="card-cover"
-                    href={featured.links.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={featuredHref}
                     aria-label={featured.title}
+                    {...(featuredExternal
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
                 />
             )}
             <div class="info">
@@ -54,11 +64,6 @@ const previewHost = featured.links.live
                 <h3>{featured.title}</h3>
                 <p>{featured.description}</p>
                 <div class="tags">{featured.techStack.map((tech) => <span>{tech}</span>)}</div>
-                {featured.links.github && (
-                    <div class="links">
-                        <a href={featured.links.github} target="_blank" rel="noopener noreferrer">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-                    </div>
-                )}
             </div>
             <div class="preview">
                 {featured.image ? (
@@ -69,7 +74,7 @@ const previewHost = featured.links.live
             </div>
         </article>
 
-        <div class="grid">
+        <Carousel cols={2} label="projects">
             {
                 rest.map((project) => {
                     const href = project.links.live ?? project.links.github;
@@ -95,19 +100,7 @@ const previewHost = featured.links.live
                     );
                 })
             }
-        </div>
-
-        <div class="car-ctrl">
-            <div class="car-dots">
-                {rest.map((_, i) => (
-                    <button type="button" class="car-dot" data-i={i} aria-label={`Go to project ${i + 1}`} />
-                ))}
-            </div>
-            <div class="car-arrows">
-                <ArrowButton dir="prev" label="Previous projects" />
-                <ArrowButton dir="next" label="Next projects" />
-            </div>
-        </div>
+        </Carousel>
     </div>
 </section>
 
@@ -213,39 +206,6 @@ const previewHost = featured.links.live
         font-size: 11.5px;
         color: var(--soft);
     }
-    .links {
-        display: flex;
-        gap: 18px;
-        margin-top: 16px;
-        font-size: 13.5px;
-        font-weight: 600;
-        position: relative;
-        z-index: 2;
-    }
-    .links a {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        color: var(--ink);
-        transition: color 0.18s;
-    }
-    .links a svg {
-        width: 14px;
-        height: 14px;
-        transition: transform 0.2s;
-    }
-    .links a:hover {
-        color: var(--accent);
-    }
-    .links a:hover svg {
-        transform: translate(2px, -2px);
-    }
-
-    .grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-    }
     .card {
         border: 1px solid var(--rule);
         border-radius: 16px;
@@ -300,58 +260,10 @@ const previewHost = featured.links.live
             display: none;
         }
     }
-    .car-ctrl {
-        display: none;
-    }
-    .car-dots {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .car-dot {
-        width: 8px;
-        height: 8px;
-        padding: 0;
-        border: 0;
-        border-radius: 50%;
-        background: var(--rule-2);
-        cursor: pointer;
-        transition: background 0.18s, transform 0.18s;
-    }
-    .car-dot.active {
-        background: var(--accent);
-        transform: scale(1.15);
-    }
-    .car-arrows {
-        display: flex;
-        gap: 7px;
-    }
 
-    @media (max-width: 680px) {
-        .grid {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 14px;
-            padding: 4px 0;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-        }
-        .grid::-webkit-scrollbar {
-            display: none;
-        }
-        .card {
-            flex: 0 0 100%;
-            scroll-snap-align: start;
-        }
+    @media (max-width: 760px) {
         .card:hover {
             transform: none;
-        }
-        .car-ctrl {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 24px;
         }
     }
 </style>

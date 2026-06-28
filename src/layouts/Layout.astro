@@ -78,7 +78,7 @@ const personLd = {
 const websiteLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: `Diego Sánchez Rincón — ${jobTitle}`,
+    name: `Diego Sánchez Rincón · ${jobTitle}`,
     alternateName: ["Diego Sánchez", "CuB1z"],
     url: siteUrl,
     description: pageDescription,
@@ -235,39 +235,10 @@ const websiteLd = {
                 go(1);
             }
 
-            function initCarousel() {
-                const grid = document.querySelector<HTMLElement>("#work .grid");
-                const ctrl = document.querySelector<HTMLElement>("#work .car-ctrl");
-                if (!grid || !ctrl) return;
-                const prev = ctrl.querySelector<HTMLButtonElement>('[data-rel="prev"]');
-                const next = ctrl.querySelector<HTMLButtonElement>('[data-rel="next"]');
-                const dots = Array.from(
-                    ctrl.querySelectorAll<HTMLButtonElement>(".car-dot")
-                );
-                const cards = Array.from(grid.querySelectorAll<HTMLElement>(".card"));
-                if (!prev || !next || !cards.length) return;
-                const step = () => cards[0].getBoundingClientRect().width + 14;
-                const current = () => Math.round(grid.scrollLeft / step());
-                const go = (i: number) => {
-                    const n = ((i % cards.length) + cards.length) % cards.length;
-                    grid.scrollTo({ left: n * step(), behavior: "smooth" });
-                };
-                const update = () => {
-                    const idx = current();
-                    dots.forEach((d, i) => d.classList.toggle("active", i === idx));
-                };
-                dots.forEach((d, i) => (d.onclick = () => go(i)));
-                prev.onclick = () => go(current() - 1);
-                next.onclick = () => go(current() + 1);
-                grid.addEventListener("scroll", update, { passive: true });
-                update();
-            }
-
             document.addEventListener("astro:page-load", () => {
                 initNav();
                 initToc();
                 initPager();
-                initCarousel();
             });
         </script>
     </body>
