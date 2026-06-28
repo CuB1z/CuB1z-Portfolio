@@ -1,5 +1,5 @@
 ---
-import { t } from "i18n:astro";
+import { t, getLocale } from "i18n:astro";
 import { buildUrl } from "@/utils/urlUtils";
 import Carousel from "@components/shared/Carousel.astro";
 import SectionHeader from "@components/shared/SectionHeader.astro";
@@ -37,9 +37,41 @@ const featuredExternal = !featured.page;
 const previewHost = featured.links.live
     ? new URL(featured.links.live).host
     : null;
+
+// Machine-readable list of the projects so AI can read each one even though
+// they don't all have a dedicated page.
+const locale = getLocale();
+const projectsLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: heading,
+    itemListElement: projects.map((p, i) => {
+        const sameAs = [p.links.live, p.links.github].filter(Boolean);
+        const url = p.page
+            ? new URL(`${p.page}/`, Astro.site).toString()
+            : (p.links.live ?? p.links.github);
+        return {
+            "@type": "ListItem",
+            position: i + 1,
+            item: {
+                "@type": "CreativeWork",
+                name: p.title,
+                description: p.description,
+                inLanguage: locale,
+                ...(url ? { url } : {}),
+                ...(sameAs.length ? { sameAs } : {}),
+                keywords: p.techStack.join(", "),
+            },
+        };
+    }),
+};
 ---
 
 <section id="work" class="section">
+    <script
+        type="application/ld+json"
+        set:html={JSON.stringify(projectsLd)}
+    />
     <div class="shell">
         <SectionHeader num={num} heading={heading} />
 
