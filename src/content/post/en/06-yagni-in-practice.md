@@ -4,7 +4,7 @@ description: "Stop over-engineering for a future that hasn't arrived. Learn the 
 pubDate: 2026-03-23
 tags: ["Architecture", "Engineering", "Backend", "Testing"]
 image: "/images/posts/cover-yagni-in-practice.webp"
-imageAlt: "Cartoon of an absurdly over-engineered machine: a black box covered in screens, gauges, gears, pipes, cables and robotic arms — a visual metaphor for over-engineering."
+imageAlt: "Cartoon of an absurdly over-engineered machine: a black box covered in screens, gauges, gears, pipes, cables and robotic arms, a visual metaphor for over-engineering."
 locale: "en"
 slug: "yagni-in-practice"
 altSlug: "yagni-en-la-practica"

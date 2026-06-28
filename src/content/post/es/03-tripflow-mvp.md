@@ -439,7 +439,7 @@ public ResponseEntity<ExtendedItineraryDTO> createItinerary(@RequestBody Extende
 
 ## 🌱 Próximos Pasos
 
-Durante la próxima fase, TripFlow se está preparando para la versión 0.2.0 con mejoras ambiciosas que harán que la aplicación sea más inteligente, rápida e interactiva. Se mejorarán las funciones principales, se actualizarán las pruebas y se sentarán las bases para una PWA de planificación de viajes completamente funcional y potenciada por IA — **¡sigue el progreso!**
+Durante la próxima fase, TripFlow se está preparando para la versión 0.2.0 con mejoras ambiciosas que harán que la aplicación sea más inteligente, rápida e interactiva. Se mejorarán las funciones principales, se actualizarán las pruebas y se sentarán las bases para una PWA de planificación de viajes completamente funcional y potenciada por IA, **¡sigue el progreso!**
 
 - 🤖 **Generación de itinerarios impulsada por IA**
 - 🖼️ **Avatares de usuario y fotos de perfil**

@@ -4,7 +4,7 @@ description: "¿Tu arquitectura escala tu aplicación o solo tu factura de la nu
 pubDate: 2026-03-16
 tags: ["Microservicios", "Arquitectura", "Ingeniería", "Backend", "DevOps"]
 image: "/images/posts/cover-beyond-the-monolith.webp"
-imageAlt: "Ilustración isométrica de un cubo azul brillante que se divide, mediante una flecha, en varios cubos más pequeños conectados entre sí — un monolito separándose en microservicios sobre un fondo de circuitos."
+imageAlt: "Ilustración isométrica de un cubo azul brillante que se divide, mediante una flecha, en varios cubos más pequeños conectados entre sí: un monolito separándose en microservicios sobre un fondo de circuitos."
 locale: "es"
 slug: "mas-alla-del-monolito"
 altSlug: "beyond-the-monolith"

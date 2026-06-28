@@ -6,7 +6,7 @@
                 "role": "Desarrollador Full-Stack",
                 "company": "Génexys Technology",
                 "type": "Jornada completa",
-                "date": "Feb 2026 — Actualidad",
+                "date": "Feb 2026 – Actualidad",
                 "lead": "Contribuyo al diseño y desarrollo de soluciones basadas en microservicios, apoyando la evolución de la plataforma y la entrega de servicios cloud-native escalables.",
                 "bullets": [
                     "Desarrollo y mantengo servicios backend con Python y FastAPI.",
@@ -19,7 +19,7 @@
                 "role": "Desarrollador Full-Stack",
                 "company": "Telefónica Innovación Digital",
                 "type": "Prácticas",
-                "date": "Jul 2025 — Dic 2025",
+                "date": "Jul 2025 – Dic 2025",
                 "lead": "Contribuí al desarrollo y la optimización de aplicaciones web con Next.js dentro del Design System Mística, centrándome en accesibilidad, SEO y rendimiento.",
                 "bullets": [
                     "Implementé mejoras de accesibilidad (WCAG) y SEO en productos digitales.",
@@ -44,7 +44,7 @@
             },
             {
                 "label": "Idiomas",
-                "lines": ["Español — nativo", "Inglés — B2 (Cambridge)"]
+                "lines": ["Español (nativo)", "Inglés (B2, Cambridge)"]
             },
             {
                 "label": "Enfoque",

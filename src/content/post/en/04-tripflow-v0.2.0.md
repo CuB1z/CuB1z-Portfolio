@@ -148,7 +148,7 @@ We adopted **GitOps** to professionalize the software lifecycle.
 
 ## 🌱 What’s Next
 
-The journey doesn't stop here. We are charging towards **v1.0.0** with a clear vision: to make TripFlow the ultimate social travel companion. Imagine editing trips with friends in real-time, exploring interactive maps, and accessing your plans even without signal. The future of travel planning is collaborative and offline-first — **follow along to see the progress!**
+The journey doesn't stop here. We are charging towards **v1.0.0** with a clear vision: to make TripFlow the ultimate social travel companion. Imagine editing trips with friends in real-time, exploring interactive maps, and accessing your plans even without signal. The future of travel planning is collaborative and offline-first, **follow along to see the progress!**
 
 - 🗺️ **Interactive Maps with real route visualization**
 - 🤝 **Collaborative Mode for real-time editing**

@@ -10,30 +10,30 @@ root; Spanish under /es.
 
 ## Navigation
 
-- / — Home: hero, experience, selected work and about, on one page (Spanish: /es).
-- /blog — Writing: posts on engineering, architecture and the TripFlow project (Spanish: /es/blog).
-- /blog/<slug> — individual blog post (Spanish: /es/blog/<slug>).
+- / (Home): hero, experience, selected work and about, on one page. Spanish: /es.
+- /blog (Writing): posts on engineering, architecture and the TripFlow project. Spanish: /es/blog.
+- /blog/<slug>: an individual blog post. Spanish: /es/blog/<slug>.
 
 ## Blog posts
 
 Newest first. Spanish translations live under /es/blog/<slug>.
 
-- Introducing TripFlow — a travel-planning PWA with AI itineraries and route optimization: https://cub1z.es/blog/introducing-tripflow
-- CI/CD & Testing TripFlow — backend/frontend setup, test suites and deployment pipelines: https://cub1z.es/blog/ci-cd-testing-tripflow
-- TripFlow MVP — authentication, itinerary management and a Dockerized, fully tested app: https://cub1z.es/blog/tripflow-mvp
-- TripFlow v0.2.0: AI & Microservices — AI itinerary generation and a Kafka-based microservices architecture: https://cub1z.es/blog/tripflow-v0.2.0
-- Beyond the Monolith — when to adopt microservices versus keeping a modular monolith: https://cub1z.es/blog/beyond-the-monolith
-- YAGNI in Practice — avoiding speculative over-engineering and the maintenance tax it creates: https://cub1z.es/blog/yagni-in-practice
-- TripFlow v1.0.0 — collaborative itineraries, secure share links, maps, offline access and PDF export: https://cub1z.es/blog/tripflow-v1.0.0
+- Introducing TripFlow: a travel-planning PWA with AI itineraries and route optimization. https://cub1z.es/blog/introducing-tripflow
+- CI/CD & Testing TripFlow: backend and frontend setup, test suites and deployment pipelines. https://cub1z.es/blog/ci-cd-testing-tripflow
+- TripFlow MVP: authentication, itinerary management and a Dockerized, fully tested app. https://cub1z.es/blog/tripflow-mvp
+- TripFlow v0.2.0 (AI & Microservices): AI itinerary generation and a Kafka-based microservices architecture. https://cub1z.es/blog/tripflow-v0.2.0
+- Beyond the Monolith: when to adopt microservices versus keeping a modular monolith. https://cub1z.es/blog/beyond-the-monolith
+- YAGNI in Practice: avoiding speculative over-engineering and the maintenance tax it creates. https://cub1z.es/blog/yagni-in-practice
+- TripFlow v1.0.0: collaborative itineraries, secure share links, maps, offline access and PDF export. https://cub1z.es/blog/tripflow-v1.0.0
 
 ## Experience
 
-- Génexys Technology — Full-Stack Developer (Feb 2026 – present): microservices with Python, FastAPI and AWS.
-- Telefónica Innovación Digital — Full-Stack Developer, internship (Jul – Dec 2025): Next.js, accessibility (WCAG), SEO and web performance.
+- Génexys Technology, Full-Stack Developer (Feb 2026 – present): microservices with Python, FastAPI and AWS.
+- Telefónica Innovación Digital, Full-Stack Developer, internship (Jul – Dec 2025): Next.js, accessibility (WCAG), SEO and web performance.
 
 ## Featured project
 
-- TripFlow — Bachelor's Thesis (10/10): an AI-assisted travel planner with real-time collaboration and an offline mode, on a Spring Boot microservices backend with a React frontend. Live at https://tripflow.cub1z.es
+- TripFlow, Bachelor's Thesis (10/10): an AI-assisted travel planner with real-time collaboration and an offline mode, on a Spring Boot microservices backend with a React frontend. Live at https://tripflow.cub1z.es
 
 ## Technical skills
 

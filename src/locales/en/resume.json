@@ -6,7 +6,7 @@
                 "role": "Full-Stack Developer",
                 "company": "Génexys Technology",
                 "type": "Full-time",
-                "date": "Feb 2026 — Present",
+                "date": "Feb 2026 – Present",
                 "lead": "I contribute to the design and development of microservice-based solutions, supporting the evolution of the platform and the delivery of scalable cloud-native services.",
                 "bullets": [
                     "Develop and maintain backend services with Python and FastAPI.",
@@ -19,7 +19,7 @@
                 "role": "Full-Stack Developer",
                 "company": "Telefónica Innovación Digital",
                 "type": "Internship",
-                "date": "Jul 2025 — Dec 2025",
+                "date": "Jul 2025 – Dec 2025",
                 "lead": "Contributed to the development and optimization of web applications with Next.js within the Mística Design System, focusing on accessibility, SEO and performance.",
                 "bullets": [
                     "Implemented accessibility (WCAG) and SEO improvements across digital products.",
@@ -44,7 +44,7 @@
             },
             {
                 "label": "Languages",
-                "lines": ["Spanish — native", "English — B2 (Cambridge)"]
+                "lines": ["Spanish (native)", "English (B2, Cambridge)"]
             },
             {
                 "label": "Focus",

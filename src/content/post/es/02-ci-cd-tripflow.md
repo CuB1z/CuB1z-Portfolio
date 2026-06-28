@@ -150,6 +150,6 @@ Puedes ver el código completo [aquí](https://github.com/codeurjc-students/2025
 
 ## 🌱 Próximos Pasos
 
-Durante la siguiente fase, estaré desarrollando el MVP de TripFlow, añadiendo funcionalidades principales y actualizando las pruebas correspondientes para asegurar que todo funcione sin problemas. Esto construirá sobre la base establecida en la Fase 2 y acercará la aplicación a una PWA de planificación de viajes completamente funcional — **¡sígueme para ver el progreso!**
+Durante la siguiente fase, estaré desarrollando el MVP de TripFlow, añadiendo funcionalidades principales y actualizando las pruebas correspondientes para asegurar que todo funcione sin problemas. Esto construirá sobre la base establecida en la Fase 2 y acercará la aplicación a una PWA de planificación de viajes completamente funcional, **¡sígueme para ver el progreso!**
 
 ![TripFlow Banner](/images/posts/tripflow-banner.webp)
