@@ -1,4 +1,3 @@
-
 export function formatDate(date: Date, locale: string): string {
     return date.toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
         year: "numeric",
@@ -7,10 +6,9 @@ export function formatDate(date: Date, locale: string): string {
     });
 }
 
-export function formatDateParts(date: Date, locale: string): { line1: string; line2: string } {
-    const code = locale === "es" ? "es-ES" : "en-US";
-    const month = date.toLocaleDateString(code, { month: "long" });
-    const day = date.getDate();
-    const year = date.getFullYear();
-    return { line1: `${month} ${day},`, line2: `${year}` };
+export function formatMonthYear(date: Date, locale: string): string {
+    return new Date(date).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
+        month: "short",
+        year: "numeric",
+    });
 }

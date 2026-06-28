@@ -3,6 +3,7 @@ import { getLocale, t } from "i18n:astro";
 import { getCollection } from "astro:content";
 
 import { buildUrl } from "@/utils/urlUtils";
+import { formatMonthYear } from "@/utils/formatUtils";
 import Layout from "@layouts/Layout.astro";
 import Breadcrumb from "@components/shared/Breadcrumb.astro";
 import ArrowButton from "@components/shared/ArrowButton.astro";
@@ -16,12 +17,6 @@ const posts = allPosts
         (a, b) =>
             new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
     );
-
-const fmt = (date: Date) =>
-    new Date(date).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
-        month: "short",
-        year: "numeric",
-    });
 
 const PER_PAGE = 4;
 const pageCount = Math.ceil(posts.length / PER_PAGE);
@@ -46,7 +41,7 @@ const pageCount = Math.ceil(posts.length / PER_PAGE);
                 {
                     posts.map((post) => (
                         <a class="post" href={buildUrl(`/blog/${post.data.slug || post.slug}`)}>
-                            <span class="date">{fmt(post.data.pubDate)}</span>
+                            <span class="date">{formatMonthYear(post.data.pubDate, locale)}</span>
                             <h2>
                                 {post.data.title}
                                 <span class="ar">

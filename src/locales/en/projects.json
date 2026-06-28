@@ -2,7 +2,6 @@
     "heading": "Selected Work",
     "projects": [
         {
-            "id": "tripflow",
             "title": "TripFlow",
             "featured": true,
             "page": "/work/tripflow",
@@ -16,7 +15,6 @@
             }
         },
         {
-            "id": "notehub",
             "title": "NoteHub",
             "description": "Lightweight platform that lets you view Markdown notes directly from GitHub repositories, with a clean interface adaptable to any device.",
             "techStack": ["Next.js", "TypeScript", "GitHub API"],
@@ -26,7 +24,6 @@
             }
         },
         {
-            "id": "savex",
             "title": "SaveX",
             "description": "A platform that allows users to compare the prices of products between different supermarkets.",
             "techStack": ["Spring Boot", "Angular", "MySQL", "Docker"],
@@ -36,7 +33,6 @@
             }
         },
         {
-            "id": "bits-of-battle",
             "title": "Bits of Battle",
             "description": "A 1vs1 game to play locally with a friend using the same keyboard. Built for La Hackathon del Dev.",
             "techStack": ["React", "JavaScript", "HTML"],
@@ -46,7 +42,6 @@
             }
         },
         {
-            "id": "djsanz",
             "title": "DJ Sanz",
             "description": "Portfolio website for DJ Sanz, with a clean and modern interface adaptable to any device.",
             "techStack": ["Next.js", "React", "TypeScript"],
@@ -56,7 +51,6 @@
             }
         },
         {
-            "id": "minishell",
             "title": "MiniShell",
             "description": "Simplified Unix/Linux shell built in C that emulates the behavior of a native terminal.",
             "techStack": ["C", "Linux", "Terminal"],
@@ -66,7 +60,6 @@
             }
         },
         {
-            "id": "wallapop-scrapper",
             "title": "Wallapop Scrapper",
             "description": "A simple Wallapop scraping integration with a Telegram bot.",
             "techStack": ["Python", "TeleBot", "MySQL"],

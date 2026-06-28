@@ -10,7 +10,6 @@ const post = defineCollection({
         image: z.string().optional(),
         imageAlt: z.string().optional(),
         tags: z.array(z.string()).optional(),
-        draft: z.boolean().optional().default(true),
         locale: z.enum(["en", "es"]).default("en"),
         slug: z.string().optional(),
         altSlug: z.string().optional(), // Alternative slug for other language [EN | ES]

@@ -2,7 +2,6 @@
     "heading": "Proyectos destacados",
     "projects": [
         {
-            "id": "tripflow",
             "title": "TripFlow",
             "featured": true,
             "page": "/work/tripflow",
@@ -16,7 +15,6 @@
             }
         },
         {
-            "id": "notehub",
             "title": "NoteHub",
             "description": "Plataforma ligera que permite visualizar notas en Markdown directamente desde repositorios de GitHub, con una interfaz limpia y adaptable a cualquier dispositivo.",
             "techStack": ["Next.js", "TypeScript", "GitHub API"],
@@ -26,7 +24,6 @@
             }
         },
         {
-            "id": "savex",
             "title": "SaveX",
             "description": "Plataforma que permite a los usuarios comparar los precios de productos entre diferentes supermercados.",
             "techStack": ["Spring Boot", "Angular", "MySQL", "Docker"],
@@ -36,7 +33,6 @@
             }
         },
         {
-            "id": "bits-of-battle",
             "title": "Bits of Battle",
             "description": "Un juego 1vs1 para jugar en local con un amigo usando el mismo teclado. Creado para La Hackathon del Dev.",
             "techStack": ["React", "JavaScript", "HTML"],
@@ -46,7 +42,6 @@
             }
         },
         {
-            "id": "djsanz",
             "title": "DJ Sanz",
             "description": "Web de portafolio para DJ Sanz, con un diseño limpio y moderno que se adapta a cualquier dispositivo.",
             "techStack": ["Next.js", "React", "TypeScript"],
@@ -56,7 +51,6 @@
             }
         },
         {
-            "id": "minishell",
             "title": "MiniShell",
             "description": "Shell simplificada de Unix/Linux construida en C que emula el comportamiento de una terminal nativa.",
             "techStack": ["C", "Linux", "Terminal"],
@@ -66,7 +60,6 @@
             }
         },
         {
-            "id": "wallapop-scrapper",
             "title": "Wallapop Scrapper",
             "description": "Una integración sencilla de scraping de Wallapop con un bot de Telegram.",
             "techStack": ["Python", "TeleBot", "MySQL"],
