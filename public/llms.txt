@@ -14,6 +14,18 @@ root; Spanish under /es.
 - /blog — Writing: posts on engineering, architecture and the TripFlow project (Spanish: /es/blog).
 - /blog/<slug> — individual blog post (Spanish: /es/blog/<slug>).
 
+## Blog posts
+
+Newest first. Spanish translations live under /es/blog/<slug>.
+
+- Introducing TripFlow — a travel-planning PWA with AI itineraries and route optimization: https://cub1z.es/blog/introducing-tripflow
+- CI/CD & Testing TripFlow — backend/frontend setup, test suites and deployment pipelines: https://cub1z.es/blog/ci-cd-testing-tripflow
+- TripFlow MVP — authentication, itinerary management and a Dockerized, fully tested app: https://cub1z.es/blog/tripflow-mvp
+- TripFlow v0.2.0: AI & Microservices — AI itinerary generation and a Kafka-based microservices architecture: https://cub1z.es/blog/tripflow-v0.2.0
+- Beyond the Monolith — when to adopt microservices versus keeping a modular monolith: https://cub1z.es/blog/beyond-the-monolith
+- YAGNI in Practice — avoiding speculative over-engineering and the maintenance tax it creates: https://cub1z.es/blog/yagni-in-practice
+- TripFlow v1.0.0 — collaborative itineraries, secure share links, maps, offline access and PDF export: https://cub1z.es/blog/tripflow-v1.0.0
+
 ## Experience
 
 - Génexys Technology — Full-Stack Developer (Feb 2026 – present): microservices with Python, FastAPI and AWS.

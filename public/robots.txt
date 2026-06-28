@@ -3,3 +3,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://cub1z.es/sitemap.xml
+# llms.txt (site summary for AI): https://cub1z.es/llms.txt

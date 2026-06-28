@@ -106,7 +106,7 @@ const blogPostingLd = {
 
                 {
                     post.data.image && (
-                        <img class="hero-img" src={post.data.image} alt={post.data.title} loading="eager" />
+                        <img class="hero-img" src={post.data.image} alt={post.data.imageAlt ?? post.data.title} loading="eager" />
                     )
                 }
 

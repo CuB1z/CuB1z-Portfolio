@@ -8,6 +8,7 @@ const post = defineCollection({
         pubDate: z.date(),
         updatedDate: z.date().optional(),
         image: z.string().optional(),
+        imageAlt: z.string().optional(),
         tags: z.array(z.string()).optional(),
         draft: z.boolean().optional().default(true),
         locale: z.enum(["en", "es"]).default("en"),
