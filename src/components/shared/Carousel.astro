@@ -46,21 +46,28 @@ const { cols = 3, label = "items", class: extra = "" } = Astro.props as Props;
     .car-dots {
         display: flex;
         align-items: center;
-        gap: 8px;
     }
     /* dots are created in the script, so they live outside this component's
        scope — style them globally (scoped under the local .car-dots). */
     .car-dots :global(.car-dot) {
-        width: 8px;
-        height: 8px;
+        width: 24px;
+        height: 24px;
         padding: 0;
         border: 0;
+        background: none;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+    }
+    .car-dots :global(.car-dot)::before {
+        content: "";
+        width: 8px;
+        height: 8px;
         border-radius: 50%;
         background: var(--rule-2);
-        cursor: pointer;
         transition: background 0.18s, transform 0.18s;
     }
-    .car-dots :global(.car-dot.active) {
+    .car-dots :global(.car-dot.active)::before {
         background: var(--accent);
         transform: scale(1.15);
     }
