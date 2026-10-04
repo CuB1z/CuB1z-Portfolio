@@ -1,4 +1,7 @@
 import { getCollection } from "astro:content";
+import { localePaths } from "@utils/i18nUtils";
+
+export const getStaticPaths = localePaths;
 
 const staticPages = ["", "blog", "work/tripflow"];
 const locales = ["", "es"];
@@ -28,7 +31,7 @@ export async function GET(context: { site: URL }) {
   // Individual blog posts, each under its own locale only.
   const posts = await getCollection("post");
   const postEntries = posts.map((post) => {
-    const slug = post.data.slug || post.slug;
+    const slug = post.data.slug || post.id;
     const locale = post.data.locale === "es" ? "es" : "";
     const date = post.data.updatedDate ?? post.data.pubDate;
     return {

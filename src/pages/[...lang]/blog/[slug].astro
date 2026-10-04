@@ -1,6 +1,6 @@
 ---
-import { getCollection } from "astro:content";
-import { getLocale, getLocalePlaceholder, t } from "i18n:astro";
+import { getCollection, render } from "astro:content";
+import { DEFAULT_LOCALE, useTranslations } from "@utils/i18nUtils";
 
 import { buildAltLangUrl, buildUrl } from "@/utils/urlUtils";
 import { formatDate, formatMonthYear } from "@/utils/formatUtils";
@@ -9,20 +9,19 @@ import Layout from "@layouts/Layout.astro";
 import Breadcrumb from "@components/shared/Breadcrumb.astro";
 
 export async function getStaticPaths() {
-    const locale = getLocalePlaceholder();
     const posts = await getCollection("post");
 
-    return posts
-        .filter((post) => (post.data.locale ?? "en") === locale)
-        .map((post) => {
-            const slug = post.data.slug || post.slug;
-            return { params: { slug }, props: post };
-        });
+    return posts.map((post) => {
+        const lang = post.data.locale === DEFAULT_LOCALE ? undefined : post.data.locale;
+        const slug = post.data.slug || post.id;
+        return { params: { lang, slug }, props: post };
+    });
 }
 
 const post = Astro.props;
-const { Content, headings } = await post.render();
-const currentLocale = getLocale();
+const { Content, headings } = await render(post);
+const currentLocale = Astro.currentLocale;
+const t = useTranslations(currentLocale);
 
 const toc = headings.filter((h) => h.depth === 2);
 const altLangUrl = buildAltLangUrl(`/blog/${post.data.altSlug}`, currentLocale);
@@ -81,8 +80,8 @@ const related = (await getCollection("post"))
     <article class="article">
         <Breadcrumb
             items={[
-                { label: currentLocale === "es" ? "Inicio" : "Home", href: buildUrl("/") },
-                { label: t("blog:heading"), href: buildUrl("/blog") },
+                { label: currentLocale === "es" ? "Inicio" : "Home", href: buildUrl("/", currentLocale) },
+                { label: t("blog:heading"), href: buildUrl("/blog", currentLocale) },
                 { label: post.data.title },
             ]}
         />
@@ -141,7 +140,7 @@ const related = (await getCollection("post"))
                             <ul>
                                 {related.map((r) => (
                                     <li>
-                                        <a href={buildUrl(`/blog/${r.data.slug || r.slug}`)}>
+                                        <a href={buildUrl(`/blog/${r.data.slug || r.id}`, currentLocale)}>
                                             <span class="rn-date">{formatMonthYear(r.data.pubDate, currentLocale)}</span>
                                             <span class="rn-name">{r.data.title}</span>
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
@@ -173,7 +172,7 @@ const related = (await getCollection("post"))
                 </aside>
 
                 <div class="p-foot">
-                    <a href={buildUrl("/blog")} class="back">
+                    <a href={buildUrl("/blog", currentLocale)} class="back">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                         {t("blog:back")}
                     </a>

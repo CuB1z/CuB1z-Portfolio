@@ -1,5 +1,5 @@
 ---
-import { getLocale, t } from "i18n:astro";
+import { useTranslations } from "@utils/i18nUtils";
 import { getCollection } from "astro:content";
 
 import { buildUrl } from "@/utils/urlUtils";
@@ -7,8 +7,13 @@ import { formatMonthYear } from "@/utils/formatUtils";
 import Layout from "@layouts/Layout.astro";
 import Breadcrumb from "@components/shared/Breadcrumb.astro";
 import ArrowButton from "@components/shared/ArrowButton.astro";
+import { localePaths } from "@utils/i18nUtils";
 
-const locale = getLocale();
+export const getStaticPaths = localePaths;
+
+const t = useTranslations(Astro.currentLocale);
+
+const locale = Astro.currentLocale;
 
 const allPosts = await getCollection("post");
 const posts = allPosts
@@ -28,7 +33,7 @@ const pageCount = Math.ceil(posts.length / PER_PAGE);
             <div class="crumbs-top">
                 <Breadcrumb
                     items={[
-                        { label: locale === "es" ? "Inicio" : "Home", href: buildUrl("/") },
+                        { label: locale === "es" ? "Inicio" : "Home", href: buildUrl("/", locale) },
                         { label: t("blog:heading") },
                     ]}
                 />
@@ -40,11 +45,10 @@ const pageCount = Math.ceil(posts.length / PER_PAGE);
             <div class="list">
                 {
                     posts.map((post) => (
-                        <a class="post" href={buildUrl(`/blog/${post.data.slug || post.slug}`)}>
+                        <a class="post" href={buildUrl(`/blog/${post.data.slug || post.id}`, locale)}>
                             <span class="date">{formatMonthYear(post.data.pubDate, locale)}</span>
                             <h2>
-                                {post.data.title}
-                                <span class="ar">
+                                {post.data.title} <span class="ar">
                                     <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M7 17 17 7M9 7h8v8" />
                                     </svg>

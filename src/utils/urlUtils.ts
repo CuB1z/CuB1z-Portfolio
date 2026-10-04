@@ -1,4 +1,4 @@
-import { getLocale, getDefaultLocale } from "i18n:astro";
+import { DEFAULT_LOCALE } from "./i18nUtils";
 
 /**
  * Normalises a path to have exactly one trailing slash so that every internal
@@ -14,26 +14,25 @@ function withTrailingSlash(path: string): string {
 }
 
 /**
- * Builds a URL with the current locale prefix if applicable.
+ * Builds a URL with the given locale prefix if applicable.
  *
  * @param {string} path - The path to be appended to the base URL.
+ * @param {string} [locale] - The locale whose prefix to apply.
  * @returns {string} The complete URL with the locale prefix.
  */
-export function buildUrl(path: string): string {
-    const locale = getLocale();
-
-    const baseUrl = locale && locale !== getDefaultLocale() ? `/${locale}` : "";
+export function buildUrl(path: string, locale?: string): string {
+    const baseUrl = locale && locale !== DEFAULT_LOCALE ? `/${locale}` : "";
     return withTrailingSlash(baseUrl + path);
 }
 
 /**
  * Builds an alternative language URL with the specified locale prefix if applicable.
  * @param {string} path - The path to be appended to the base URL.
- * @param {string} locale - The target locale for the URL.
+ * @param {string} [locale] - The current locale; the URL targets the other one.
  * @returns {string} The complete URL with the specified locale prefix.
  */
-export function buildAltLangUrl(path: string, locale: string): string {
+export function buildAltLangUrl(path: string, locale?: string): string {
     const altLocale = locale === "es" ? "en" : "es";
-    const baseUrl = altLocale !== getDefaultLocale() ? `/${altLocale}` : "";
+    const baseUrl = altLocale !== DEFAULT_LOCALE ? `/${altLocale}` : "";
     return withTrailingSlash(baseUrl + path);
 }

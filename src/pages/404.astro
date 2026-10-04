@@ -1,7 +1,9 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { t } from "i18n:astro";
+import { useTranslations } from "@utils/i18nUtils";
 import { buildUrl } from "@utils/urlUtils";
+
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <Layout>
@@ -15,7 +17,7 @@ import { buildUrl } from "@utils/urlUtils";
 
         <p class="lede">{t("404:description")}</p>
 
-        <a class="back" href={buildUrl("/")}>
+        <a class="back" href={buildUrl("/", Astro.currentLocale)}>
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>

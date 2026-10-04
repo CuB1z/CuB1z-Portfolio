@@ -1,6 +1,8 @@
 ---
-import { t, getLocale } from "i18n:astro";
+import { useTranslations } from "@utils/i18nUtils";
 import { buildUrl } from "@utils/urlUtils";
+
+const t = useTranslations(Astro.currentLocale);
 
 interface Props {
     home?: boolean;
@@ -10,15 +12,15 @@ interface Props {
 
 const { home = false, active, altLangUrl } = Astro.props as Props;
 
-const locale = getLocale();
+const locale = Astro.currentLocale;
 
-const homeBase = home ? "" : buildUrl("/");
-const homeHref = buildUrl("/");
+const homeBase = home ? "" : buildUrl("/", locale);
+const homeHref = buildUrl("/", locale);
 const items = [
     { id: "experience", label: t("common:nav.experience"), href: home ? "#experience" : `${homeBase}#experience` },
     { id: "work", label: t("common:nav.work"), href: home ? "#work" : `${homeBase}#work` },
     { id: "about", label: t("common:nav.about"), href: home ? "#about" : `${homeBase}#about` },
-    { id: "writing", label: t("common:nav.writing"), href: home ? "#writing" : buildUrl("/blog") },
+    { id: "writing", label: t("common:nav.writing"), href: home ? "#writing" : buildUrl("/blog", locale) },
 ];
 
 // language switch — show both locales, highlight the current one

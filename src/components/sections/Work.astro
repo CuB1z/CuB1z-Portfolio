@@ -1,7 +1,10 @@
 ---
-import { t, getLocale } from "i18n:astro";
+import { useTranslations } from "@utils/i18nUtils";
 import { buildUrl } from "@/utils/urlUtils";
 import SectionHeader from "@components/shared/SectionHeader.astro";
+
+const locale = Astro.currentLocale;
+const t = useTranslations(locale);
 
 interface Props {
     num: string;
@@ -26,7 +29,7 @@ const featured = projects.find((p) => p.featured) ?? projects[0];
 const rest = projects.filter((p) => p !== featured);
 
 const featuredHref = featured.page
-    ? buildUrl(featured.page)
+    ? buildUrl(featured.page, locale)
     : featured.links.live;
 const featuredExternal = !featured.page;
 
@@ -35,7 +38,6 @@ const previewHost = featured.links.live
     : null;
 
 // JSON-LD so AI can read each project even without a dedicated page.
-const locale = getLocale();
 const projectsLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",

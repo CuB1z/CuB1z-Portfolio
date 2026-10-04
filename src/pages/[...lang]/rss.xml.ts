@@ -1,4 +1,7 @@
 import { getCollection } from "astro:content";
+import { localePaths } from "@utils/i18nUtils";
+
+export const getStaticPaths = localePaths;
 
 const esc = (s: string) =>
     s
@@ -24,7 +27,7 @@ export async function GET(context: { site: URL; url: URL }) {
 
     const items = posts
         .map((p) => {
-            const url = `${base}/blog/${p.data.slug || p.slug}/`;
+            const url = `${base}/blog/${p.data.slug || p.id}/`;
             return `    <item>
       <title>${esc(p.data.title)}</title>
       <link>${url}</link>

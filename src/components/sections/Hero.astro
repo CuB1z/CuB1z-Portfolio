@@ -1,6 +1,8 @@
 ---
-import { t } from "i18n:astro";
+import { useTranslations } from "@utils/i18nUtils";
 import { socialData } from "@/constants/socialData";
+
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <header class="hero">

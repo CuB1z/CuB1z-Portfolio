@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { getLocale, t } from "i18n:astro";
+import { useTranslations } from "@utils/i18nUtils";
 
 import { buildUrl } from "@/utils/urlUtils";
 import { formatMonthYear } from "@/utils/formatUtils";
@@ -8,8 +8,13 @@ import Layout from "@layouts/Layout.astro";
 import Breadcrumb from "@components/shared/Breadcrumb.astro";
 import SectionHeader from "@components/shared/SectionHeader.astro";
 import Carousel from "@components/shared/Carousel.astro";
+import { localePaths } from "@utils/i18nUtils";
 
-const locale = getLocale();
+export const getStaticPaths = localePaths;
+
+const t = useTranslations(Astro.currentLocale);
+
+const locale = Astro.currentLocale;
 
 // Build log: TripFlow-tagged posts in this locale, oldest first.
 const log = (await getCollection("post"))
@@ -101,8 +106,8 @@ const appLd = {
         <div class="shell">
             <Breadcrumb
                 items={[
-                    { label: locale === "es" ? "Inicio" : "Home", href: buildUrl("/") },
-                    { label: t("common:nav.work"), href: `${buildUrl("/")}#work` },
+                    { label: locale === "es" ? "Inicio" : "Home", href: buildUrl("/", locale) },
+                    { label: t("common:nav.work"), href: `${buildUrl("/", locale)}#work` },
                     { label: "TripFlow" },
                 ]}
             />
@@ -299,7 +304,7 @@ const appLd = {
                     {
                         log.map((post) => (
                             <li>
-                                <a href={buildUrl(`/blog/${post.data.slug || post.slug}`)}>
+                                <a href={buildUrl(`/blog/${post.data.slug || post.id}`, locale)}>
                                     <span class="log-date">{formatMonthYear(post.data.pubDate, locale)}</span>
                                     <span class="log-title">{post.data.title}</span>
                                     <svg class="log-ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>

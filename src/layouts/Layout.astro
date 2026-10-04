@@ -1,11 +1,13 @@
 ---
-import { t, getLocale } from "i18n:astro";
+import { useTranslations } from "@utils/i18nUtils";
 
 import { ClientRouter } from "astro:transitions";
 
 import Nav from "@components/shared/Nav.astro";
 import Footer from "@components/shared/Footer.astro";
 import { socialData } from "@/constants/socialData";
+
+const t = useTranslations(Astro.currentLocale);
 
 interface Props {
     title?: string;
@@ -23,7 +25,7 @@ const {
     home = false,
 } = Astro.props as Props;
 
-const locale = getLocale();
+const locale = Astro.currentLocale;
 
 const pageTitle = title ?? t("title");
 const pageDescription = description ?? t("description");

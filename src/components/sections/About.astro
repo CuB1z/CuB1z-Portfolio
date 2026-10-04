@@ -1,6 +1,8 @@
 ---
-import { t } from "i18n:astro";
+import { useTranslations } from "@utils/i18nUtils";
 import SectionHeader from "@components/shared/SectionHeader.astro";
+
+const t = useTranslations(Astro.currentLocale);
 
 interface Props {
     num: string;

@@ -1,15 +1,17 @@
 ---
 import { getCollection } from "astro:content";
-import { getLocale, t } from "i18n:astro";
+import { useTranslations } from "@utils/i18nUtils";
 import { buildUrl } from "@utils/urlUtils";
 import SectionHeader from "@components/shared/SectionHeader.astro";
+
+const t = useTranslations(Astro.currentLocale);
 
 interface Props {
     num: string;
 }
 const { num } = Astro.props as Props;
 
-const locale = getLocale();
+const locale = Astro.currentLocale;
 
 const allPosts = await getCollection("post");
 const posts = allPosts
@@ -34,7 +36,7 @@ const fmt = (date: Date) =>
         <div class="posts">
             {
                 posts.map((post) => (
-                    <a class="post-card" href={buildUrl(`/blog/${post.data.slug || post.slug}`)}>
+                    <a class="post-card" href={buildUrl(`/blog/${post.data.slug || post.id}`, locale)}>
                         <span class="date">{fmt(post.data.pubDate)}</span>
                         <h3>
                             {post.data.title} <span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
@@ -52,7 +54,7 @@ const fmt = (date: Date) =>
             }
         </div>
 
-        <a class="more" href={buildUrl("/blog")}>{t("blog:all_posts")} →</a>
+        <a class="more" href={buildUrl("/blog", locale)}>{t("blog:all_posts")} →</a>
     </div>
 </section>
 
