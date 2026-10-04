@@ -5,10 +5,10 @@
             "title": "TripFlow",
             "featured": true,
             "page": "/work/tripflow",
-            "flag": "Bachelor's Thesis",
+            "flag": "Featured Project",
             "image": "/images/projects/tripflow-showcase.webp",
-            "description": "AI-assisted travel planner with real-time collaboration and an offline mode, on a Spring Boot microservices backend with a React frontend. Designed end-to-end and shipped as my Bachelor's Thesis.",
-            "techStack": ["Spring Boot", "React", "TypeScript", "PostgreSQL", "Docker"],
+            "description": "Distributed travel planner: Spring Boot microservices coordinated over Kafka, real-time collaboration via WebSockets, JWT auth, an offline-first PWA and 950+ automated tests in CI/CD. Originally built as my Bachelor's Thesis (10/10).",
+            "techStack": ["Spring Boot", "Kafka", "PostgreSQL", "React", "Docker"],
             "links": {
                 "github": "https://github.com/codeurjc-students/2025-TripFlow",
                 "live": "https://tripflow.cub1z.es"

@@ -7,13 +7,13 @@
                 "company": "Génexys Technology",
                 "type": "Full-time",
                 "date": "Feb 2026 – Present",
-                "lead": "I contribute to the design and development of microservice-based solutions, supporting the evolution of the platform and the delivery of scalable cloud-native services.",
+                "lead": "Build and evolve backend services for a multi-tenant microservices platform on AWS, with a focus on distributed systems and architecture decisions.",
                 "bullets": [
-                    "Develop and maintain backend services with Python and FastAPI.",
-                    "Design and implement cloud solutions deployed on AWS.",
-                    "Take part in technical discussions on system architecture and platform evolution."
+                    "Work on distributed authentication and authorization across services: roles, permissions and Redis-backed rate limiting.",
+                    "Build event-driven flows between microservices using queues and asynchronous messaging on AWS.",
+                    "Contribute to architecture decisions and validate scalability with load testing."
                 ],
-                "tags": ["Python", "FastAPI", "AWS", "Microservices"]
+                "tags": ["Python", "FastAPI", "AWS", "Redis", "Microservices"]
             },
             {
                 "role": "Full-Stack Developer",
@@ -33,8 +33,8 @@
     "about": {
         "heading": "About",
         "narrative": [
-            "Software Engineer focused on software architecture, distributed systems, and cloud technologies, with experience in full-stack development and backend engineering.",
-            "At Génexys, I contribute to the development of microservices-based solutions using Python, FastAPI, and AWS, while participating in technical discussions and architectural decision-making.",
+            "Software Engineer focused on backend systems, distributed architectures and cloud infrastructure.",
+            "Currently at Génexys, working on Python/FastAPI microservices deployed on AWS, with a focus on system design, distributed authentication and scalable services.",
             "I recently completed my Bachelor's Degree in Software Engineering by designing and shipping TripFlow ✈️, my Bachelor's Thesis (10/10): an AI-assisted travel planner with real-time collaboration and offline mode."
         ],
         "facts": [

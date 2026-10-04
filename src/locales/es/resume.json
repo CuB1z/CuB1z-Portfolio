@@ -7,13 +7,13 @@
                 "company": "Génexys Technology",
                 "type": "Jornada completa",
                 "date": "Feb 2026 – Actualidad",
-                "lead": "Contribuyo al diseño y desarrollo de soluciones basadas en microservicios, apoyando la evolución de la plataforma y la entrega de servicios cloud-native escalables.",
+                "lead": "Desarrollo y evoluciono servicios backend para una plataforma multi-tenant de microservicios en AWS, con foco en sistemas distribuidos y decisiones de arquitectura.",
                 "bullets": [
-                    "Desarrollo y mantengo servicios backend con Python y FastAPI.",
-                    "Diseño e implemento soluciones cloud desplegadas en AWS.",
-                    "Participo en decisiones técnicas sobre arquitectura y evolución de la plataforma."
+                    "Trabajo en autenticación y autorización distribuidas entre servicios: roles, permisos y rate limiting con Redis.",
+                    "Construyo flujos event-driven entre microservicios con colas y mensajería asíncrona en AWS.",
+                    "Participo en decisiones de arquitectura y valido la escalabilidad con pruebas de carga."
                 ],
-                "tags": ["Python", "FastAPI", "AWS", "Microservicios"]
+                "tags": ["Python", "FastAPI", "AWS", "Redis", "Microservicios"]
             },
             {
                 "role": "Desarrollador Full-Stack",
@@ -33,8 +33,8 @@
     "about": {
         "heading": "Sobre mí",
         "narrative": [
-            "Ingeniero de Software centrado en arquitectura de software, sistemas distribuidos y tecnologías cloud, con experiencia en desarrollo full-stack e ingeniería backend.",
-            "En Génexys contribuyo al desarrollo de soluciones basadas en microservicios con Python, FastAPI y AWS, participando en las discusiones técnicas y en la toma de decisiones de arquitectura.",
+            "Ingeniero de Software centrado en sistemas backend, arquitecturas distribuidas e infraestructura cloud.",
+            "Actualmente en Génexys, trabajando en microservicios Python/FastAPI desplegados en AWS, con foco en diseño de sistemas, autenticación distribuida y servicios escalables.",
             "Recientemente terminé mi Grado en Ingeniería del Software diseñando y lanzando TripFlow ✈️, mi Trabajo de Fin de Grado (10/10): un planificador de viajes con IA, colaboración en tiempo real y modo offline."
         ],
         "facts": [
