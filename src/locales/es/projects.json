@@ -5,10 +5,10 @@
             "title": "TripFlow",
             "featured": true,
             "page": "/work/tripflow",
-            "flag": "Trabajo de Fin de Grado",
+            "flag": "Proyecto destacado",
             "image": "/images/projects/tripflow-showcase.webp",
-            "description": "Planificador de viajes con IA, colaboración en tiempo real y modo offline, sobre un backend de microservicios en Spring Boot y frontend en React. Diseñado de principio a fin como mi Trabajo de Fin de Grado.",
-            "techStack": ["Spring Boot", "React", "TypeScript", "PostgreSQL", "Docker"],
+            "description": "Planificador de viajes con IA, colaboración en tiempo real y modo offline, sobre microservicios Spring Boot orientados a eventos.",
+            "techStack": ["Spring Boot", "Kafka", "PostgreSQL", "React", "Docker"],
             "links": {
                 "github": "https://github.com/codeurjc-students/2025-TripFlow",
                 "live": "https://tripflow.cub1z.es"

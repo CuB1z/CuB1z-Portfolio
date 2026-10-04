@@ -6,20 +6,20 @@
                 "role": "Full-Stack Developer",
                 "company": "Génexys Technology",
                 "type": "Full-time",
-                "date": "Feb 2026 – Present",
-                "lead": "I contribute to the design and development of microservice-based solutions, supporting the evolution of the platform and the delivery of scalable cloud-native services.",
+                "date": "Feb 2026 - Present",
+                "lead": "Responsible for the platform's entire backend, from microservices to shared libraries, built with Python, FastAPI and AWS. I also take part in technical decision-making and in defining development and architecture standards.",
                 "bullets": [
-                    "Develop and maintain backend services with Python and FastAPI.",
-                    "Design and implement cloud solutions deployed on AWS.",
-                    "Take part in technical discussions on system architecture and platform evolution."
+                    "Build event-driven communication with SQS/SNS in the backend and Greengrass IPC on NVIDIA Jetson edge devices.",
+                    "Design and implement offline navigation as an embedded Greengrass component, based on Valhalla routing and MapLibre vector maps, for environments with limited connectivity.",
+                    "Design agentic, automated development workflows with Claude Code, specialized agents and reusable skills to streamline engineering processes."
                 ],
-                "tags": ["Python", "FastAPI", "AWS", "Microservices"]
+                "tags": ["Python", "FastAPI", "AWS", "Microservices", "IoT Greengrass"]
             },
             {
                 "role": "Full-Stack Developer",
                 "company": "Telefónica Innovación Digital",
                 "type": "Internship",
-                "date": "Jul 2025 – Dec 2025",
+                "date": "Jul 2025 - Dec 2025",
                 "lead": "Contributed to the development and optimization of web applications with Next.js within the Mística Design System, focusing on accessibility, SEO and performance.",
                 "bullets": [
                     "Implemented accessibility (WCAG) and SEO improvements across digital products.",
@@ -33,9 +33,9 @@
     "about": {
         "heading": "About",
         "narrative": [
-            "Software Engineer focused on software architecture, distributed systems, and cloud technologies, with experience in full-stack development and backend engineering.",
-            "At Génexys, I contribute to the development of microservices-based solutions using Python, FastAPI, and AWS, while participating in technical discussions and architectural decision-making.",
-            "I recently completed my Bachelor's Degree in Software Engineering by designing and shipping TripFlow ✈️, my Bachelor's Thesis (10/10): an AI-assisted travel planner with real-time collaboration and offline mode."
+            "Software Engineer focused on backend engineering, software architecture, distributed systems, and cloud technologies.",
+            "Currently at Génexys, I contribute to the design and development of microservices-based solutions using Python, FastAPI, and AWS. My work involves technical and architectural decision-making, event-driven systems, cloud solutions, and the development of scalable services.",
+            "Interested in building reliable systems, solving complex engineering problems, and continuously improving the way software is designed and developed."
         ],
         "facts": [
             {

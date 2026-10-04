@@ -1,6 +1,6 @@
 {
-    "meta_title": "TripFlow · AI travel planner (Bachelor's Thesis) | Diego Sánchez Rincón",
-    "meta_description": "TripFlow: an AI-assisted travel planner with real-time collaboration, interactive maps and offline access. Spring Boot microservices backend with a React PWA frontend. Bachelor's Thesis, graded 10/10.",
+    "meta_title": "TripFlow · AI travel planner | Diego Sánchez Rincón",
+    "meta_description": "TripFlow: an AI-assisted travel planner with real-time collaboration, interactive maps and offline access. Spring Boot microservices backend with a React PWA frontend.",
     "tagline": "An AI-assisted travel planner that brings the whole trip together in one place, with real-time collaboration, interactive maps and full offline access.",
     "live": "Live demo",
     "source": "Source code",
@@ -65,7 +65,7 @@
     ],
 
     "journey_heading": "The journey",
-    "journey_intro": "TripFlow was my Bachelor's Thesis at Universidad Rey Juan Carlos, graded 10/10, designed and built end to end. It grew iteratively across three versions, and each one shipped as a working, deployed release rather than a prototype, from the first commit to v1.0.0.",
+    "journey_intro": "TripFlow was designed and built end to end. It grew iteratively across three versions, and each one shipped as a working, deployed release rather than a prototype, from the first commit to v1.0.0.",
     "milestones": [
         { "version": "v0.1", "name": "MVP", "desc": "Authentication and base itineraries." },
         { "version": "v0.2", "name": "Intelligence", "desc": "AI, notifications and administration." },

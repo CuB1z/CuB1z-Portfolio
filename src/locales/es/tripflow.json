@@ -1,6 +1,6 @@
 {
-    "meta_title": "TripFlow · Planificador de viajes con IA (TFG) | Diego Sánchez Rincón",
-    "meta_description": "TripFlow: un planificador de viajes asistido por IA con colaboración en tiempo real, mapas interactivos y acceso offline. Backend de microservicios Spring Boot y frontend React PWA. Trabajo de Fin de Grado, calificado con 10/10.",
+    "meta_title": "TripFlow · Planificador de viajes con IA | Diego Sánchez Rincón",
+    "meta_description": "TripFlow: un planificador de viajes asistido por IA con colaboración en tiempo real, mapas interactivos y acceso offline. Backend de microservicios Spring Boot y frontend React PWA.",
     "tagline": "Un planificador de viajes asistido por IA que reúne todo el viaje en un solo lugar, con colaboración en tiempo real, mapas interactivos y acceso offline completo.",
     "live": "Ver demo",
     "source": "Código fuente",
@@ -65,7 +65,7 @@
     ],
 
     "journey_heading": "El recorrido",
-    "journey_intro": "TripFlow fue mi Trabajo de Fin de Grado en la Universidad Rey Juan Carlos, calificado con 10/10, diseñado y desarrollado de principio a fin. Creció de forma iterativa en tres versiones, y cada una se entregó como una release funcional y desplegada, no un prototipo, desde el primer commit hasta la v1.0.0.",
+    "journey_intro": "TripFlow fue diseñado y desarrollado de principio a fin. Creció de forma iterativa en tres versiones, y cada una se entregó como una release funcional y desplegada, no un prototipo, desde el primer commit hasta la v1.0.0.",
     "milestones": [
         { "version": "v0.1", "name": "MVP", "desc": "Autenticación e itinerarios base." },
         { "version": "v0.2", "name": "Inteligencia", "desc": "IA, notificaciones y administración." },

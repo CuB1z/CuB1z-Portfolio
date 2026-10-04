@@ -1,6 +1,6 @@
 {
     "title": "Diego Sánchez Rincón | Ingeniero de Software",
-    "description": "Ingeniero de Software centrado en arquitectura, sistemas distribuidos y cloud. Recién graduado en Ingeniería del Software (URJC), actualmente desarrollando microservicios en Génexys.",
+    "description": "Ingeniero de Software centrado en desarrollo backend, sistemas distribuidos y cloud. Actualmente desarrollando microservicios en Génexys con Python, FastAPI y AWS.",
     "nav": {
         "experience": "Experiencia",
         "work": "Proyectos",
@@ -21,7 +21,10 @@
             "React",
             "Next.js",
             "AWS",
-            "Microservicios"
+            "Microservicios",
+            "Arquitectura orientada a eventos",
+            "Apache Kafka",
+            "Docker"
         ]
     }
 }

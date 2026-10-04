@@ -1,6 +1,6 @@
 {
     "title": "Diego Sánchez Rincón | Software Engineer",
-    "description": "Software Engineer focused on architecture, distributed systems and cloud. Recently graduated in Software Engineering (URJC), currently building microservices at Génexys.",
+    "description": "Software Engineer focused on backend engineering, distributed systems and cloud. Currently building microservices at Génexys with Python, FastAPI and AWS.",
     "nav": {
         "experience": "Experience",
         "work": "Work",
@@ -21,7 +21,10 @@
             "React",
             "Next.js",
             "AWS",
-            "Microservices"
+            "Microservices",
+            "Event-driven architecture",
+            "Apache Kafka",
+            "Docker"
         ]
     }
 }
