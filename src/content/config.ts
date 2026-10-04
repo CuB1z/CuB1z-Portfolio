@@ -13,6 +13,7 @@ const post = defineCollection({
         locale: z.enum(["en", "es"]).default("en"),
         slug: z.string().optional(),
         altSlug: z.string().optional(), // Alternative slug for other language [EN | ES]
+        showcase: z.boolean().default(true), // false: only listed in /blog, not on home or project pages
     }),
 });
 

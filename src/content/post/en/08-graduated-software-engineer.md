@@ -8,6 +8,7 @@ imageAlt: "Dark illustration with neon blue glow: a graduation cap resting on a 
 locale: "en"
 slug: "graduated-software-engineer"
 altSlug: "titulado-ingeniero-software"
+showcase: false
 ---
 
 **Today I can officially say it: I'm a Software Engineer.** 🎓

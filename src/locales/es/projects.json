@@ -1,5 +1,6 @@
 {
     "heading": "Proyectos destacados",
+    "other_heading": "Otros proyectos",
     "projects": [
         {
             "title": "TripFlow",
@@ -48,24 +49,6 @@
             "links": {
                 "github": null,
                 "live": "https://djsanz.es/"
-            }
-        },
-        {
-            "title": "MiniShell",
-            "description": "Shell simplificada de Unix/Linux construida en C que emula el comportamiento de una terminal nativa.",
-            "techStack": ["C", "Linux", "Terminal"],
-            "links": {
-                "github": "https://github.com/CuB1z/MiniShell",
-                "live": null
-            }
-        },
-        {
-            "title": "Wallapop Scrapper",
-            "description": "Una integración sencilla de scraping de Wallapop con un bot de Telegram.",
-            "techStack": ["Python", "TeleBot", "MySQL"],
-            "links": {
-                "github": "https://github.com/CuB1z/Wallapop-Scrapper",
-                "live": null
             }
         }
     ]

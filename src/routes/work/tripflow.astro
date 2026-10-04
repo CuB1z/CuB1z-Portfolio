@@ -16,6 +16,7 @@ const log = (await getCollection("post"))
     .filter(
         (p) =>
             (p.data.locale ?? "en") === locale &&
+            p.data.showcase &&
             (p.data.tags ?? []).includes("TripFlow")
     )
     .sort(

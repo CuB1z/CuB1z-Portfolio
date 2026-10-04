@@ -8,6 +8,7 @@ imageAlt: "Ilustración oscura con brillo azul neón: un birrete de graduación 
 locale: "es"
 slug: "titulado-ingeniero-software"
 altSlug: "graduated-software-engineer"
+showcase: false
 ---
 
 **Hoy puedo decirlo oficialmente: soy Ingeniero de Software.** 🎓
