@@ -204,30 +204,26 @@ const websiteLd = {
             }
 
             function initPager() {
-                const list = document.querySelector<HTMLElement>(".list");
+                const pages = Array.from(
+                    document.querySelectorAll<HTMLElement>(".post-page")
+                );
                 const pager = document.querySelector<HTMLElement>(".pager");
-                if (!list || !pager) return;
-                const posts = Array.from(list.querySelectorAll<HTMLElement>(".post"));
+                if (pages.length < 2 || !pager) return;
                 const numBtns = Array.from(
                     pager.querySelectorAll<HTMLButtonElement>(".pg-num")
                 );
                 const prev = pager.querySelector<HTMLButtonElement>('[data-rel="prev"]');
                 const next = pager.querySelector<HTMLButtonElement>('[data-rel="next"]');
-                if (!numBtns.length || !prev || !next) return;
-                const PER = 4;
-                const pages = numBtns.length;
+                if (!prev || !next) return;
                 let current = 1;
                 const go = (n: number, scroll = false) => {
-                    current = Math.min(Math.max(1, n), pages);
-                    posts.forEach((p, idx) => {
-                        p.style.display =
-                            Math.floor(idx / PER) + 1 === current ? "" : "none";
-                    });
+                    current = Math.min(Math.max(1, n), pages.length);
+                    pages.forEach((p, i) => (p.hidden = i + 1 !== current));
                     numBtns.forEach((b, i) =>
                         b.classList.toggle("current", i + 1 === current)
                     );
                     prev.disabled = current === 1;
-                    next.disabled = current === pages;
+                    next.disabled = current === pages.length;
                     if (scroll) {
                         const head = document.querySelector<HTMLElement>(".page-head");
                         const y = head
