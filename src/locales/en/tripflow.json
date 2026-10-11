@@ -9,9 +9,9 @@
     "problem_heading": "The problem",
     "problem_lede": "Planning a trip means juggling half a dozen tools that don't talk to each other. The result is information that's scattered, copied by hand and out of date almost immediately.",
     "problem_points": [
-        { "n": "01", "text": "Information is scattered across search engines, maps, blogs and chats." },
-        { "n": "02", "text": "Nothing is connected: every detail is copied by hand and goes stale instantly." },
-        { "n": "03", "text": "In a group it multiplies: different preferences and changes that get lost." }
+        { "text": "Information is scattered across search engines, maps, blogs and chats." },
+        { "text": "Nothing is connected: every detail is copied by hand and goes stale instantly." },
+        { "text": "In a group it multiplies: different preferences and changes that get lost." }
     ],
 
     "compare_heading": "The whole trip in one place",
@@ -49,10 +49,10 @@
     "decisions_heading": "Key technical decisions",
     "decisions_intro": "A handful of decisions shaped the project the most, around security, AI, real-time and offline.",
     "decisions": [
-        { "n": "01", "title": "JWT authentication", "desc": "Dual JWT (15-min access, 30-day refresh) in HttpOnly cookies to mitigate XSS." },
-        { "n": "02", "title": "Async, secure AI", "desc": "Prompt-injection filtering on the way in, and sanitization of the generated JSON on the way out." },
-        { "n": "03", "title": "Real time", "desc": "WebSocket + STOMP with JWT validation in the handshake itself to authorize events." },
-        { "n": "04", "title": "Offline PWA", "desc": "A service worker installs the app and lets you consult itineraries with no connection, mid-trip." }
+        { "title": "JWT authentication", "desc": "Dual JWT (15-min access, 30-day refresh) in HttpOnly cookies to mitigate XSS." },
+        { "title": "Async, secure AI", "desc": "Prompt-injection filtering on the way in, and sanitization of the generated JSON on the way out." },
+        { "title": "Real time", "desc": "WebSocket + STOMP with JWT validation in the handshake itself to authorize events." },
+        { "title": "Offline PWA", "desc": "A service worker installs the app and lets you consult itineraries with no connection, mid-trip." }
     ],
 
     "metrics_heading": "Quality & delivery",
