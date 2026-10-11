@@ -33,9 +33,8 @@
     "about": {
         "heading": "About",
         "narrative": [
-            "Software Engineer focused on backend engineering, software architecture, distributed systems, and cloud technologies.",
-            "Currently at Génexys, I contribute to the design and development of microservices-based solutions using Python, FastAPI, and AWS. My work involves technical and architectural decision-making, event-driven systems, cloud solutions, and the development of scalable services.",
-            "Interested in building reliable systems, solving complex engineering problems, and continuously improving the way software is designed and developed."
+            "My work involves technical and architectural decision-making, event-driven systems, cloud solutions, and the development of scalable services.",
+            "I’m interested in building reliable systems, solving complex engineering problems, and continuously improving the way software is designed and developed."
         ],
         "facts": [
             {

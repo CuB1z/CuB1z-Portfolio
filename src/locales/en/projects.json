@@ -1,12 +1,13 @@
 {
-    "heading": "Selected Work",
+    "heading": "Selected work",
     "other_heading": "Other projects",
+    "case_study": "Read the case study",
     "projects": [
         {
             "title": "TripFlow",
             "featured": true,
             "page": "/work/tripflow",
-            "flag": "Featured Project",
+            "flag": "Featured project",
             "image": "/images/projects/tripflow-showcase.webp",
             "description": "AI-assisted travel planner with real-time collaboration and offline mode, built on event-driven Spring Boot microservices.",
             "techStack": ["Spring Boot", "Kafka", "PostgreSQL", "React", "Docker"],

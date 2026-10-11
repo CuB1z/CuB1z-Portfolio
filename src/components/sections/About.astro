@@ -1,13 +1,7 @@
 ---
 import { useTranslations } from "@utils/i18nUtils";
-import SectionHeader from "@components/shared/SectionHeader.astro";
 
 const t = useTranslations(Astro.currentLocale);
-
-interface Props {
-    num: string;
-}
-const { num } = Astro.props as Props;
 
 const heading = t("resume:about.heading");
 const narrative = t("resume:about.narrative", { returnObjects: true }) as string[];
@@ -19,95 +13,74 @@ const facts = t("resume:about.facts", { returnObjects: true }) as Array<{
 
 <section id="about" class="section">
     <div class="shell">
-        <SectionHeader num={num} heading={heading} />
+        <h2 class="sec-title">{heading}</h2>
 
-        <div class="about-grid">
-            <div class="about-text">
+        <div class="about">
+            <div class="prose">
+                <div class="profile">
+                    <img src="/images/diego-192.webp" width="64" height="64" alt="" loading="lazy" />
+                    <div>
+                        <p class="profile-name">Diego Sánchez Rincón</p>
+                        <p class="profile-sub">{t("common:schema.jobTitle")}</p>
+                    </div>
+                </div>
                 {narrative.map((p) => <p>{p}</p>)}
             </div>
-            <aside class="facts">
+            <dl class="group facts">
                 {
                     facts.map((fact) => (
-                        <div class="fact">
-                            <div class="fk">{fact.label}</div>
-                            <div class="fv">
-                                {fact.lines.map((line, i) =>
-                                    i === 0 ? (
-                                        <b>{line}</b>
-                                    ) : (
-                                        <>
-                                            <br />
-                                            {line}
-                                        </>
-                                    )
-                                )}
-                            </div>
+                        <div>
+                            <dt>{fact.label}</dt>
+                            <dd>
+                                {fact.lines[0]}
+                                {fact.lines.slice(1).map((line) => <span>{line}</span>)}
+                            </dd>
                         </div>
                     ))
                 }
-            </aside>
+            </dl>
         </div>
     </div>
 </section>
 
 <style>
-    .about-grid {
+    .about {
         display: grid;
-        grid-template-columns: 1fr 320px;
-        gap: 76px;
-        align-items: start;
+        gap: 32px;
+        font-weight: 400;
     }
-    .about-text p {
-        font-size: 16.5px;
-        line-height: 1.75;
-        color: var(--soft);
-        max-width: 58ch;
-    }
-    .about-text p + p {
-        margin-top: 18px;
-    }
-    .facts {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        border-left: 1px solid var(--rule);
-        padding-left: 44px;
-    }
-    .fk {
-        font-family: var(--font-mono);
-        font-size: 11px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 8px;
-    }
-    .fv {
-        font-size: 14px;
+    .prose {
+        display: grid;
+        gap: 16px;
+        max-width: 36em;
         line-height: 1.6;
+    }
+    .profile {
+        padding-bottom: 8px;
+    }
+    .facts > div {
+        display: grid;
+        grid-template-columns: 104px 1fr;
+        gap: 16px;
+        padding: 16px 24px;
+        font-size: 15px;
+    }
+    .facts dt,
+    .facts span {
         color: var(--soft);
     }
-    .fv b {
-        color: var(--ink);
-        font-weight: 600;
+    .facts span {
+        display: block;
     }
-    @media (max-width: 880px) {
-        .about-grid {
-            grid-template-columns: 1fr;
-            gap: 36px;
-        }
-        .facts {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px 40px;
-            border-left: 0;
-            padding-left: 0;
-            border-top: 1px solid var(--rule);
-            padding-top: 30px;
+    @media (min-width: 900px) {
+        .about {
+            grid-template-columns: 1.2fr 1fr;
+            align-items: start;
         }
     }
-    @media (max-width: 520px) {
-        .facts {
-            grid-template-columns: 1fr;
+    @media (max-width: 734px) {
+        .facts > div {
+            padding-inline: 20px;
         }
     }
 </style>

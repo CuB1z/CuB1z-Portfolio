@@ -33,8 +33,7 @@
     "about": {
         "heading": "Sobre mí",
         "narrative": [
-            "Ingeniero de Software centrado en desarrollo backend, arquitectura de software, sistemas distribuidos y tecnologías cloud.",
-            "Actualmente en Génexys, contribuyo al diseño y desarrollo de soluciones basadas en microservicios con Python, FastAPI y AWS. Mi trabajo abarca la toma de decisiones técnicas y de arquitectura, sistemas orientados a eventos, soluciones cloud y el desarrollo de servicios escalables.",
+            "Mi trabajo abarca la toma de decisiones técnicas y de arquitectura, sistemas orientados a eventos, soluciones cloud y el desarrollo de servicios escalables.",
             "Me interesa construir sistemas fiables, resolver problemas de ingeniería complejos y mejorar continuamente la forma en que se diseña y desarrolla el software."
         ],
         "facts": [
