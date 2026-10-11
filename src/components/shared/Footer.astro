@@ -5,61 +5,55 @@ import { socialData } from "@/constants/socialData";
 const t = useTranslations(Astro.currentLocale);
 
 const year = new Date().getFullYear();
+const email = socialData.email.replace(/^mailto:/, "");
 ---
 
-<footer class="foot">
+<footer>
     <div class="shell foot-bar">
-        <span class="copy"><span class="mark">© {year}</span> {t("common:footer_rights")}</span>
-        <div class="foot-links">
-            <a href={socialData.github} target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href={socialData.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href={socialData.email}>Email</a>
-        </div>
+        <span>© {year} {t("common:footer_rights")}</span>
+        <ul>
+            <li><a href={socialData.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href={socialData.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href={socialData.email}>{email}</a></li>
+        </ul>
     </div>
 </footer>
 
 <style>
-    .foot {
-        position: relative;
-        z-index: 1;
-        margin-top: 24px;
-        padding: 36px 0;
-        border-top: 1px solid var(--rule);
-    }
     .foot-bar {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
-        gap: 18px;
-        flex-wrap: wrap;
-    }
-    .copy {
-        font-family: var(--font-mono);
-        font-size: 12px;
+        gap: 8px 24px;
+        padding-top: 24px;
+        padding-bottom: 32px;
+        font-size: 13px;
         color: var(--mute);
     }
-    .copy .mark {
-        font-family: var(--font-sans);
-    }
-    .foot-links {
+    ul {
+        list-style: none;
         display: flex;
-        gap: 18px;
-        font-size: 13px;
-        font-weight: 500;
+        flex-wrap: wrap;
+        gap: 4px 20px;
     }
-    .foot-links a {
-        color: var(--soft);
-        transition: color 0.18s;
-    }
-    .foot-links a:hover {
+    a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
         color: var(--accent);
     }
-    @media (max-width: 480px) {
+    a:hover {
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+    }
+    @media (max-width: 734px) {
         .foot-bar {
             flex-direction: column;
-            align-items: center;
             text-align: center;
-            gap: 14px;
+        }
+        ul {
+            justify-content: center;
         }
     }
 </style>
