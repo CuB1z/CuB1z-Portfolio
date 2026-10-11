@@ -1,6 +1,9 @@
 {
-    "eyebrow": "Software Engineer · Madrid",
-    "name_line1": "Diego",
-    "name_line2": "Sánchez",
-    "bio": "Software Engineer focused on <b>backend engineering</b>, <b>software architecture</b>, <b>distributed systems</b> and <b>cloud</b>. Currently at <b>Génexys</b>, designing microservices with Python, FastAPI &amp; AWS. BSc in Software Engineering from <b>URJC</b>."
+    "name": "Diego Sánchez.",
+    "lede": "<strong>Software Engineer in Madrid.</strong> Backend, architecture, distributed systems, and cloud.",
+    "bio": "Currently at <strong>Génexys</strong>, designing microservices with Python, FastAPI, and AWS. BSc in Software Engineering from URJC.",
+    "copy": "Copy email address",
+    "copied": "Copied",
+    "copied_msg": "Email address copied.",
+    "selected_msg": "Email address selected."
 }

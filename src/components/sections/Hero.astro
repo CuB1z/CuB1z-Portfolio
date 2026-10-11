@@ -3,97 +3,137 @@ import { useTranslations } from "@utils/i18nUtils";
 import { socialData } from "@/constants/socialData";
 
 const t = useTranslations(Astro.currentLocale);
+
+const email = socialData.email.replace(/^mailto:/, "");
 ---
 
 <header class="hero">
     <div class="shell">
-        <span class="eyebrow">{t("hero:eyebrow")}</span>
-        <h1>{t("hero:name_line1")}<br />{t("hero:name_line2")}</h1>
+        <h1>{t("hero:name")}</h1>
+        <p class="lede" set:html={t("hero:lede")} />
         <p class="bio" set:html={t("hero:bio")} />
-        <div class="socials">
-            <a href={socialData.email} aria-label="Email" title="Email">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="m22 7-9.4 5.5a1 1 0 0 1-1.2 0L2 7"/></svg>
+        <div class="actions">
+            <button
+                class="btn primary"
+                id="copy-email"
+                type="button"
+                data-email={email}
+                data-copied={t("hero:copied")}
+                data-copied-msg={t("hero:copied_msg")}
+                data-selected-msg={t("hero:selected_msg")}
+            >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="3.5"/><path d="m3.5 7.5 7.4 5.1a2 2 0 0 0 2.2 0l7.4-5.1"/></svg>
+                <span class="vh">{t("hero:copy")} </span><span class="email">{email}</span>
+                <svg class="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8"/></svg>
+                <svg class="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            </button>
+            <a class="btn" href={socialData.github} target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                GitHub
             </a>
-            <a href={socialData.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.2 3.44 9.6 8.21 11.16.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.37-1.34-1.74-1.34-1.74-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.79 2.81 1.27 3.5.97.11-.76.42-1.27.76-1.56-2.67-.3-5.47-1.31-5.47-5.81 0-1.28.47-2.33 1.24-3.15-.13-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.2.96-.26 1.98-.39 3-.4 1.02 0 2.04.14 3 .4 2.28-1.52 3.29-1.2 3.29-1.2.66 1.64.25 2.86.12 3.16.77.82 1.24 1.87 1.24 3.15 0 4.51-2.81 5.5-5.49 5.79.43.36.81 1.08.81 2.18 0 1.58-.01 2.85-.01 3.24 0 .31.21.68.83.56C20.57 21.88 24 17.48 24 12.29 24 5.78 18.63.5 12 .5z"/></svg>
-            </a>
-            <a href={socialData.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            <a class="btn" href={socialData.linkedin} target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12" rx="1"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
             </a>
         </div>
+        <p class="vh" id="copy-status" role="status"></p>
     </div>
 </header>
 
+<script>
+    document.addEventListener("astro:page-load", () => {
+        const btn = document.querySelector<HTMLButtonElement>("#copy-email");
+        const label = btn?.querySelector<HTMLElement>(".email");
+        const status = document.querySelector<HTMLElement>("#copy-status");
+        if (!btn || !label || !status) return;
+        const { email = "", copied = "", copiedMsg = "", selectedMsg = "" } = btn.dataset;
+        let timer: number | undefined;
+        btn.onclick = () => {
+            (navigator.clipboard?.writeText(email) ?? Promise.reject()).then(
+                () => {
+                    btn.style.width = `${btn.offsetWidth}px`;
+                    btn.classList.add("done");
+                    label.textContent = copied;
+                    status.textContent = copiedMsg;
+                    clearTimeout(timer);
+                    timer = window.setTimeout(() => {
+                        btn.classList.remove("done");
+                        btn.style.width = "";
+                        label.textContent = email;
+                        status.textContent = "";
+                    }, 2500);
+                },
+                () => {
+                    getSelection()?.selectAllChildren(label);
+                    status.textContent = selectedMsg;
+                }
+            );
+        };
+    });
+</script>
+
 <style>
     .hero {
-        position: relative;
-        z-index: 1;
-        padding: 132px 0 68px;
+        padding: 40px 0 48px;
     }
-    .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-family: var(--font-mono);
-        font-size: 12.5px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 24px;
+    .shell > * + * {
+        margin-top: 20px;
     }
-    .eyebrow::before {
-        content: "";
-        width: 28px;
-        height: 1px;
-        background: var(--accent);
+    h1 {
+        font-size: clamp(48px, 14vw, 88px);
+        line-height: 1;
+        letter-spacing: -0.035em;
     }
-    .hero h1 {
-        font-size: clamp(48px, 9.5vw, 108px);
-        font-weight: 800;
-        letter-spacing: -0.045em;
-        line-height: 0.92;
+    .lede {
+        max-width: 640px;
+        font-size: clamp(22px, 3vw, 28px);
+        font-weight: 600;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        color: var(--soft);
+    }
+    .lede :global(strong) {
         color: var(--ink);
+        font-weight: inherit;
     }
     .bio {
-        font-size: 17px;
-        line-height: 1.7;
-        color: var(--soft);
-        max-width: 58ch;
-        margin-top: 28px;
+        max-width: 34em;
     }
-    .bio :global(b) {
-        color: var(--ink);
+    .bio :global(strong) {
         font-weight: 600;
     }
-    .socials {
+    .actions {
         display: flex;
-        gap: 12px;
-        margin-top: 34px;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding-top: 8px;
     }
-    .socials a {
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid var(--rule-2);
-        color: var(--ink);
-        background: var(--bg-card);
-        transition: color 0.18s, border-color 0.18s, transform 0.18s;
+    .btn svg {
+        width: 18px;
+        height: 18px;
+        flex: none;
     }
-    .socials a:hover {
-        border-color: var(--accent);
-        color: var(--accent);
-        transform: translateY(-3px);
+    .btn .i-copy,
+    .btn .i-check {
+        width: 16px;
+        height: 16px;
     }
-    .socials a svg {
-        width: 20px;
-        height: 20px;
+    .i-check,
+    .done .i-copy {
+        display: none;
     }
-    @media (max-width: 600px) {
-        .hero {
-            padding: 116px 0 52px;
+    .done .i-check {
+        display: block;
+    }
+    .email {
+        user-select: text;
+    }
+    @media (max-width: 734px) {
+        .actions .btn {
+            flex: 1 1 0;
+        }
+        .actions .primary {
+            flex-basis: 100%;
         }
     }
 </style>

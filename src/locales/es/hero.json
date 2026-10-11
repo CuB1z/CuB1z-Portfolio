@@ -1,6 +1,9 @@
 {
-    "eyebrow": "Ingeniero de Software · Madrid",
-    "name_line1": "Diego",
-    "name_line2": "Sánchez",
-    "bio": "Ingeniero de Software centrado en <b>desarrollo backend</b>, <b>arquitectura de software</b>, <b>sistemas distribuidos</b> y <b>cloud</b>. Actualmente en <b>Génexys</b>, diseñando microservicios con Python, FastAPI y AWS. Graduado en Ingeniería del Software por la <b>URJC</b>."
+    "name": "Diego Sánchez.",
+    "lede": "<strong>Ingeniero de Software en Madrid.</strong> Backend, arquitectura, sistemas distribuidos y cloud.",
+    "bio": "Actualmente en <strong>Génexys</strong>, diseñando microservicios con Python, FastAPI y AWS. Graduado en Ingeniería del Software por la URJC.",
+    "copy": "Copiar correo",
+    "copied": "Copiado",
+    "copied_msg": "Correo copiado.",
+    "selected_msg": "Correo seleccionado."
 }
