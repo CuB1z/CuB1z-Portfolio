@@ -6,13 +6,13 @@ Personal portfolio and blog — a fast, bilingual site built with [Astro](https:
 
 ## ✨ Features
 
--   **Single-page home** — hero, experience, selected work and about in one scroll, with a floating nav and scroll-spy highlighting the active section.
+-   **Single-page home** — hero with a copy-email button, experience, selected work, about and writing in one scroll, with a floating glass nav and scroll-spy highlighting the active section.
 -   **TripFlow case study** — a dedicated `/work/tripflow` page (problem, comparison table, architecture diagram, key decisions, quality metrics and build log), linked from the featured project card.
 -   **Bilingual (EN / ES)** — Astro's built-in i18n routing with JSON messages in `src/locales`; English at the root, Spanish under `/es`.
--   **Blog** — Markdown posts with a sticky table of contents, breadcrumbs, pagination, reading time, related posts, an author card, and an **RSS feed** (`/rss.xml`, `/es/rss.xml`).
+-   **Blog** — Markdown posts with a floating table-of-contents menu, breadcrumbs, pagination, reading time, related posts, an author card, and an **RSS feed** (`/rss.xml`, `/es/rss.xml`).
 -   **Built for discoverability (GEO / SEO)** — JSON-LD structured data (`Person`, `WebSite`, `BlogPosting`, `BreadcrumbList`, `SoftwareApplication`, project `ItemList`), an `llms.txt` summary, a bilingual sitemap, and canonical + `hreflang` tags.
 -   **Performance & a11y** — self-hosted fonts (no render-blocking Google Fonts), WebP images, and respects `prefers-reduced-motion`.
--   **Responsive** — a reusable carousel, stacked layouts and view transitions.
+-   **Responsive** — stacked layouts and view transitions.
 -   **No UI framework** — just Astro + scoped CSS and a touch of vanilla JS.
 
 ## 🛠 Tech stack
@@ -40,7 +40,7 @@ src/
 ├─ layouts/             # Layout.astro — <head>, JSON-LD, design tokens, global CSS + scripts
 ├─ components/
 │  ├─ sections/         # home sections: Hero, Experience, Work, About, WritingTeaser
-│  └─ shared/           # Nav, Footer, Breadcrumb, SectionHeader, ArrowButton, Carousel
+│  └─ shared/           # Nav, Footer, Breadcrumb, Chevron, PostRow
 ├─ locales/{en,es}/     # translation strings: common, hero, resume, projects, blog, tripflow, 404
 ├─ content/post/{en,es} # blog posts (Markdown), schema in src/content.config.ts
 ├─ constants/           # socialData
@@ -56,7 +56,7 @@ public/
 -   **Copy / sections** → edit the JSON files in `src/locales/{en,es}/`.
 -   **Projects** → `src/locales/{en,es}/projects.json` (`featured: true` marks the featured card; `page` links it to a case study).
 -   **TripFlow case study** → `src/locales/{en,es}/tripflow.json`.
--   **Blog posts** → add a Markdown file under `src/content/post/{en,es}/` with the frontmatter defined in `src/content/config.ts` (`title`, `description`, `pubDate`, `updatedDate`, `tags`, `image`, `imageAlt`, `slug`, `altSlug`).
+-   **Blog posts** → add a Markdown file under `src/content/post/{en,es}/` with the frontmatter defined in `src/content.config.ts` (`title`, `description`, `pubDate`, `updatedDate`, `tags`, `image`, `imageAlt`, `slug`, `altSlug`).
 
 ## 📬 Contact
 
