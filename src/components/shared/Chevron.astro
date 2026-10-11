@@ -1,0 +1,8 @@
+---
+interface Props {
+    back?: boolean;
+}
+const { back = false } = Astro.props as Props;
+---
+
+<svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={back ? "M7.5 2.5 4 6l3.5 3.5" : "M4.5 2.5 8 6l-3.5 3.5"} /></svg>

@@ -1,0 +1,83 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { buildUrl } from "@utils/urlUtils";
+import { formatMonthYear } from "@utils/formatUtils";
+import Chevron from "@components/shared/Chevron.astro";
+
+interface Props {
+    post: CollectionEntry<"post">;
+    level?: "h2" | "h3";
+    excerpt?: boolean;
+    tags?: boolean;
+}
+const { post, level: Heading = "h3", excerpt = false, tags = false } = Astro.props as Props;
+
+const locale = Astro.currentLocale;
+---
+
+<li>
+    <a class="post" href={buildUrl(`/blog/${post.data.slug || post.id}`, locale)}>
+        <div>
+            <time datetime={post.data.pubDate.toISOString()}>{formatMonthYear(post.data.pubDate, locale)}</time>
+            <Heading>{post.data.title}</Heading>
+            {excerpt && <p>{post.data.description}</p>}
+            {tags && post.data.tags && <p class="foot">{post.data.tags.slice(0, 4).join(" · ")}</p>}
+        </div>
+        <Chevron />
+    </a>
+</li>
+
+<style>
+    .post {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 16px;
+        padding: 18px 24px;
+        transition: background-color 0.2s;
+    }
+    .post:hover {
+        background: var(--bg-card-2);
+    }
+    .post > div {
+        display: grid;
+        gap: 4px;
+        min-width: 0;
+    }
+    .post :is(h2, h3) {
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 1.3;
+        letter-spacing: normal;
+    }
+    .post p {
+        font-size: 15px;
+        color: var(--soft);
+        max-width: 44em;
+    }
+    .post .foot,
+    time {
+        font-size: 13px;
+        color: var(--mute);
+        font-variant-numeric: tabular-nums;
+    }
+    .post :global(.chev) {
+        color: var(--mute);
+    }
+    @media (max-width: 734px) {
+        .post {
+            padding: 16px 20px;
+            gap: 12px;
+        }
+        .post p {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            overflow: hidden;
+        }
+        .post .foot {
+            display: none;
+        }
+    }
+</style>

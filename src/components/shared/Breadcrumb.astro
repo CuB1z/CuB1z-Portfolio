@@ -43,36 +43,30 @@ const breadcrumbLd = {
 <style>
     .crumbs {
         display: flex;
-        flex-wrap: nowrap;
         align-items: center;
-        gap: 9px;
-        max-width: 100%;
-        font-family: var(--font-mono);
-        font-size: 12px;
-        letter-spacing: 0.04em;
-        color: var(--mute);
+        gap: 8px;
+        min-width: 0;
+        font-size: 15px;
+        color: var(--soft);
+    }
+    .crumbs a,
+    .sep {
+        flex-shrink: 0;
     }
     .crumbs a {
-        color: var(--soft);
-        transition: color 0.18s;
-        flex-shrink: 0;
+        transition: color 0.2s;
     }
     .crumbs a:hover {
         color: var(--accent);
     }
-    .crumbs .sep {
+    .sep {
         color: var(--mute);
-        opacity: 0.55;
-        flex-shrink: 0;
     }
-    .crumbs .current {
-        color: var(--ink);
-        font-weight: 600;
+    .current {
         min-width: 0;
-        flex-shrink: 1;
-        max-width: 46ch;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        color: var(--ink);
     }
 </style>
