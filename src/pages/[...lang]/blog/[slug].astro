@@ -3,10 +3,12 @@ import { getCollection, render } from "astro:content";
 import { DEFAULT_LOCALE, useTranslations } from "@utils/i18nUtils";
 
 import { buildAltLangUrl, buildUrl } from "@/utils/urlUtils";
-import { formatDate, formatMonthYear } from "@/utils/formatUtils";
+import { formatDate } from "@/utils/formatUtils";
 import { socialData } from "@/constants/socialData";
 import Layout from "@layouts/Layout.astro";
 import Breadcrumb from "@components/shared/Breadcrumb.astro";
+import PostRow from "@components/shared/PostRow.astro";
+import Chevron from "@components/shared/Chevron.astro";
 
 export async function getStaticPaths() {
     const posts = await getCollection("post");
@@ -77,511 +79,363 @@ const related = (await getCollection("post"))
         type="application/ld+json"
         set:html={JSON.stringify(blogPostingLd)}
     />
-    <article class="article">
-        <Breadcrumb
-            items={[
-                { label: currentLocale === "es" ? "Inicio" : "Home", href: buildUrl("/", currentLocale) },
-                { label: t("blog:heading"), href: buildUrl("/blog", currentLocale) },
-                { label: post.data.title },
-            ]}
-        />
-
-        <div class:list={["layout", { "has-toc": toc.length > 0 }]}>
-            <div class="main">
-                <header class="p-head">
-                    <h1 class="p-title">{post.data.title}</h1>
-                    <div class="p-meta">
-                        <span class="byline">{t("blog:by")} {authorName}</span>
-                        <span class="sep author-sep">·</span>
-                        <span class="meta-info">
-                            <time datetime={post.data.pubDate.toISOString()}>
-                                {formatDate(post.data.pubDate, currentLocale)}
-                            </time>
-                            {
-                                post.data.updatedDate && (
-                                    <>
-                                        <span class="sep">·</span>
-                                        <time datetime={post.data.updatedDate.toISOString()}>
-                                            {t("blog:updated")}{" "}
-                                            {formatDate(post.data.updatedDate, currentLocale)}
-                                        </time>
-                                    </>
-                                )
-                            }
-                            <span class="sep">·</span>
-                            <span>{readingTime} {t("blog:min_read")}</span>
-                        </span>
-                    </div>
+    <div class="shell">
+        <article class="article">
+            <header class="p-head">
+                <Breadcrumb
+                    items={[
+                        { label: currentLocale === "es" ? "Inicio" : "Home", href: buildUrl("/", currentLocale) },
+                        { label: t("blog:heading"), href: buildUrl("/blog", currentLocale) },
+                        { label: post.data.title },
+                    ]}
+                />
+                <h1 class="large-title">{post.data.title}</h1>
+                <p class="p-meta">
+                    {t("blog:by")} {authorName} ·{" "}
+                    <time datetime={post.data.pubDate.toISOString()}>
+                        {formatDate(post.data.pubDate, currentLocale)}
+                    </time>
                     {
-                        post.data.tags && (
-                            <div class="tags p-tags">
-                                {post.data.tags.map((tag) => (
-                                    <span>{tag}</span>
-                                ))}
-                            </div>
+                        post.data.updatedDate && (
+                            <>
+                                {" "}·{" "}
+                                <time datetime={post.data.updatedDate.toISOString()}>
+                                    {t("blog:updated")} {formatDate(post.data.updatedDate, currentLocale)}
+                                </time>
+                            </>
                         )
                     }
-                </header>
-
+                    {" "}· {readingTime} {t("blog:min_read")}
+                </p>
                 {
-                    post.data.image && (
-                        <img class="hero-img" src={post.data.image} alt={post.data.imageAlt ?? post.data.title} loading="eager" />
+                    post.data.tags && (
+                        <ul class="tags">
+                            {post.data.tags.map((tag) => (
+                                <li>{tag}</li>
+                            ))}
+                        </ul>
                     )
                 }
+            </header>
 
-                <div class="post-content">
-                    <Content />
-                </div>
+            {
+                post.data.image && (
+                    <img class="cover" src={post.data.image} alt={post.data.imageAlt ?? post.data.title} loading="eager" />
+                )
+            }
 
-                {
-                    related.length > 0 && (
-                        <nav class="read-next" aria-label={t("blog:read_next")}>
-                            <span class="rn-title">{t("blog:read_next")}</span>
-                            <ul>
-                                {related.map((r) => (
-                                    <li>
-                                        <a href={buildUrl(`/blog/${r.data.slug || r.id}`, currentLocale)}>
-                                            <span class="rn-date">{formatMonthYear(r.data.pubDate, currentLocale)}</span>
-                                            <span class="rn-name">{r.data.title}</span>
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </nav>
-                    )
-                }
-
-                <aside class="author-card">
-                    <div class="a-head">
-                        <img
-                            class="a-avatar"
-                            src="/images/diego-sanchez.webp"
-                            alt="Diego Sánchez Rincón"
-                            width="46"
-                            height="46"
-                            loading="lazy"
-                        />
-                        <span class="a-name">{authorName}</span>
-                    </div>
-                    <p class="a-bio">{t("blog:author_bio")}</p>
-                    <div class="a-links">
-                        <a href={socialData.github} target="_blank" rel="noopener noreferrer">GitHub</a>
-                        <a href={socialData.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    </div>
-                </aside>
-
-                <div class="p-foot">
-                    <a href={buildUrl("/blog", currentLocale)} class="back">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                        {t("blog:back")}
-                    </a>
-                </div>
+            <div class="post-content">
+                <Content />
             </div>
 
             {
-                toc.length > 0 && (
-                    <aside class="toc">
-                        <div class="toc-title">{t("blog:on_this_page")}</div>
-                        <nav>
-                            {toc.map((h) => (
-                                <a href={`#${h.slug}`}>{h.text}</a>
+                related.length > 0 && (
+                    <section>
+                        <h2 class="sub">{t("blog:read_next")}</h2>
+                        <ul class="group">
+                            {related.map((r) => (
+                                <PostRow post={r} />
                             ))}
-                        </nav>
-                    </aside>
+                        </ul>
+                    </section>
                 )
             }
-        </div>
-    </article>
+
+            <aside class="author-card">
+                <div class="profile">
+                    <img src="/images/diego-192.webp" width="64" height="64" alt="" loading="lazy" />
+                    <div>
+                        <p class="profile-name">{authorName}</p>
+                        <p class="profile-sub">{t("common:schema.jobTitle")}</p>
+                    </div>
+                </div>
+                <p class="a-bio" set:html={t("blog:author_bio")} />
+                <div class="a-links">
+                    <a href={socialData.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href={socialData.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+            </aside>
+
+            <a class="more all-posts" href={buildUrl("/blog", currentLocale)}>
+                <Chevron back />
+                {t("blog:back")}
+            </a>
+        </article>
+
+        {
+            toc.length > 0 && (
+                <>
+                    <button class="toc-btn" type="button" popovertarget="toc" aria-label={t("blog:on_this_page")}>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+                    </button>
+                    <nav class="toc" id="toc" popover aria-label={t("blog:on_this_page")}>
+                        <p class="toc-title">{t("blog:on_this_page")}</p>
+                        {toc.map((h) => (
+                            <a href={`#${h.slug}`}>{h.text}</a>
+                        ))}
+                    </nav>
+                </>
+            )
+        }
+    </div>
 </Layout>
 
 <style>
     .article {
-        position: relative;
-        z-index: 1;
-        max-width: var(--max-width);
-        margin: 0 auto;
-        padding: 120px 32px 72px;
-    }
-    .back {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 13.5px;
-        font-weight: 600;
-        color: var(--soft);
-        transition: color 0.18s;
-    }
-    .back svg {
-        width: 16px;
-        height: 16px;
-        transition: transform 0.18s;
-    }
-    .back:hover {
-        color: var(--accent);
-    }
-    .back:hover svg {
-        transform: translateX(-3px);
-    }
-
-    .layout {
+        padding-top: 8px;
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 60px;
-        align-items: start;
-        margin-top: 22px;
+        gap: 32px;
     }
-    .layout.has-toc {
-        grid-template-columns: minmax(0, 1fr) 220px;
-    }
-    .main {
-        min-width: 0;
-    }
-
     .p-head {
-        margin: 8px 0 28px;
-        max-width: 780px;
-    }
-    .p-title {
-        font-size: clamp(28px, 4vw, 42px);
-        font-weight: 800;
-        letter-spacing: -0.03em;
-        line-height: 1.1;
-        color: var(--ink);
+        display: grid;
+        gap: 12px;
     }
     .p-meta {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 6px 8px;
-        margin-top: 18px;
-        font-family: var(--font-mono);
-        font-size: 11.5px;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: var(--mute);
+        font-size: 15px;
+        color: var(--soft);
     }
-    .p-meta .byline {
-        color: var(--ink);
-        text-transform: none;
-        letter-spacing: 0.02em;
+    .p-head .tags {
+        margin-top: 4px;
     }
-    .meta-info {
-        display: inline-flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 8px;
+    .cover {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border-radius: var(--radius);
     }
-    .p-meta .sep {
-        opacity: 0.5;
-    }
-    /* the author/date separator only makes sense when they share a line */
-    @media (max-width: 480px) {
-        .author-sep {
-            display: none;
-        }
-    }
-    .p-tags {
-        margin-top: 18px;
+    .sub {
+        margin-top: 0;
     }
 
-    /* author bio card */
     .author-card {
-        display: flex;
-        flex-direction: column;
+        display: grid;
         gap: 14px;
-        margin-top: 56px;
         padding: 24px;
-        border: 1px solid var(--rule);
-        border-radius: 16px;
+        border-radius: var(--radius);
         background: var(--bg-card);
     }
-    .a-head {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-    }
-    .a-avatar {
-        flex-shrink: 0;
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 1px solid var(--rule-2);
-        display: block;
-    }
-    .a-name {
-        font-weight: 700;
-        color: var(--ink);
-        font-size: 15px;
+    .author-card .profile img {
+        box-shadow: 0 0 0 2px var(--bg-card), 0 0 0 3.5px var(--accent);
     }
     .a-bio {
-        margin: 0;
-        font-size: 14px;
-        line-height: 1.6;
+        font-size: 15px;
         color: var(--soft);
-        max-width: 60ch;
     }
     .a-links {
         display: flex;
-        gap: 16px;
-        font-size: 13px;
-        font-weight: 600;
+        flex-wrap: wrap;
+        gap: 4px 20px;
     }
     .a-links a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
         color: var(--accent);
-        transition: color 0.18s;
     }
     .a-links a:hover {
-        color: var(--accent-bright);
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+    }
+    .all-posts {
+        justify-self: start;
+        margin-top: -16px;
     }
 
-    /* read next */
-    .read-next {
-        margin-top: 56px;
+    .toc-btn {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 50;
+        display: grid;
+        place-items: center;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(16, 20, 26, 0.72);
+        backdrop-filter: blur(20px) saturate(180%);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        color: var(--ink);
+        cursor: pointer;
+        transition: color 0.2s;
     }
-    .rn-title {
-        font-family: var(--font-mono);
-        font-size: 11.5px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--mute);
+    .toc-btn:hover {
+        color: var(--accent);
     }
-    .read-next ul {
-        list-style: none;
-        margin: 14px 0 0;
-        padding: 0;
+    .toc-btn svg {
+        width: 20px;
+        height: 20px;
     }
-    .read-next li {
-        border-top: 1px solid var(--rule);
+    .toc {
+        position: fixed;
+        inset: auto 24px 88px auto;
+        margin: 0;
+        width: min(300px, calc(100vw - 48px));
+        max-height: min(60vh, 480px);
+        overflow-y: auto;
+        padding: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        background: rgba(16, 20, 26, 0.92);
+        backdrop-filter: blur(20px) saturate(180%);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        color: var(--ink);
     }
-    .read-next li:first-child {
-        border-top: 0;
+    .toc:popover-open {
+        display: grid;
+        gap: 2px;
+        animation: toc-in 0.16s ease-out;
     }
-    .read-next a {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        padding: 14px 0;
-        transition: padding-left 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
-    }
-    @media (hover: hover) {
-        .read-next a:hover {
-            padding-left: 10px;
+    @keyframes toc-in {
+        from {
+            opacity: 0;
+            transform: translateY(8px) scale(0.98);
         }
     }
-    .rn-date {
-        flex-shrink: 0;
-        width: 84px;
-        font-family: var(--font-mono);
-        font-size: 11px;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: var(--mute);
-    }
-    .rn-name {
-        flex: 1;
-        font-size: 15.5px;
-        font-weight: 600;
-        color: var(--ink);
-        transition: color 0.18s;
-    }
-    .read-next a:hover .rn-name {
-        color: var(--accent);
-    }
-    .read-next a svg {
-        width: 16px;
-        height: 16px;
-        flex-shrink: 0;
-        color: var(--mute);
-        transition: color 0.18s, transform 0.25s;
-    }
-    .read-next a:hover svg {
-        color: var(--accent);
-        transform: translate(3px, -3px);
-    }
-    .hero-img {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        object-fit: cover;
-        border-radius: 14px;
-        border: 1px solid var(--rule-2);
-        margin: 8px 0 40px;
-        display: block;
-    }
-
-    /* TOC */
-    .toc {
-        position: sticky;
-        top: 104px;
-    }
     .toc-title {
-        font-family: var(--font-mono);
-        font-size: 11px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
+        padding: 8px 12px 6px;
+        font-size: 13px;
+        font-weight: 600;
         color: var(--mute);
-        margin-bottom: 16px;
-    }
-    .toc nav {
-        display: flex;
-        flex-direction: column;
-        border-left: 1px solid var(--rule);
     }
     .toc a {
-        font-size: 13.5px;
-        line-height: 1.4;
+        padding: 8px 12px;
+        border-radius: 10px;
         color: var(--soft);
-        padding: 7px 0 7px 16px;
-        border-left: 2px solid transparent;
-        margin-left: -1px;
-        transition: color 0.15s, border-color 0.15s;
+        font-size: 14px;
+        line-height: 1.35;
+        transition: background-color 0.2s, color 0.2s;
     }
     .toc a:hover {
+        background: var(--fill);
         color: var(--ink);
     }
     .toc a.active {
+        background: var(--fill);
         color: var(--accent);
-        border-left-color: var(--accent);
-        font-weight: 600;
     }
-
-    .p-foot {
-        margin-top: 56px;
-        padding-top: 28px;
-        border-top: 1px solid var(--rule);
-    }
-
-    @media (max-width: 880px) {
-        .layout.has-toc {
-            grid-template-columns: 1fr;
+    @media (max-width: 734px) {
+        .toc-btn {
+            right: 16px;
+            bottom: 16px;
         }
         .toc {
-            display: none;
+            inset: auto 16px 80px auto;
+            width: min(300px, calc(100vw - 32px));
         }
     }
 
-    /* prose */
     .post-content {
-        font-size: 16.5px;
-        line-height: 1.8;
-        color: var(--soft);
-        max-width: 760px;
+        min-width: 0;
+        color: color-mix(in srgb, var(--ink) 70%, var(--soft));
+        font-size: 17px;
+        line-height: 1.7;
         overflow-wrap: break-word;
     }
-    .post-content :global(p) {
-        margin: 18px 0;
-    }
-    .post-content :global(strong) {
-        color: var(--ink);
-        font-weight: 600;
-    }
-    .post-content :global(h2),
-    .post-content :global(h3),
-    .post-content :global(h4) {
-        color: var(--ink);
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        line-height: 1.25;
-        scroll-margin-top: 96px;
+    .post-content > :global(* + *) {
+        margin-top: 1.1em;
     }
     .post-content :global(h2) {
-        font-size: 25px;
-        margin: 46px 0 4px;
+        font-size: 24px;
+        line-height: 1.25;
+        letter-spacing: -0.015em;
+        margin-top: 2.25em;
+        scroll-margin-top: 96px;
     }
     .post-content :global(h3) {
         font-size: 20px;
-        margin: 32px 0 4px;
+        font-weight: 600;
+        line-height: 1.3;
+        margin-top: 1.75em;
+        scroll-margin-top: 96px;
     }
-    .post-content :global(h4) {
-        font-size: 17px;
-        margin: 28px 0 4px;
+    .post-content :global(:is(h2, h3) + *) {
+        margin-top: 0.75em;
+    }
+    .post-content :global(ul) {
+        list-style: disc;
+        padding-left: 1.25rem;
+    }
+    .post-content :global(ol) {
+        list-style: decimal;
+        padding-left: 1.25rem;
+    }
+    .post-content :global(:is(ul, ol)) {
+        color: color-mix(in srgb, var(--ink) 55%, var(--soft));
+    }
+    .post-content :global(li + li) {
+        margin-top: 0.4em;
+    }
+    .post-content :global(li::marker) {
+        color: var(--accent);
+    }
+    .post-content :global(strong) {
+        font-weight: 600;
+        color: var(--ink);
     }
     .post-content :global(a) {
         color: var(--accent);
-        border-bottom: 1px solid transparent;
-        transition: border-color 0.18s;
+        text-decoration: underline;
+        text-decoration-color: var(--accent-dim);
+        text-underline-offset: 0.2em;
     }
     .post-content :global(a:hover) {
-        border-bottom-color: var(--accent);
-    }
-    .post-content :global(ul),
-    .post-content :global(ol) {
-        margin: 18px 0;
-        padding-left: 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 9px;
-    }
-    .post-content :global(li) {
-        line-height: 1.65;
-    }
-    .post-content :global(blockquote) {
-        margin: 28px 0;
-        padding: 4px 0 4px 22px;
-        border-left: 2px solid var(--accent);
-        color: var(--ink);
-        font-size: 17px;
-        line-height: 1.6;
+        text-decoration-color: var(--accent);
     }
     .post-content :global(code) {
         font-family: var(--font-mono);
-        font-size: 13.5px;
-        background: var(--bg-card-2);
-        border: 1px solid var(--rule);
-        border-radius: 4px;
-        padding: 2px 6px;
-        color: var(--accent-bright);
+        font-size: 0.875em;
+        padding: 0.125em 0.375em;
+        border-radius: 6px;
+        background: var(--fill);
     }
     .post-content :global(pre) {
-        background: var(--bg-card);
-        border: 1px solid var(--rule-2);
-        border-radius: 12px;
-        padding: 20px;
+        background: var(--bg-card) !important;
+        border-radius: 16px;
+        padding: 16px 20px;
         overflow-x: auto;
-        margin: 24px 0;
-        font-size: 13.5px;
+        font-size: 14px;
         line-height: 1.6;
     }
     .post-content :global(pre code) {
-        background: none;
-        border: none;
         padding: 0;
+        background: none;
+        font-size: inherit;
+    }
+    .post-content :global(blockquote) {
+        padding: 16px 20px;
+        border-radius: 16px;
+        background: var(--bg-card);
         color: var(--soft);
     }
-    .post-content :global(img) {
-        max-width: 100%;
-        height: auto;
-        margin: 24px 0;
-        border: 1px solid var(--rule-2);
-        border-radius: 12px;
+    .post-content :global(blockquote > * + *) {
+        margin-top: 0.5em;
     }
-    .post-content :global(iframe) {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        height: auto;
-        border: 1px solid var(--rule-2);
-        border-radius: 12px;
-        margin: 24px 0;
+    .post-content :global(blockquote :is(ul, ol)) {
+        color: inherit;
+    }
+    .post-content :global(blockquote strong) {
+        color: var(--ink);
     }
     .post-content :global(hr) {
-        border: none;
+        border: 0;
         height: 1px;
         background: var(--rule);
-        margin: 40px 0;
+        margin-block: 40px;
     }
-
-    @media (max-width: 600px) {
-        .article {
-            padding: 104px 22px 56px;
-        }
+    .post-content :global(img) {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 16px;
     }
-    @media (max-width: 560px) {
-        .post-content {
-            font-size: 15.5px;
-        }
-        .post-content :global(h2) {
-            font-size: 22px;
-        }
+    .post-content :global(iframe) {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        border: 0;
+        border-radius: 16px;
     }
 </style>

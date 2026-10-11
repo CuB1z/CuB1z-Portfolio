@@ -201,6 +201,8 @@ const websiteLd = {
                 );
                 headings.forEach((h) => tocObserver!.observe(h));
                 if (headings[0]) setActive(headings[0].id);
+                const toc = document.querySelector<HTMLElement>(".toc");
+                links.forEach((a) => (a.onclick = () => toc?.hidePopover()));
             }
 
             function initPager() {
