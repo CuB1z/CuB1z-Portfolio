@@ -28,8 +28,8 @@ Newest first. Spanish translations live under /es/blog/<slug>.
 
 ## Experience
 
-- Génexys Technology, Full-Stack Developer (Feb 2026 – present): microservices with Python, FastAPI and AWS.
-- Telefónica Innovación Digital, Full-Stack Developer, internship (Jul – Dec 2025): Next.js, accessibility (WCAG), SEO and web performance.
+- Génexys Technology, Full-Stack Developer (Feb 2026 – present): backend across cloud services, a telemetry data platform and in-vehicle edge systems; event-driven microservices with Python, FastAPI and AWS, Kinesis and Lambda ingestion, offline navigation with Valhalla routing, and agentic engineering workflows with Claude Code.
+- Telefónica Innovación Digital, Full-Stack Developer, internship (Jul – Dec 2025): a full-stack web accessibility analysis platform (React, Express, MongoDB), Next.js, accessibility (WCAG), SEO and web performance.
 
 ## Featured project
 

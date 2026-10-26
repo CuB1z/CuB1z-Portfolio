@@ -7,24 +7,27 @@
                 "company": "Génexys Technology",
                 "type": "Full-time",
                 "date": "Feb 2026 - Present",
-                "lead": "Responsible for the platform's entire backend, from microservices to shared libraries, built with Python, FastAPI and AWS. I also take part in technical decision-making and in defining development and architecture standards.",
+                "lead": "Backend-focused engineer working across cloud services, the data platform and in-vehicle edge systems. I also contribute to architecture decisions, technical standards and system design.",
                 "bullets": [
-                    "Build event-driven communication with SQS/SNS in the backend and Greengrass IPC on NVIDIA Jetson edge devices.",
-                    "Design and implement offline navigation as an embedded Greengrass component, based on Valhalla routing and MapLibre vector maps, for environments with limited connectivity.",
-                    "Design agentic, automated development workflows with Claude Code, specialized agents and reusable skills to streamline engineering processes."
+                    "Design and build microservices with Python and FastAPI on AWS, using event-driven architectures focused on decoupling and scalability.",
+                    "Build a telemetry ingestion data platform with AWS Kinesis and Lambda functions that trigger downstream events.",
+                    "Implement the in-vehicle edge interface with LVGL and an offline navigation component with Valhalla-based routing for low-connectivity environments.",
+                    "Develop web frontends with React (SPA) and Next.js.",
+                    "Create agentic engineering workflows with Claude Code, specialized agents and reusable skills."
                 ],
-                "tags": ["Python", "FastAPI", "AWS", "Microservices", "IoT Greengrass"]
+                "tags": ["Python", "FastAPI", "AWS", "Microservices", "Claude Code"]
             },
             {
                 "role": "Full-Stack Developer",
                 "company": "Telefónica Innovación Digital",
                 "type": "Internship",
                 "date": "Jul 2025 - Dec 2025",
-                "lead": "Contributed to the development and optimization of web applications with Next.js within the Mística Design System, focusing on accessibility, SEO and performance.",
+                "lead": "Full-stack internship focused on accessibility, SEO and performance for Telefónica's digital products, built on the Mística Design System.",
                 "bullets": [
+                    "Designed and built a full-stack web accessibility analysis platform (React, Express, MongoDB) with automated audit reporting.",
+                    "Developed and maintained web applications with Next.js and React.",
                     "Implemented accessibility (WCAG) and SEO improvements across digital products.",
-                    "Built a full-stack tool (React, Express, MongoDB) to automate technical audits.",
-                    "Ran technical audits and Web Performance Optimization (WPO) in agile teams."
+                    "Conducted technical audits and Web Performance Optimization (WPO)."
                 ],
                 "tags": ["Next.js", "React", "SEO", "WCAG"]
             }
@@ -33,8 +36,9 @@
     "about": {
         "heading": "About",
         "narrative": [
-            "My work involves technical and architectural decision-making, event-driven systems, cloud solutions, and the development of scalable services.",
-            "I’m interested in building reliable systems, solving complex engineering problems, and continuously improving the way software is designed and developed."
+            "I’m a Software Engineer focused on backend and distributed systems, building scalable cloud services with Python, FastAPI and AWS.",
+            "At Génexys I build microservices and event-driven architectures, work on offline geospatial navigation for low-connectivity environments, and create agentic engineering workflows with Claude Code.",
+            "I enjoy designing systems that are simple, reliable and built to scale."
         ],
         "facts": [
             {
@@ -47,7 +51,7 @@
             },
             {
                 "label": "Focus",
-                "lines": ["Backend, microservices & cloud (AWS)"]
+                "lines": ["Backend & distributed systems on AWS"]
             },
             {
                 "label": "Based in",

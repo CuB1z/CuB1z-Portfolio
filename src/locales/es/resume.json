@@ -7,24 +7,27 @@
                 "company": "Génexys Technology",
                 "type": "Jornada completa",
                 "date": "Feb 2026 – Actualidad",
-                "lead": "Responsable de todo el backend de la plataforma, desde los microservicios hasta las librerías compartidas, desarrollado con Python, FastAPI y AWS. Participo además en la toma de decisiones técnicas y en la definición de estándares de desarrollo y arquitectura.",
+                "lead": "Ingeniero de software con enfoque en backend, involucrado en el desarrollo de servicios cloud, la plataforma de datos y los sistemas embarcados en vehículos. También participo en decisiones de arquitectura, definición de estándares técnicos y diseño de soluciones.",
                 "bullets": [
-                    "Desarrollo comunicación orientada a eventos con SQS/SNS en el backend y con IPC de Greengrass en dispositivos edge NVIDIA Jetson.",
-                    "Diseño e implemento la navegación offline como componente embebido de Greengrass, basado en Valhalla y mapas vectoriales con MapLibre, para entornos con conectividad limitada.",
-                    "Diseño flujos de desarrollo agénticos y automatizados con Claude Code, agentes especializados y skills reutilizables para optimizar los procesos de ingeniería."
+                    "Diseño y desarrollo de microservicios con Python y FastAPI en AWS, aplicando arquitecturas orientadas a eventos para favorecer el desacoplamiento y la escalabilidad.",
+                    "Desarrollo de una plataforma de ingesta de telemetría mediante AWS Kinesis y Lambda, que procesa datos y desencadena eventos para los servicios posteriores.",
+                    "Desarrollo de la interfaz embarcada del vehículo con LVGL y de un sistema de navegación offline basado en Valhalla, adaptado a entornos con conectividad limitada.",
+                    "Desarrollo de aplicaciones web con React (SPA) y Next.js.",
+                    "Diseño e implementación de flujos de desarrollo agéntico con Claude Code, mediante agentes especializados y skills reutilizables para automatizar y mejorar tareas de ingeniería."
                 ],
-                "tags": ["Python", "FastAPI", "AWS", "Microservicios", "IoT Greengrass"]
+                "tags": ["Python", "FastAPI", "AWS", "Microservicios", "Claude Code"]
             },
             {
                 "role": "Desarrollador Full-Stack",
                 "company": "Telefónica Innovación Digital",
                 "type": "Prácticas",
                 "date": "Jul 2025 – Dic 2025",
-                "lead": "Contribuí al desarrollo y la optimización de aplicaciones web con Next.js dentro del Design System Mística, centrándome en accesibilidad, SEO y rendimiento.",
+                "lead": "Experiencia en desarrollo full stack centrada en mejorar la accesibilidad, el posicionamiento SEO y el rendimiento de los productos digitales de Telefónica, utilizando el sistema de diseño Mística.",
                 "bullets": [
-                    "Implementé mejoras de accesibilidad (WCAG) y SEO en productos digitales.",
-                    "Construí una herramienta full-stack (React, Express, MongoDB) para automatizar auditorías técnicas.",
-                    "Realicé auditorías técnicas y optimización del rendimiento web (WPO) en equipos ágiles."
+                    "Diseño y desarrollo de una plataforma web de análisis de accesibilidad con React, Express y MongoDB, capaz de automatizar auditorías y generar informes de resultados.",
+                    "Desarrollo y mantenimiento de aplicaciones web con Next.js y React.",
+                    "Implementación de mejoras de accesibilidad siguiendo las pautas WCAG y optimización SEO en productos digitales.",
+                    "Realización de auditorías técnicas y optimización del rendimiento web (WPO)."
                 ],
                 "tags": ["Next.js", "React", "SEO", "WCAG"]
             }
@@ -33,8 +36,9 @@
     "about": {
         "heading": "Sobre mí",
         "narrative": [
-            "Mi trabajo abarca la toma de decisiones técnicas y de arquitectura, sistemas orientados a eventos, soluciones cloud y el desarrollo de servicios escalables.",
-            "Me interesa construir sistemas fiables, resolver problemas de ingeniería complejos y mejorar continuamente la forma en que se diseña y desarrolla el software."
+            "Soy ingeniero de software especializado en backend y sistemas distribuidos. Construyo servicios en la nube pensados para escalar, con Python, FastAPI y AWS.",
+            "En Génexys desarrollo microservicios con arquitecturas basadas en eventos, trabajo en navegación sin conexión para zonas con poca cobertura y automatizo parte del desarrollo con Claude Code.",
+            "Me gusta diseñar sistemas sencillos, fiables y preparados para crecer."
         ],
         "facts": [
             {
@@ -47,7 +51,7 @@
             },
             {
                 "label": "Enfoque",
-                "lines": ["Backend, microservicios y cloud (AWS)"]
+                "lines": ["Backend y sistemas distribuidos en AWS"]
             },
             {
                 "label": "Ubicación",

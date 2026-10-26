@@ -57,15 +57,15 @@ const items = t("resume:experience.items", { returnObjects: true }) as Array<{
         font-weight: 600;
         color: var(--accent);
     }
-    .lead {
-        max-width: 40em;
+    .lead,
+    .bullets {
+        max-width: 760px;
     }
     .bullets {
         display: grid;
         gap: 6px;
         padding-left: 18px;
         list-style: disc;
-        max-width: 40em;
         font-size: 15px;
         color: color-mix(in srgb, var(--ink) 55%, var(--soft));
     }
