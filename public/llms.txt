@@ -11,12 +11,12 @@ root; Spanish under /es.
 ## Navigation
 
 - [Home](https://cub1z.es/): hero, experience, selected work and about, on one page. Spanish: [/es](https://cub1z.es/es/).
-- [Writing](https://cub1z.es/blog): posts on engineering, architecture and the TripFlow project. Spanish: [/es/blog](https://cub1z.es/es/blog).
+- [Writing](https://cub1z.es/blog): posts on engineering, architecture and the TripFlow and Velio projects. Spanish: [/es/blog](https://cub1z.es/es/blog).
 - /blog/<slug>: an individual blog post. Spanish: /es/blog/<slug>.
 
 ## Blog posts
 
-Newest first. Spanish translations live under /es/blog/<slug>.
+Oldest first. Spanish translations live under /es/blog/<slug>.
 
 - [Introducing TripFlow](https://cub1z.es/blog/introducing-tripflow): a travel-planning PWA with AI itineraries and route optimization.
 - [CI/CD & Testing TripFlow](https://cub1z.es/blog/ci-cd-testing-tripflow): backend and frontend setup, test suites and deployment pipelines.
@@ -25,6 +25,7 @@ Newest first. Spanish translations live under /es/blog/<slug>.
 - [Beyond the Monolith](https://cub1z.es/blog/beyond-the-monolith): when to adopt microservices versus keeping a modular monolith.
 - [YAGNI in Practice](https://cub1z.es/blog/yagni-in-practice): avoiding speculative over-engineering and the maintenance tax it creates.
 - [TripFlow v1.0.0](https://cub1z.es/blog/tripflow-v1.0.0): collaborative itineraries, secure share links, maps, offline access and PDF export.
+- [Introducing Velio](https://cub1z.es/blog/introducing-velio): a cycling route planner on open data for Spain, Portugal and Andorra: loops cut to your distance and climbing, scored before you ride.
 
 ## Experience
 
