@@ -17,21 +17,21 @@
             }
         },
         {
+            "title": "Velio",
+            "description": "Cycling route planner on open data: loops cut to your distance and climbing, scored by road type, surface and elevation before you ride.",
+            "techStack": ["FastAPI", "Valhalla", "PostgreSQL", "React"],
+            "links": {
+                "github": "https://github.com/CuB1z/Velio",
+                "live": "https://velio.cub1z.es"
+            }
+        },
+        {
             "title": "NoteHub",
             "description": "Lightweight platform that lets you view Markdown notes directly from GitHub repositories, with a clean interface adaptable to any device.",
             "techStack": ["Next.js", "TypeScript", "GitHub API"],
             "links": {
                 "github": "https://github.com/CuB1z/NoteHub",
                 "live": "https://n0tehub.vercel.app/"
-            }
-        },
-        {
-            "title": "SaveX",
-            "description": "A platform that allows users to compare the prices of products between different supermarkets.",
-            "techStack": ["Spring Boot", "Angular", "MySQL", "Docker"],
-            "links": {
-                "github": "https://github.com/CuB1z/SaveX",
-                "live": "https://savex-95hv.onrender.com/"
             }
         },
         {
