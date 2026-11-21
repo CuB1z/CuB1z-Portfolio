@@ -9,34 +9,108 @@ const email = socialData.email.replace(/^mailto:/, "");
 
 <header class="hero">
     <div class="shell">
-        <h1>{t("hero:name")}</h1>
-        <p class="lede" set:html={t("hero:lede")} />
-        <p class="bio" set:html={t("hero:bio")} />
-        <div class="actions">
-            <button
-                class="btn primary"
-                id="copy-email"
-                type="button"
-                data-email={email}
-                data-copied={t("hero:copied")}
-                data-copied-msg={t("hero:copied_msg")}
-                data-selected-msg={t("hero:selected_msg")}
-            >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="3.5"/><path d="m3.5 7.5 7.4 5.1a2 2 0 0 0 2.2 0l7.4-5.1"/></svg>
-                <span class="vh">{t("hero:copy")} </span><span class="email">{email}</span>
-                <svg class="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8"/></svg>
-                <svg class="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            </button>
-            <a class="btn" href={socialData.github} target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-                GitHub
-            </a>
-            <a class="btn" href={socialData.linkedin} target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12" rx="1"/><circle cx="4" cy="4" r="2"/></svg>
-                LinkedIn
-            </a>
+        <div class="hero-copy">
+            <h1>{t("hero:name")}</h1>
+            <p class="lede" set:html={t("hero:lede")} />
+            <p class="bio" set:html={t("hero:bio")} />
+            <div class="actions">
+                <button
+                    class="btn primary"
+                    id="copy-email"
+                    type="button"
+                    data-email={email}
+                    aria-label={t("hero:copy") + " " + email}
+                    data-copied-msg={t("hero:copied_msg")}
+                    data-selected-msg={t("hero:selected_msg")}
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <rect x="2.5" y="4.5" width="19" height="15" rx="3.5" />
+                        <path d="m3.5 7.5 7.4 5.1a2 2 0 0 0 2.2 0l7.4-5.1" />
+                    </svg>
+                    <span class="email-label" aria-hidden="true">
+                        <span class="email">{email}</span>
+                        <span class="copied">{t("hero:copied")}</span>
+                    </span>
+                    <svg
+                        class="i-copy"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <rect x="8" y="8" width="12" height="12" rx="2.5" />
+                        <path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8" />
+                    </svg>
+                    <svg
+                        class="i-check"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                </button>
+                <div class="social-actions">
+                    <a class="btn" href={socialData.github} target="_blank" rel="noopener noreferrer">
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                            <path d="M9 18c-4.51 2-5-2-7-2" />
+                        </svg>
+                        GitHub
+                    </a>
+                    <a class="btn" href={socialData.linkedin} target="_blank" rel="noopener noreferrer">
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect x="2" y="9" width="4" height="12" rx="1" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+            <p class="vh" id="copy-status" role="status"></p>
         </div>
-        <p class="vh" id="copy-status" role="status"></p>
+        <img
+            class="hero-art"
+            src="/images/hero-astronaut.webp"
+            srcset="/images/hero-astronaut-384.webp 384w, /images/hero-astronaut-768.webp 768w, /images/hero-astronaut.webp 1402w"
+            sizes="(max-width: 719px) min(100vw - 40px, clamp(200px, 36svh, 280px)), min(42vw - 23px, 384px)"
+            alt=""
+            width="1402"
+            height="1122"
+            fetchpriority="high"
+        />
     </div>
 </header>
 
@@ -46,49 +120,67 @@ const email = socialData.email.replace(/^mailto:/, "");
         const label = btn?.querySelector<HTMLElement>(".email");
         const status = document.querySelector<HTMLElement>("#copy-status");
         if (!btn || !label || !status) return;
-        const { email = "", copied = "", copiedMsg = "", selectedMsg = "" } = btn.dataset;
+        const { email = "", copiedMsg = "", selectedMsg = "" } = btn.dataset;
         let timer: number | undefined;
-        btn.onclick = () => {
-            (navigator.clipboard?.writeText(email) ?? Promise.reject()).then(
-                () => {
-                    btn.style.width = `${btn.offsetWidth}px`;
-                    btn.classList.add("done");
-                    label.textContent = copied;
-                    status.textContent = copiedMsg;
-                    clearTimeout(timer);
-                    timer = window.setTimeout(() => {
-                        btn.classList.remove("done");
-                        btn.style.width = "";
-                        label.textContent = email;
-                        status.textContent = "";
-                    }, 2500);
-                },
-                () => {
-                    getSelection()?.selectAllChildren(label);
-                    status.textContent = selectedMsg;
-                }
-            );
+
+        btn.onclick = async () => {
+            try {
+                if (!navigator.clipboard) throw new Error("Clipboard unavailable");
+                await navigator.clipboard.writeText(email);
+            } catch {
+                clearTimeout(timer);
+                btn.classList.remove("done");
+                getSelection()?.selectAllChildren(label);
+                status.textContent = selectedMsg;
+                return;
+            }
+
+            btn.classList.add("done");
+            status.textContent = copiedMsg;
+            clearTimeout(timer);
+            timer = window.setTimeout(() => {
+                btn.classList.remove("done");
+                status.textContent = "";
+            }, 2500);
         };
     });
 </script>
 
 <style>
     .hero {
-        padding: 40px 0 48px;
+        position: relative;
+        isolation: isolate;
+        padding: clamp(16px, 3vw, 40px) 0 clamp(24px, 4vw, 48px);
     }
-    .shell > * + * {
-        margin-top: 20px;
+    .hero::before {
+        position: absolute;
+        inset: calc(-1 * var(--main-top)) 0 0;
+        z-index: -1;
+        content: "";
+        background-image:
+            linear-gradient(to bottom, transparent 45%, var(--bg) 100%),
+            url("/images/hero-obsidian.webp");
+        background-position: center top;
+        background-size: 100% 100%, max(100%, 58rem) auto;
+        background-repeat: no-repeat;
+    }
+    .shell {
+        display: grid;
+        gap: clamp(16px, 3vw, 32px);
+        align-items: center;
+    }
+    .hero-copy > * + * {
+        margin-top: 16px;
     }
     h1 {
-        font-size: clamp(48px, 14vw, 88px);
+        font-size: clamp(36px, 7vw, 64px);
         line-height: 1;
         letter-spacing: -0.035em;
     }
     .lede {
-        max-width: 640px;
-        font-size: clamp(22px, 3vw, 28px);
+        font-size: clamp(17px, 2.35vw, 23px);
         font-weight: 600;
-        line-height: 1.2;
+        line-height: 1.3;
         letter-spacing: -0.02em;
         color: var(--soft);
     }
@@ -98,15 +190,21 @@ const email = socialData.email.replace(/^mailto:/, "");
     }
     .bio {
         max-width: 34em;
+        font-size: clamp(15px, 1.65vw, 16px);
+        text-wrap: pretty;
     }
     .bio :global(strong) {
         font-weight: 600;
     }
-    .actions {
+    .actions,
+    .social-actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
-        padding-top: 8px;
+        gap: 12px;
+    }
+    .actions .btn {
+        padding-inline: 16px;
+        font-size: 14px;
     }
     .btn svg {
         width: 18px;
@@ -125,15 +223,51 @@ const email = socialData.email.replace(/^mailto:/, "");
     .done .i-check {
         display: block;
     }
+    .email-label {
+        display: grid;
+    }
+    .email-label > span {
+        grid-area: 1 / 1;
+    }
     .email {
         user-select: text;
     }
-    @media (max-width: 734px) {
-        .actions .btn {
-            flex: 1 1 0;
+    .copied,
+    .done .email {
+        visibility: hidden;
+    }
+    .done .copied {
+        visibility: visible;
+    }
+    .hero-art {
+        display: block;
+        justify-self: center;
+        width: min(100%, clamp(200px, 36svh, 280px));
+        height: auto;
+    }
+    @media (min-width: 720px) {
+        .shell {
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
         }
-        .actions .primary {
+        .hero-art {
+            justify-self: end;
+            width: min(100%, 384px);
+        }
+    }
+    @media (width < 720px) {
+        .hero::before {
+            background-position: 55% top;
+        }
+        .bio {
+            max-width: none;
+        }
+    }
+    @media (max-width: 480px) {
+        .actions > * {
             flex-basis: 100%;
+        }
+        .social-actions .btn {
+            flex: 1 1 0;
         }
     }
 </style>

@@ -358,8 +358,9 @@ const websiteLd = {
     }
 
     main {
+        --main-top: 112px;
         flex: 1;
-        padding: 112px 0 32px;
+        padding: var(--main-top) 0 32px;
     }
 
     .shell {
@@ -567,7 +568,7 @@ const websiteLd = {
 
     @media (max-width: 734px) {
         main {
-            padding-top: 88px;
+            --main-top: 88px;
         }
         .section {
             padding: 40px 0;
