@@ -7,13 +7,11 @@
                 "company": "Génexys Technology",
                 "type": "Full-time",
                 "date": "Feb 2026 - Present",
-                "lead": "Backend-focused engineer working across cloud services, the data platform and in-vehicle edge systems. I also contribute to architecture decisions, technical standards and system design.",
+                "lead": "Backend engineering for distributed systems on AWS, designing and maintaining seven Python and FastAPI microservices within an event-driven architecture.",
                 "bullets": [
-                    "Design and build microservices with Python and FastAPI on AWS, using event-driven architectures focused on decoupling and scalability.",
-                    "Build a telemetry ingestion data platform with AWS Kinesis and Lambda functions that trigger downstream events.",
-                    "Implement the in-vehicle edge interface with LVGL and an offline navigation component with Valhalla-based routing for low-connectivity environments.",
-                    "Develop web frontends with React (SPA) and Next.js.",
-                    "Create agentic engineering workflows with Claude Code, specialized agents and reusable skills."
+                    "Co-designed and implemented a telemetry platform for up to 300,000 vehicles, using Kinesis, Lambda, and SQS for ingestion and processing, with DynamoDB and PostgreSQL for persistence.",
+                    "Optimized asynchronous processing, vehicle state management in DynamoDB, and PostgreSQL connection pooling. Assessed scalability with JMeter load tests.",
+                    "Designed and implemented multi-tenant architectures with data isolation, authentication, and access control. Documented architecture decisions in ADRs."
                 ],
                 "tags": ["Python", "FastAPI", "AWS", "Microservices", "Claude Code"]
             },
@@ -22,12 +20,11 @@
                 "company": "Telefónica Innovación Digital",
                 "type": "Internship",
                 "date": "Jul 2025 - Dec 2025",
-                "lead": "Full-stack internship focused on accessibility, SEO and performance for Telefónica's digital products, built on the Mística Design System.",
+                "lead": "Full-stack internship on Telefónica’s digital products, focused on web accessibility, performance, and internal engineering tools.",
                 "bullets": [
-                    "Designed and built a full-stack web accessibility analysis platform (React, Express, MongoDB) with automated audit reporting.",
-                    "Developed and maintained web applications with Next.js and React.",
-                    "Implemented accessibility (WCAG) and SEO improvements across digital products.",
-                    "Conducted technical audits and Web Performance Optimization (WPO)."
+                    "Designed and built an internal platform with React, Express, and MongoDB to automate accessibility audit management and reporting.",
+                    "Built web applications with Next.js and React, using the Mística Design System to deliver consistent, accessible interfaces.",
+                    "Improved accessibility in line with WCAG guidelines, optimized web performance, and applied SEO best practices across digital products."
                 ],
                 "tags": ["Next.js", "React", "SEO", "WCAG"]
             }

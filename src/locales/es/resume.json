@@ -7,13 +7,11 @@
                 "company": "Génexys Technology",
                 "type": "Jornada completa",
                 "date": "Feb 2026 – Actualidad",
-                "lead": "Ingeniero de software con enfoque en backend, involucrado en el desarrollo de servicios cloud, la plataforma de datos y los sistemas embarcados en vehículos. También participo en decisiones de arquitectura, definición de estándares técnicos y diseño de soluciones.",
+                "lead": "Desarrollo backend de sistemas distribuidos en AWS, con diseño y mantenimiento de siete microservicios en Python y FastAPI dentro de una arquitectura orientada a eventos.",
                 "bullets": [
-                    "Diseño y desarrollo de microservicios con Python y FastAPI en AWS, aplicando arquitecturas orientadas a eventos para favorecer el desacoplamiento y la escalabilidad.",
-                    "Desarrollo de una plataforma de ingesta de telemetría mediante AWS Kinesis y Lambda, que procesa datos y desencadena eventos para los servicios posteriores.",
-                    "Desarrollo de la interfaz embarcada del vehículo con LVGL y de un sistema de navegación offline basado en Valhalla, adaptado a entornos con conectividad limitada.",
-                    "Desarrollo de aplicaciones web con React (SPA) y Next.js.",
-                    "Diseño e implementación de flujos de desarrollo agéntico con Claude Code, mediante agentes especializados y skills reutilizables para automatizar y mejorar tareas de ingeniería."
+                    "Diseño e implementación en equipo de una plataforma de telemetría para hasta 300.000 vehículos, con Kinesis, Lambda y SQS para la ingesta y el procesamiento, y DynamoDB y PostgreSQL para la persistencia.",
+                    "Optimización del procesamiento asíncrono, la gestión del estado de los vehículos en DynamoDB y el pool de conexiones de PostgreSQL. Evaluación de la escalabilidad con pruebas de carga en JMeter.",
+                    "Diseño e implementación de arquitecturas multitenant con aislamiento de datos, autenticación y control de acceso. Documentación de decisiones de arquitectura mediante ADR."
                 ],
                 "tags": ["Python", "FastAPI", "AWS", "Microservicios", "Claude Code"]
             },
@@ -22,12 +20,11 @@
                 "company": "Telefónica Innovación Digital",
                 "type": "Prácticas",
                 "date": "Jul 2025 – Dic 2025",
-                "lead": "Experiencia en desarrollo full stack centrada en mejorar la accesibilidad, el posicionamiento SEO y el rendimiento de los productos digitales de Telefónica, utilizando el sistema de diseño Mística.",
+                "lead": "Prácticas de desarrollo full stack en productos digitales de Telefónica, con foco en accesibilidad web, rendimiento y herramientas internas de ingeniería.",
                 "bullets": [
-                    "Diseño y desarrollo de una plataforma web de análisis de accesibilidad con React, Express y MongoDB, capaz de automatizar auditorías y generar informes de resultados.",
-                    "Desarrollo y mantenimiento de aplicaciones web con Next.js y React.",
-                    "Implementación de mejoras de accesibilidad siguiendo las pautas WCAG y optimización SEO en productos digitales.",
-                    "Realización de auditorías técnicas y optimización del rendimiento web (WPO)."
+                    "Diseño y desarrollo de una plataforma interna con React, Express y MongoDB para automatizar la gestión de auditorías de accesibilidad y la generación de informes.",
+                    "Desarrollo de aplicaciones con Next.js y React, siguiendo el sistema de diseño Mística para mantener interfaces coherentes y accesibles.",
+                    "Mejoras de accesibilidad según las pautas WCAG, optimización del rendimiento web y aplicación de buenas prácticas de SEO en productos digitales."
                 ],
                 "tags": ["Next.js", "React", "SEO", "WCAG"]
             }
