@@ -1,0 +1,38 @@
+---
+import type { ComponentProps, HTMLAttributes } from "astro/types";
+import ButtonIcon from "./ButtonIcon.astro";
+
+type Options = {
+    variant?: "default" | "primary";
+    icon?: ComponentProps<typeof ButtonIcon>["name"];
+};
+
+type Props = Options & (
+    | (HTMLAttributes<"a"> & { href: string })
+    | (HTMLAttributes<"button"> & { href?: never })
+);
+
+const { class: className, icon, variant = "default", ...attrs } = Astro.props;
+const classes = ["btn", { primary: variant === "primary" }, className];
+---
+
+{
+    attrs.href !== undefined ? (
+        <a {...attrs} class:list={classes}>
+            {icon && <ButtonIcon name={icon} />}
+            <slot />
+        </a>
+    ) : (
+        <button type="button" {...attrs} class:list={classes}>
+            {icon && <ButtonIcon name={icon} />}
+            <slot />
+        </button>
+    )
+}
+
+<style>
+    .btn {
+        padding-inline: var(--button-padding-inline, 20px);
+        font-size: var(--button-font-size, 16px);
+    }
+</style>
