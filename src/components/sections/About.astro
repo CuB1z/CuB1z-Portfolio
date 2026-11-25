@@ -75,7 +75,12 @@ const facts = t("resume:about.facts", { returnObjects: true }) as Array<{
     @media (min-width: 900px) {
         .about {
             grid-template-columns: 1.2fr 1fr;
-            align-items: start;
+        }
+        .facts {
+            display: grid;
+        }
+        .facts > div {
+            align-content: center;
         }
     }
     @media (max-width: 734px) {
