@@ -1,15 +1,12 @@
 {
     "heading": "Proyectos destacados",
-    "other_heading": "Otros proyectos",
-    "case_study": "Leer el caso de estudio",
     "projects": [
         {
             "title": "TripFlow",
-            "featured": true,
             "page": "/work/tripflow",
-            "flag": "Proyecto destacado",
-            "image": "/images/projects/tripflow-showcase.webp",
-            "description": "Planificador de viajes con IA, colaboración en tiempo real y modo offline, sobre microservicios Spring Boot orientados a eventos.",
+            "image": "/images/projects/tripflow-thumbnail.webp",
+            "action": "Leer el caso de estudio",
+            "description": "Planifica viajes con IA, organiza el itinerario con otras personas en tiempo real y consulta los detalles aunque no tengas conexión.",
             "techStack": ["Spring Boot", "Kafka", "PostgreSQL", "React", "Docker"],
             "links": {
                 "github": "https://github.com/codeurjc-students/2025-TripFlow",
@@ -18,7 +15,9 @@
         },
         {
             "title": "Velio",
-            "description": "Planificador de rutas en bici con datos abiertos: circuitos con la distancia y el desnivel que buscas, puntuados por tipo de vía y firme antes de salir.",
+            "image": "/images/projects/velio-thumbnail.webp",
+            "action": "Probar Velio",
+            "description": "Genera circuitos en bici según la distancia y el desnivel que buscas. Revisa el tipo de vía y el firme antes de salir.",
             "techStack": ["FastAPI", "Valhalla", "PostgreSQL", "React"],
             "links": {
                 "github": "https://github.com/CuB1z/Velio",
@@ -27,7 +26,9 @@
         },
         {
             "title": "NoteHub",
-            "description": "Plataforma ligera que permite visualizar notas en Markdown directamente desde repositorios de GitHub, con una interfaz limpia y adaptable a cualquier dispositivo.",
+            "image": "/images/projects/notehub-thumbnail.webp",
+            "action": "Ver proyecto",
+            "description": "Abre notas Markdown de repositorios de GitHub y navega por sus carpetas desde el navegador. También funciona con bóvedas de Obsidian.",
             "techStack": ["Next.js", "TypeScript", "GitHub API"],
             "links": {
                 "github": "https://github.com/CuB1z/NoteHub",
@@ -36,7 +37,9 @@
         },
         {
             "title": "Bits of Battle",
-            "description": "Un juego 1vs1 para jugar en local con un amigo usando el mismo teclado. Creado para La Hackathon del Dev.",
+            "image": "/images/projects/bits-of-battle-thumbnail.webp",
+            "action": "Jugar",
+            "description": "Juego de lucha local para dos personas con un solo teclado. Elige personaje y compite por las banderas en un laberinto con armas y objetos.",
             "techStack": ["React", "JavaScript", "HTML"],
             "links": {
                 "github": "https://github.com/PortiESP/bits-of-battle",
@@ -45,7 +48,9 @@
         },
         {
             "title": "DJ Sanz",
-            "description": "Web de portafolio para DJ Sanz, con un diseño limpio y moderno que se adapta a cualquier dispositivo.",
+            "image": "/images/projects/dj-sanz-thumbnail.webp",
+            "action": "Ver web",
+            "description": "La web de DJ Sanz reúne vídeos de sesiones y fotos de actuaciones, con un contacto directo para consultas sobre eventos.",
             "techStack": ["Next.js", "React", "TypeScript"],
             "links": {
                 "github": null,

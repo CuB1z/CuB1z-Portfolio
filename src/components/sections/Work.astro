@@ -1,6 +1,7 @@
 ---
 import { useTranslations } from "@utils/i18nUtils";
 import { buildUrl } from "@/utils/urlUtils";
+import ButtonIcon from "@components/shared/ButtonIcon.astro";
 import Chevron from "@components/shared/Chevron.astro";
 
 const locale = Astro.currentLocale;
@@ -8,20 +9,19 @@ const t = useTranslations(locale);
 
 interface Project {
     title: string;
-    featured?: boolean;
     page?: string;
-    flag?: string;
-    image?: string;
+    image: string;
+    action: string;
     description: string;
     techStack: string[];
     links: { github: string | null; live: string | null };
 }
 
 const heading = t("projects:heading");
-const projects = t("projects:projects", { returnObjects: true }) as Project[];
-
-const featured = projects.find((p) => p.featured) ?? projects[0];
-const rest = projects.filter((p) => p !== featured);
+const projects = (t("projects:projects", { returnObjects: true }) as Project[]).map((project) => ({
+    ...project,
+    href: project.page ? buildUrl(project.page, locale) : (project.links.live ?? project.links.github),
+}));
 
 // JSON-LD so AI can read each project even without a dedicated page.
 const projectsLd = {
@@ -30,9 +30,6 @@ const projectsLd = {
     name: heading,
     itemListElement: projects.map((p, i) => {
         const sameAs = [p.links.live, p.links.github].filter(Boolean);
-        const url = p.page
-            ? new URL(`${p.page}/`, Astro.site).toString()
-            : (p.links.live ?? p.links.github);
         return {
             "@type": "ListItem",
             position: i + 1,
@@ -41,7 +38,7 @@ const projectsLd = {
                 name: p.title,
                 description: p.description,
                 inLanguage: locale,
-                ...(url ? { url } : {}),
+                ...(p.href ? { url: new URL(p.href, Astro.site).href } : {}),
                 ...(sameAs.length ? { sameAs } : {}),
                 keywords: p.techStack.join(", "),
             },
@@ -50,51 +47,40 @@ const projectsLd = {
 };
 ---
 
-<section id="work" class="section">
+<section id="work" class="section" aria-labelledby="work-title">
     <script
         type="application/ld+json"
         set:html={JSON.stringify(projectsLd)}
     />
     <div class="shell">
-        <h2 class="sec-title">{heading}</h2>
-
-        <article class="feature">
-            <div class="feature-text">
-                {featured.flag && <p class="kicker">{featured.flag}</p>}
-                <h3>{featured.title}</h3>
-                <p>{featured.description}</p>
-                <ul class="tags">{featured.techStack.map((tech) => <li>{tech}</li>)}</ul>
-                {featured.page && (
-                    <a class="more" href={buildUrl(featured.page, locale)}>
-                        {t("projects:case_study")}
-                        <Chevron />
-                    </a>
-                )}
-            </div>
-            {featured.image && <img src={featured.image} alt={featured.title} loading="lazy" />}
-        </article>
-
-        <h3 class="sub">{t("projects:other_heading")}</h3>
-        <ul class="tiles">
+        <h2 class="sec-title" id="work-title">{heading}</h2>
+        <ul class="group" role="list">
             {
-                rest.map((project) => {
-                    const href = project.links.live ?? project.links.github;
-                    const Tag = href ? "a" : "div";
+                projects.map((project) => {
+                    const { href } = project;
+                    const external = Boolean(href && !project.page);
+                    const Row = href ? "a" : "div";
+
                     return (
                         <li>
-                            <Tag
-                                class="tile"
+                            <Row
+                                class="project-row"
                                 href={href ?? undefined}
-                                target={href ? "_blank" : undefined}
-                                rel={href ? "noopener noreferrer" : undefined}
+                                target={external ? "_blank" : undefined}
+                                rel={external ? "noopener noreferrer" : undefined}
                             >
-                                <span class="tile-name">
-                                    {project.title}
-                                    {href && <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg>}
-                                </span>
-                                <p>{project.description}</p>
-                                <span class="tags">{project.techStack.map((tech) => <span>{tech}</span>)}</span>
-                            </Tag>
+                                <img src={project.image} alt="" width="640" height="360" loading="lazy" decoding="async" />
+                                <div class="project-copy">
+                                    <h3>{project.title}</h3>
+                                    <p>{project.description}</p>
+                                </div>
+                                {href && (
+                                    <span class="project-action">
+                                        {project.action}
+                                        {external ? <ButtonIcon name="arrow-up-right" /> : <Chevron />}
+                                    </span>
+                                )}
+                            </Row>
                         </li>
                     );
                 })
@@ -104,87 +90,74 @@ const projectsLd = {
 </section>
 
 <style>
-    .feature {
+    .project-row {
         display: grid;
-        background: var(--bg-card);
-        border-radius: var(--radius);
-        overflow: hidden;
+        grid-template-columns: 128px minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 24px;
     }
-    .feature-text {
-        display: grid;
-        gap: 12px;
-        align-content: center;
-        padding: 32px;
-        min-width: 0;
-    }
-    .kicker {
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--soft);
-    }
-    .feature h3 {
-        font-size: 32px;
-        line-height: 1.1;
-        letter-spacing: -0.025em;
-    }
-    .feature img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        aspect-ratio: 16 / 9;
-        object-fit: cover;
-    }
-    .tiles {
-        list-style: none;
-        display: grid;
-        gap: 12px;
-    }
-    .tile {
-        display: grid;
-        gap: 6px;
-        align-content: start;
-        height: 100%;
-        padding: 20px 22px;
-        border-radius: 18px;
-        background: var(--bg-card);
-        transition: background-color 0.2s;
-    }
-    a.tile:hover {
+    a.project-row:is(:hover, :focus-visible) {
         background: var(--bg-card-2);
     }
-    .tile-name {
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
-        font-weight: 600;
+    .project-row:focus-visible {
+        outline-offset: -3px;
     }
-    .tile-name svg {
-        width: 16px;
-        height: 16px;
-        flex: none;
-        margin-top: 3px;
+    .project-row img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+    .project-copy h3 {
+        font-size: 18px;
+        margin-bottom: 4px;
+    }
+    .project-copy p,
+    .project-action {
+        font-size: 14px;
+    }
+    .project-copy p {
+        color: var(--soft);
+        max-width: 54ch;
+    }
+    .project-action {
+        --button-icon-size: 16px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
         color: var(--accent);
     }
-    .tile p {
-        font-size: 15px;
-        color: var(--soft);
-    }
-    .tile .tags {
-        margin-top: 6px;
-    }
-    @media (min-width: 640px) {
-        .tiles {
-            grid-template-columns: 1fr 1fr;
+    @media (max-width: 734px) {
+        .project-row {
+            grid-template-columns: 88px minmax(0, 1fr);
+            grid-template-areas:
+                "image title"
+                "image action"
+                "description description";
+            gap: 8px 12px;
+            padding: 20px;
         }
-    }
-    @media (min-width: 900px) {
-        .feature {
-            grid-template-columns: 1fr 1.15fr;
+        .project-row img {
+            grid-area: image;
         }
-    }
-    @media (max-width: 899px) {
-        .feature img {
-            display: none;
+        .project-copy {
+            display: contents;
+        }
+        .project-copy h3 {
+            grid-area: title;
+            align-self: end;
+            margin-bottom: 0;
+        }
+        .project-copy p {
+            grid-area: description;
+            margin-top: 8px;
+        }
+        .project-action {
+            grid-area: action;
+            align-self: start;
         }
     }
 </style>

@@ -1,15 +1,12 @@
 {
     "heading": "Selected work",
-    "other_heading": "Other projects",
-    "case_study": "Read the case study",
     "projects": [
         {
             "title": "TripFlow",
-            "featured": true,
             "page": "/work/tripflow",
-            "flag": "Featured project",
-            "image": "/images/projects/tripflow-showcase.webp",
-            "description": "AI-assisted travel planner with real-time collaboration and offline mode, built on event-driven Spring Boot microservices.",
+            "image": "/images/projects/tripflow-thumbnail.webp",
+            "action": "Read the case study",
+            "description": "Plan trips with AI, build an itinerary with other people in real time, and check the details even when you’re offline.",
             "techStack": ["Spring Boot", "Kafka", "PostgreSQL", "React", "Docker"],
             "links": {
                 "github": "https://github.com/codeurjc-students/2025-TripFlow",
@@ -18,7 +15,9 @@
         },
         {
             "title": "Velio",
-            "description": "Cycling route planner on open data: loops cut to your distance and climbing, scored by road type, surface and elevation before you ride.",
+            "image": "/images/projects/velio-thumbnail.webp",
+            "action": "Try Velio",
+            "description": "Generate cycling loops for your target distance and elevation gain. Check road types and surfaces before heading out.",
             "techStack": ["FastAPI", "Valhalla", "PostgreSQL", "React"],
             "links": {
                 "github": "https://github.com/CuB1z/Velio",
@@ -27,7 +26,9 @@
         },
         {
             "title": "NoteHub",
-            "description": "Lightweight platform that lets you view Markdown notes directly from GitHub repositories, with a clean interface adaptable to any device.",
+            "image": "/images/projects/notehub-thumbnail.webp",
+            "action": "View project",
+            "description": "Open Markdown notes from GitHub repositories and browse their folders in your browser. It also works with Obsidian vaults.",
             "techStack": ["Next.js", "TypeScript", "GitHub API"],
             "links": {
                 "github": "https://github.com/CuB1z/NoteHub",
@@ -36,7 +37,9 @@
         },
         {
             "title": "Bits of Battle",
-            "description": "A 1vs1 game to play locally with a friend using the same keyboard. Built for La Hackathon del Dev.",
+            "image": "/images/projects/bits-of-battle-thumbnail.webp",
+            "action": "Play the game",
+            "description": "A local fighting game for two players on one keyboard. Pick a character and compete for flags in a maze of weapons and items.",
             "techStack": ["React", "JavaScript", "HTML"],
             "links": {
                 "github": "https://github.com/PortiESP/bits-of-battle",
@@ -45,7 +48,9 @@
         },
         {
             "title": "DJ Sanz",
-            "description": "Portfolio website for DJ Sanz, with a clean and modern interface adaptable to any device.",
+            "image": "/images/projects/dj-sanz-thumbnail.webp",
+            "action": "Visit site",
+            "description": "DJ Sanz’s site brings together set videos and photos from live shows, with a direct way to get in touch about events.",
             "techStack": ["Next.js", "React", "TypeScript"],
             "links": {
                 "github": null,
