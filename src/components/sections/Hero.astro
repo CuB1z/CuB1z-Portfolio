@@ -111,8 +111,8 @@ const email = socialData.email.replace(/^mailto:/, "");
         gap: clamp(16px, 3vw, 32px);
         align-items: center;
     }
-    .hero-copy > * + * {
-        margin-top: 16px;
+    .hero-copy > :is(.lede, .bio) {
+        margin-top: 20px;
     }
     h1 {
         font-size: clamp(36px, 7vw, 64px);
@@ -145,8 +145,7 @@ const email = socialData.email.replace(/^mailto:/, "");
         gap: 12px;
     }
     .actions {
-        --button-padding-inline: 16px;
-        --button-font-size: 14px;
+        margin-top: 24px;
     }
     .copy-icon,
     .check-icon {
