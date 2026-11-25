@@ -1,6 +1,7 @@
 {
     "experience": {
         "heading": "Experiencia",
+        "downloadCv": "Descargar CV",
         "items": [
             {
                 "role": "Desarrollador Full-Stack",

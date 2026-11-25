@@ -1,6 +1,7 @@
 {
     "experience": {
         "heading": "Experience",
+        "downloadCv": "Download CV",
         "items": [
             {
                 "role": "Full-Stack Developer",

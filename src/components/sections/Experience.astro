@@ -1,7 +1,10 @@
 ---
+import Button from "@components/shared/Button.astro";
 import { useTranslations } from "@utils/i18nUtils";
 
-const t = useTranslations(Astro.currentLocale);
+const locale = Astro.currentLocale ?? "en";
+const t = useTranslations(locale);
+const cvUrl = `/cv/Diego_Sanchez_${locale.toUpperCase()}.pdf`;
 
 const heading = t("resume:experience.heading");
 const items = t("resume:experience.items", { returnObjects: true }) as Array<{
@@ -17,7 +20,12 @@ const items = t("resume:experience.items", { returnObjects: true }) as Array<{
 
 <section id="experience" class="section">
     <div class="shell">
-        <h2 class="sec-title">{heading}</h2>
+        <div class="experience-heading">
+            <h2 class="sec-title">{heading}</h2>
+            <Button href={cvUrl} download="" icon="download">
+                {t("resume:experience.downloadCv")}
+            </Button>
+        </div>
 
         <ul class="group timeline">
             {
@@ -52,6 +60,20 @@ const items = t("resume:experience.items", { returnObjects: true }) as Array<{
 </section>
 
 <style>
+    .section {
+        margin-top: 8px;
+    }
+    .experience-heading {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px 16px;
+        margin-bottom: 24px;
+    }
+    .experience-heading .sec-title {
+        margin: 0;
+    }
     .org {
         font-size: 15px;
         font-weight: 600;
