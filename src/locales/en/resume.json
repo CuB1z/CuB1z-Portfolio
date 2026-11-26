@@ -38,23 +38,10 @@
             "At Génexys I build microservices and event-driven architectures, work on offline geospatial navigation for low-connectivity environments, and create agentic engineering workflows with Claude Code.",
             "I enjoy designing systems that are simple, reliable and built to scale."
         ],
-        "facts": [
-            {
-                "label": "Education",
-                "lines": ["Bachelor's in Software Engineering", "Universidad Rey Juan Carlos", "2022 – 2026"]
-            },
-            {
-                "label": "Languages",
-                "lines": ["Spanish (native)", "English (B2, Cambridge)"]
-            },
-            {
-                "label": "Focus",
-                "lines": ["Backend & distributed systems on AWS"]
-            },
-            {
-                "label": "Based in",
-                "lines": ["Madrid, Spain"]
-            }
-        ]
+        "education": "BSc in Software Engineering · Universidad Rey Juan Carlos (2022–2026)",
+        "languages": "Spanish (native) · English (B2, Cambridge)",
+        "location": "Madrid, Spain",
+        "saveContact": "Save contact",
+        "email": "Email"
     }
 }

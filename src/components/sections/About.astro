@@ -1,14 +1,11 @@
 ---
+import ContactCard from "@components/shared/ContactCard.astro";
 import { useTranslations } from "@utils/i18nUtils";
 
 const t = useTranslations(Astro.currentLocale);
 
 const heading = t("resume:about.heading");
 const narrative = t("resume:about.narrative", { returnObjects: true }) as string[];
-const facts = t("resume:about.facts", { returnObjects: true }) as Array<{
-    label: string;
-    lines: string[];
-}>;
 ---
 
 <section id="about" class="section">
@@ -17,28 +14,13 @@ const facts = t("resume:about.facts", { returnObjects: true }) as Array<{
 
         <div class="about">
             <div class="prose">
-                <div class="profile">
-                    <img src="/images/diego-192.webp" width="64" height="64" alt="" loading="lazy" />
-                    <div>
-                        <p class="profile-name">Diego Sánchez Rincón</p>
-                        <p class="profile-sub">{t("common:schema.jobTitle")}</p>
-                    </div>
-                </div>
                 {narrative.map((p) => <p>{p}</p>)}
+                <div class="details">
+                    <p>{t("resume:about.education")}</p>
+                    <p>{t("resume:about.languages")}</p>
+                </div>
             </div>
-            <dl class="group facts">
-                {
-                    facts.map((fact) => (
-                        <div>
-                            <dt>{fact.label}</dt>
-                            <dd>
-                                {fact.lines[0]}
-                                {fact.lines.slice(1).map((line) => <span>{line}</span>)}
-                            </dd>
-                        </div>
-                    ))
-                }
-            </dl>
+            <ContactCard />
         </div>
     </div>
 </section>
@@ -51,41 +33,20 @@ const facts = t("resume:about.facts", { returnObjects: true }) as Array<{
     }
     .prose {
         display: grid;
+        align-content: center;
         gap: 16px;
         max-width: 36em;
         line-height: 1.6;
     }
-    .profile {
-        padding-bottom: 8px;
-    }
-    .facts > div {
-        display: grid;
-        grid-template-columns: 104px 1fr;
-        gap: 16px;
-        padding: 16px 24px;
-        font-size: 15px;
-    }
-    .facts dt,
-    .facts span {
+    .details {
+        border-top: 1px solid var(--rule);
+        padding-top: 12px;
         color: var(--soft);
-    }
-    .facts span {
-        display: block;
+        font-size: 14px;
     }
     @media (min-width: 900px) {
         .about {
-            grid-template-columns: 1.2fr 1fr;
-        }
-        .facts {
-            display: grid;
-        }
-        .facts > div {
-            align-content: center;
-        }
-    }
-    @media (max-width: 734px) {
-        .facts > div {
-            padding-inline: 20px;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
         }
     }
 </style>

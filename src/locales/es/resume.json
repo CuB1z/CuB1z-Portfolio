@@ -38,23 +38,10 @@
             "En Génexys desarrollo microservicios con arquitecturas basadas en eventos, trabajo en navegación sin conexión para zonas con poca cobertura y automatizo parte del desarrollo con Claude Code.",
             "Me gusta diseñar sistemas sencillos, fiables y preparados para crecer."
         ],
-        "facts": [
-            {
-                "label": "Educación",
-                "lines": ["Grado en Ingeniería del Software", "Universidad Rey Juan Carlos", "2022 – 2026"]
-            },
-            {
-                "label": "Idiomas",
-                "lines": ["Español (nativo)", "Inglés (B2, Cambridge)"]
-            },
-            {
-                "label": "Enfoque",
-                "lines": ["Backend y sistemas distribuidos en AWS"]
-            },
-            {
-                "label": "Ubicación",
-                "lines": ["Madrid, España"]
-            }
-        ]
+        "education": "Grado en Ingeniería del Software · Universidad Rey Juan Carlos (2022–2026)",
+        "languages": "Español (nativo) · Inglés (B2, Cambridge)",
+        "location": "Madrid, España",
+        "saveContact": "Guardar contacto",
+        "email": "Correo"
     }
 }
